@@ -17,6 +17,6 @@ describe('MainComponent', function () {
   });
 
   it('should have its component name as default className', function () {
-    expect(this.MainComponent.props.className).to.equal('index');
+    expect(this.MainComponent.props.className).to.equal('container-fluid');
   });
 });

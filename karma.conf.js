@@ -12,12 +12,27 @@ module.exports = function(config) {
     ],
     port: 8000,
     captureTimeout: 60000,
-    frameworks: [ 'mocha', 'chai' ],
+    frameworks: [ 'mocha', 'chai', 'sinon-chai' ],
     client: {
+      chai: {
+        includeStack: true
+      },
       mocha: {}
     },
     singleRun: true,
     reporters: [ 'mocha', 'coverage' ],
+    plugins: [
+      'karma-mocha',
+      'karma-mocha-reporter',
+      'karma-coverage',
+      'karma-chai',
+      'karma-phantomjs-launcher',
+      'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-sinon-chai'
+      // 'karma-sourcemap-loader',
+      // 'karmawebpack'
+    ],
     preprocessors: {
       'test/loadtests.js': [ 'webpack', 'sourcemap' ]
     },

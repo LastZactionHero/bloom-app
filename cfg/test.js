@@ -1,5 +1,7 @@
 'use strict';
 
+let webpack = require('webpack');
+
 let path = require('path');
 let srcPath = path.join(__dirname, '/../src/');
 
@@ -53,6 +55,10 @@ module.exports = {
   plugins: [
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
+    }),
+    new webpack.DefinePlugin({
+     API_SEARCH_HOST: JSON.stringify('http://dev-api-search.plantwithbloom.com:3000'),
+     API_USER_HOST: JSON.stringify('http://dev-api-user.plantwithbloom.com:3001')
     })
   ]
 };
