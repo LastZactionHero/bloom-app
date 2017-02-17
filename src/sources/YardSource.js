@@ -34,7 +34,8 @@ export default {
       $.ajax({
         method: 'POST',
         url: `${API_USER_HOST}/yards`,
-        contentType: 'application/json'
+        contentType: 'application/json',
+        data: JSON.stringify(yard)
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -49,7 +50,7 @@ export default {
         method: 'PATCH',
         url: `${API_USER_HOST}/yards/${yard.id}`,
         contentType: 'application/json',
-        data: yard
+        data: JSON.stringify(yard)
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -63,10 +64,11 @@ export default {
       $.ajax({
         method: 'DELETE',
         url: `${API_USER_HOST}/yards/${yard.id}`
-      }).done( 
+      }).done(
         () => { resolve();
-      }).fail( 
-        (xhr, r));
-    })
+      }).fail( (xhr, textStatus, errorThrown) => {
+          reject(xhr, textStatus, errorThrown);
+      });
+    });
   }
 }
