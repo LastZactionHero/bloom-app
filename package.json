@@ -45,6 +45,8 @@
     "karma": "^1.0.0",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.0.0",
+    "karma-fixture": "^0.2.6",
+    "karma-json-fixtures-preprocessor": "0.0.6",
     "karma-mocha": "^1.0.0",
     "karma-mocha-reporter": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.0",

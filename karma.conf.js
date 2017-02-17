@@ -8,11 +8,14 @@ module.exports = function(config) {
     basePath: '',
     browsers: [ 'PhantomJS' ],
     files: [
-      'test/loadtests.js'
+      'test/loadtests.js',
+      {
+        pattern: 'test/fixtures/**/*'
+      }
     ],
     port: 8000,
     captureTimeout: 60000,
-    frameworks: [ 'mocha', 'chai', 'sinon-chai' ],
+    frameworks: [ 'mocha', 'chai', 'sinon-chai', 'fixture' ],
     client: {
       chai: {
         includeStack: true
@@ -29,12 +32,15 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-webpack',
       'karma-sourcemap-loader',
-      'karma-sinon-chai'
+      'karma-sinon-chai',
+      'karma-fixture',
+      'karma-json-fixtures-preprocessor'
       // 'karma-sourcemap-loader',
       // 'karmawebpack'
     ],
     preprocessors: {
-      'test/loadtests.js': [ 'webpack', 'sourcemap' ]
+      'test/loadtests.js': [ 'webpack', 'sourcemap' ],
+      '**/*.json'        : [ 'json_fixtures' ]
     },
     webpack: webpackCfg,
     webpackServer: {
@@ -46,6 +52,9 @@ module.exports = function(config) {
         { type: 'html' },
         { type: 'text' }
       ]
+    },
+    jsonFixturesPreprocessor: {
+      variableName: '__json__'
     }
   });
 };
