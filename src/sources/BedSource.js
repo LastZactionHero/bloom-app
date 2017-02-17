@@ -1,11 +1,11 @@
-import $ from 'jquery';
+import $ from 'jquery'
 
 export default {
-  index: function() {
+  show: function(bedID) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'GET',
-        url: API_USER_HOST + '/yards',
+        url: `${API_USER_HOST}/beds/${bedID}`,
         contentType: 'application/json'
       }).done( (response) => {
         resolve(response);
@@ -15,26 +15,13 @@ export default {
     });
   },
 
-  show: function(yardID) {
-    return new Promise( (resolve, reject) => {
-      $.ajax({
-        method: 'GET',
-        url: `${API_USER_HOST}/yards/${yardID}`,
-        contentType: 'application/json'
-      }).done( (response) => {
-        resolve(response);
-      }).fail( (xhr, textStatus, errorThrown) => {
-        reject(xhr, textStatus, errorThrown);
-      });
-    });
-  },
-
-  create: function(yard) {
+  create: function(bed) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'POST',
-        url: `${API_USER_HOST}/yards`,
-        contentType: 'application/json'
+        url: `${API_USER_HOST}/beds`,
+        contentType: 'application/json',
+        data: JSON.stringify(bed)
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -43,13 +30,13 @@ export default {
     });
   },
 
-  update: function(yard) {
+  update: function(bed) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'PATCH',
-        url: `${API_USER_HOST}/yards/${yard.id}`,
+        url: `${API_USER_HOST}/beds/${bed.id}`,
         contentType: 'application/json',
-        data: yard
+        data: JSON.stringify(bed)
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -58,15 +45,16 @@ export default {
     });
   },
 
-  destroy: function(yard) {
+  destroy: function(bed) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'DELETE',
-        url: `${API_USER_HOST}/yards/${yard.id}`
-      }).done( 
+        url: `${API_USER_HOST}/beds/${bed.id}`
+      }).done(
         () => { resolve();
-      }).fail( 
-        (xhr, r));
-    })
+      }).fail( (xhr, textStatus, errorThrown) => {
+          reject(xhr, textStatus, errorThrown);
+      });
+    });
   }
 }

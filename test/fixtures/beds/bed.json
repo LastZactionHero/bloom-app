@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "yard_id": 437,
+  "name": "Front Yard Bed",
+  "attached_to_house": false,
+  "orientation": "north",
+  "width": 30.0,
+  "depth": 6.0,
+  "sunlight_morning": "full_sun",
+  "sunlight_afternoon": "partial_sun",
+  "watered": false
+}
