@@ -56,7 +56,7 @@ describe('UserSource', function () {
       });
 
       const request = server.requests[0];
-      request.url.should.equal(API_USER_HOST + '/users/sign_in');
+      request.url.should.equal(API_USER_HOST + '/users/sign_in_as');
       request.requestBody.should.equal(JSON.stringify({email: email, password: password}));
       request.respond(201, { 'Content-Type': 'application/json' }, responseJSONUser);
     });
@@ -73,5 +73,43 @@ describe('UserSource', function () {
 
       server.requests[0].respond(400, { 'Content-Type': 'application/json' }, responseJSONError);
     });
+  });
+
+  describe('ping', function() {
+    it('resolves to a User object if successful', function(done) {
+      const responseDataUser = { email: 'user@site.com' };
+
+      UserSource.ping().then( (user) => {
+        user.should.deep.equal(responseDataUser);
+        done();
+      });
+
+      const request = server.requests[0];
+      request.url.should.equal(API_USER_HOST + '/users/ping');
+      request.method.should.equal('GET');
+      request.respond(200, { 'Content-Type' : 'application/json' }, JSON.stringify(responseDataUser));
+    });
+
+    it('rejects if not authorized', function() {
+      UserSource.ping().catch( () => { done(); });
+      const request = server.requests[0];
+      request.respond(401);
+    });
+  });
+
+  describe('sign_out', function() {
+    it('resolves if successful', function(done){
+      UserSource.sign_out().then( () => { done(); });
+      const request = server.requests[0];
+      request.url.should.equal(API_USER_HOST + '/users/sign_out');
+      request.method.should.equal('POST');
+      request.respond(200);
+    });
+    it('rejects if unsuccessful', function(done){
+      UserSource.sign_out().catch( () => { done(); });
+      const request = server.requests[0];
+      request.respond(400);
+    });
+
   });
 });

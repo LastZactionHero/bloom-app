@@ -1,11 +1,16 @@
 $color-bg-gray: #333333;
 $color-text: #000000;
 $color-text-white: #FFFFFF;
+$color-flat-green: #27ae60;
 
 /* Base Application Styles */
 body {
   padding-top: 70px;
   color: $color-text;
+  background-color: $color-flat-green;
+
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
 }
 
 .index img {
@@ -27,7 +32,26 @@ body {
 .footer {
   padding-top: 80px;
   padding-bottom: 80px;
-  
+
   background-color: $color-bg-gray;
   color: $color-text-white;
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+.panel-sign-up {
+  margin: 48px 0px 64px 0px;
+  padding: 20px;
+
+  a.alternate-action {
+    margin-left: 16px;
+  }
+}
+
+.form-group {
+  p.text-danger {
+    margin-top: 4px;
+  }
 }
