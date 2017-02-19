@@ -6,7 +6,7 @@ class YardList extends React.Component {
     return(
       <div>
         <div>Yard List</div>
-        <Link to={{pathname: '/yards/builder/'}}>Create a new Yard</Link>
+        <Link to={{pathname: '/dashboard/yards/builder/'}}>Create a new Yard</Link>
       </div>
     )
   }
