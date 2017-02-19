@@ -1,13 +1,11 @@
-$color-bg-gray: #333333;
-$color-text: #000000;
-$color-text-white: #FFFFFF;
-$color-flat-green: #27ae60;
+@import 'Colors';
+@import 'BootstrapOverrides';
 
 /* Base Application Styles */
 body {
   padding-top: 70px;
   color: $color-text;
-  background-color: $color-flat-green;
+  background-color: $color-white;
 
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
@@ -30,6 +28,7 @@ body {
 }
 
 .footer {
+  margin-top: 64px;
   padding-top: 80px;
   padding-bottom: 80px;
 
@@ -37,21 +36,153 @@ body {
   color: $color-text-white;
 }
 
-.panel {
-  border-radius: 0px;
-}
-
 .panel-sign-up {
   margin: 48px 0px 64px 0px;
   padding: 20px;
 
-  a.alternate-action {
-    margin-left: 16px;
+  border: 24px solid $color-flat-blue;
+
+  .alternate-action {
+    margin-top: 16px;
+    font-size: 14px;
+    a {
+      font-weight: bold;
+      margin-left: 4px;
+    }
   }
 }
 
-.form-group {
-  p.text-danger {
-    margin-top: 4px;
+.dashboard {
+  background-color: $color-white;
+}
+
+.protip:before {
+    content: "\f05a"; // fa-info-circle
+    font-family: FontAwesome;
+    left: 8px;
+    top: 8px !important;
+    position:absolute;
+    top:0;
+}
+.protip {
+  font-size: 14px;
+  position: relative;
+  padding: 8px 8px 8px 24px;
+  background-color: $color-flat-dark-gray;
+  .protip-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+}
+
+.yard-builder {
+  .btn {
+    padding: 12px 18px;
+    font-size: 20px;
+  }
+
+  .step {
+    color: $color-white;
+    padding: 8px;
+    border-bottom: 4px solid $color-flat-light-gray;
+
+    .step-title {
+      display: block;
+      font-weight: bold;
+      font-size: 20px;
+      padding-left: 24px;
+    }
+    .step-contents {
+      display: none;
+
+      .title {
+        margin-bottom: 16px;
+        font-size: 36px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 24px;
+      }
+
+      label {
+        margin-top: 8px;
+        font-size: 24px;
+        margin-right: 16px;
+      }
+
+      input {
+        font-size: 24px;
+        height: 48px;
+      }
+    }
+  }
+  .step.active {
+    padding: 24px;
+    min-height: 256px;
+    .step-title {
+      display: none;
+    }
+    .step-contents {
+      display: block;
+    }
+  }
+  .step.incomplete {
+    background-color: $color-flat-gray;
+  }
+
+  .step-location {
+    background-color: $color-flat-green;
+
+    input.zipcode {
+      margin-top: -10px;
+      width: 128px;
+    }
+  }
+  .step-soil {
+    background-color: $color-flat-blue;
+
+    input[type=radio] {
+      margin-top: -6px;
+    }
+  }
+  .step-plant-preferences {
+    background-color: $color-flat-purple;
+
+    ul.plant-types {
+      list-style-type: none;
+      padding: 0px;
+
+      li {
+        background-color: $color-white;
+        color: $color-text;
+        padding: 12px 12px 12px 24px;
+        border-left: 12px solid $color-flat-gray;
+        cursor: pointer;
+
+        .name {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .description {
+          font-size: 16px;
+          margin-bottom: 12px;
+        }
+        .examples {
+
+        }
+        .image {
+          text-align: right;
+          img {
+            height: 80px;
+          }
+        }
+      }
+
+      li.active {
+        border-left: 24px solid $color-flat-green;
+        padding-left: 12px;
+      }
+    }
   }
 }

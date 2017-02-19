@@ -1,0 +1,40 @@
+@import 'Colors';
+
+.text-danger {
+  color: $color-flat-red;
+}
+
+.form-group {
+  p.text-danger {
+    margin-top: 4px;
+  }
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn-success {
+  background-color: $color-flat-green;
+  border: 2px solid $color-white;
+}
+.btn-success:hover {
+  background-color: $color-flat-green;
+}
+
+
+
+.alert {
+  border-radius: 0px;
+  color: $color-text;
+  font-size: 18px;
+}
+.alert-danger {
+  background-color: $color-white;
+  border-left: 8px solid $color-flat-red;
+  border-right: 8px solid $color-flat-red;
+}

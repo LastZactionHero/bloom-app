@@ -1,0 +1,48 @@
+import React from 'react';
+import YardBuilderStepSoil from './YardBuilderStepSoil'
+import YardBuilderStepLocation from './YardBuilderStepLocation';
+import YardBuilderStepPlantPreferences from './YardBuilderStepPlantPreferences';
+import YardBuilderStore from '../../stores/YardBuilderStore';
+
+class YardBuilder extends React.Component {
+  constructor() {
+    super();
+    this.state = YardBuilderStore.getState();
+  }
+
+  componentDidMount = () => {
+    YardBuilderStore.listen(this.onChange);
+  }
+
+  componentWillUnmount = () => {
+    YardBuilderStore.unlisten(this.onChange);
+  }
+
+  onChange = (state) => {
+    this.setState(state);
+  }
+
+  render() {
+    return(
+      <div className='yard-builder'>
+        <div>
+          <YardBuilderStepLocation active={this.state.activeStep == 'location'} incomplete={!this.state.steps.location.complete} />
+          <YardBuilderStepSoil active={this.state.activeStep == 'soil'} incomplete={!this.state.steps.soil.complete}  />
+          <YardBuilderStepPlantPreferences active={this.state.activeStep == 'plant_preferences'} incomplete={!this.state.steps.plant_preferences.complete}  />
+        </div>
+        {this.state.allComplete ?
+          <div className='text-right'>
+            <div className='text-right'>
+              <a className='btn btn-success'
+                 href='javascript:void(0)'
+                 onClick={this.nextStep}>Start Designing Beds</a>
+            </div>
+          </div>
+          : null }
+        <div>{this.props.params.splat}</div>
+      </div>
+    )
+  }
+}
+
+export default YardBuilder;

@@ -31,7 +31,12 @@ class SignIn extends SessionForm {
                   <p className='text-danger' >{this.errorMessageFor('password')}</p>
                 </div>
                 <button className={'btn btn-primary' + (this.state.submitting ? 'disabled' : '')}>Sign In</button>
-                <Link to='/sign_up' className='alternate-action'>Sign Up</Link>
+                <div className='alternate-action'>
+                  Don&apos;t have an account?
+                  <Link to='/sign_up'>Sign Up</Link>
+                </div>
+
+
               </form>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import YardList from './Yards/YardList';
 import SessionStore from '../stores/SessionStore';
 import { browserHistory } from 'react-router'
 
@@ -28,7 +29,10 @@ class Dashboard extends React.Component {
 
   render() {
     return(
-      <div>Dashboard!</div>
+      <div className='dashboards'>
+        <h2>Dashboard</h2>
+        <YardList />
+      </div>
     );
   }
 }
