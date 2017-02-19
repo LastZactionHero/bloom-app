@@ -1,6 +1,8 @@
 import React from 'react';
 import YardBuilderStore from '../../stores/YardBuilderStore';
 import YardBuilderActions from '../../actions/YardBuilderActions';
+import ReactScroll from 'react-scroll';
+
 
 class YardBuilderStep extends React.Component {
   constructor() {
@@ -22,10 +24,12 @@ class YardBuilderStep extends React.Component {
 
   nextStep = () => {
     YardBuilderActions.nextStep();
+    ReactScroll.animateScroll.scrollToTop({duration: 250});
   }
 
   selectStep = (stepName) => {
     YardBuilderActions.selectStep(stepName);
+    ReactScroll.animateScroll.scrollToTop({duration: 250});
   }
 
   stepStateClass = () => {
