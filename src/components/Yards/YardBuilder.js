@@ -3,6 +3,7 @@ import YardBuilderStepSoil from './YardBuilderStepSoil'
 import YardBuilderStepLocation from './YardBuilderStepLocation';
 import YardBuilderStepPlantPreferences from './YardBuilderStepPlantPreferences';
 import YardBuilderStore from '../../stores/YardBuilderStore';
+import YardBuilderActions from '../../actions/YardBuilderActions';
 
 class YardBuilder extends React.Component {
   constructor() {
@@ -22,6 +23,12 @@ class YardBuilder extends React.Component {
     this.setState(state);
   }
 
+  createYard = () => {
+    if(!this.state.submitting) {
+      YardBuilderActions.startCreateYard(this.state.yard);
+    }
+  }
+
   render() {
     return(
       <div className='yard-builder'>
@@ -33,9 +40,9 @@ class YardBuilder extends React.Component {
         {this.state.allComplete ?
           <div className='text-right'>
             <div className='text-right'>
-              <a className='btn btn-success'
+              <a className={`btn btn-success ${this.state.submitting ? 'disabled' : null} `}
                  href='javascript:void(0)'
-                 onClick={this.nextStep}>Start Designing Beds</a>
+                 onClick={this.createYard}>Start Designing Beds</a>
             </div>
           </div>
           : null }

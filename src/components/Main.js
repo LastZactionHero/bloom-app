@@ -32,14 +32,18 @@ class AppComponent extends React.Component {
     let children = this.props.children || <Dashboard/>;
 
     return (
-      <div className='container-fluid'>
+      <div className=''>
         {this.state.initPing ?
           <div>
-            <Navbar/>
+            <div className='container-fluid'>
+              <Navbar/>
+            </div>
             <div className='container'>
               {children}
             </div>
-            <Footer/>
+            <div className='container-fluid'>
+              <Footer/>
+            </div>
           </div> : null }
       </div>
     );

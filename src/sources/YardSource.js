@@ -6,7 +6,10 @@ export default {
       $.ajax({
         method: 'GET',
         url: API_USER_HOST + '/yards',
-        contentType: 'application/json'
+        contentType: 'application/json',
+        xhrFields: {
+          withCredentials: true
+        }
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -20,7 +23,10 @@ export default {
       $.ajax({
         method: 'GET',
         url: `${API_USER_HOST}/yards/${yardID}`,
-        contentType: 'application/json'
+        contentType: 'application/json',
+        xhrFields: {
+          withCredentials: true
+        }
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -35,7 +41,10 @@ export default {
         method: 'POST',
         url: `${API_USER_HOST}/yards`,
         contentType: 'application/json',
-        data: JSON.stringify(yard)
+        data: JSON.stringify(yard),
+        xhrFields: {
+          withCredentials: true
+        }
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -50,7 +59,10 @@ export default {
         method: 'PATCH',
         url: `${API_USER_HOST}/yards/${yard.id}`,
         contentType: 'application/json',
-        data: JSON.stringify(yard)
+        data: JSON.stringify(yard),
+        xhrFields: {
+          withCredentials: true
+        }
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -63,7 +75,10 @@ export default {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'DELETE',
-        url: `${API_USER_HOST}/yards/${yard.id}`
+        url: `${API_USER_HOST}/yards/${yard.id}`,
+        xhrFields: {
+          withCredentials: true
+        }
       }).done(
         () => { resolve();
       }).fail( (xhr, textStatus, errorThrown) => {

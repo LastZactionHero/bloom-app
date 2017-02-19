@@ -10,7 +10,10 @@ class YardBuilderStore {
       handleZoneChange: YardBuilderActions.ZONE_CHANGE,
       handleZoneFetchFail: YardBuilderActions.ZONE_FETCH_FAIL,
       handleSoilChange: YardBuilderActions.SOIL_CHANGE,
-      handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE
+      handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE,
+      handleStartCreateYard: YardBuilderActions.START_CREATE_YARD,
+      handleCreatedYard: YardBuilderActions.CREATED_YARD,
+      handleCreateYardFail: YardBuilderActions.CREATE_YARD_FAIL
     });
 
     this.yard = {
@@ -26,6 +29,7 @@ class YardBuilderStore {
       plant_preferences: {complete: false}
     }
     this.allComplete = false;
+    this.submitting = false;
   }
 
   handleNextStep() {
@@ -95,6 +99,23 @@ class YardBuilderStore {
       } else {
         this.yard.preferred_plant_types.splice(plantTypeIdx, 1);
       }
+  }
+
+  handleStartCreateYard() {
+    this.submitting = true;
+  }
+
+  handleCreatedYard(yard) {
+    // TODO: Something
+    console.log('created a yard!');
+    console.log(yard);
+  }
+
+  handleCreateYardFail(xhr) {
+    // TODO: Something
+    console.log('Yard create failed')
+    console.log(xhr)
+    this.submitting = false;
   }
 }
 
