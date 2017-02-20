@@ -1,7 +1,7 @@
 import React from 'react';
 import SessionActions from '../actions/SessionActions'
 import SessionStore from '../stores/SessionStore';
-
+import { Link } from 'react-router';
 class Navbar extends React.Component {
   constructor() {
     super();
@@ -35,7 +35,7 @@ class Navbar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Bloom Landscape Assistant</a>
+            <Link className='navbar-brand' to={{pathname: '/dashboard'}}>Bloom Landscape Assistant</Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

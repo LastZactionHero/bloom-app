@@ -107,14 +107,10 @@ class YardBuilderStore {
 
   handleCreatedYard(yard) {
     // TODO: Something
-    console.log('created a yard!');
-    console.log(yard);
   }
 
   handleCreateYardFail(xhr) {
     // TODO: Something
-    console.log('Yard create failed')
-    console.log(xhr)
     this.submitting = false;
   }
 }

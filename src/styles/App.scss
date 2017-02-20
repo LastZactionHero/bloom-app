@@ -20,7 +20,7 @@ body {
 
 .index .notice {
   margin: 20px auto;
-  padding: 15px 0;
+  rpadding: 15px 0;
   text-align: center;
   border: 1px solid #000;
   border-width: 1px 0;
@@ -76,112 +76,5 @@ body {
   }
 }
 
-.yard-builder {
-  .btn {
-    padding: 12px 18px;
-    font-size: 20px;
-  }
-
-  .step {
-    color: $color-white;
-    padding: 8px;
-    border-bottom: 4px solid $color-flat-light-gray;
-
-    .step-title {
-      display: block;
-      font-weight: bold;
-      font-size: 20px;
-      padding-left: 24px;
-    }
-    .step-contents {
-      display: none;
-
-      .title {
-        margin-bottom: 16px;
-        font-size: 36px;
-        font-weight: bold;
-      }
-
-      p {
-        font-size: 24px;
-      }
-
-      label {
-        margin: 8px 16px 16px 0px;
-        font-size: 24px;
-      }
-
-      input {
-        font-size: 24px;
-        height: 48px;
-      }
-    }
-  }
-  .step.active {
-    padding: 24px;
-    .step-title {
-      display: none;
-    }
-    .step-contents {
-      display: block;
-    }
-  }
-  .step.incomplete {
-    background-color: $color-flat-gray;
-  }
-
-  .step-location {
-    background-color: $color-flat-green;
-
-    input.zipcode {
-      margin-top: -10px;
-      width: 128px;
-    }
-  }
-  .step-soil {
-    background-color: $color-flat-blue;
-
-    input[type=radio] {
-      margin-top: -6px;
-    }
-  }
-  .step-plant-preferences {
-    background-color: $color-flat-purple;
-
-    ul.plant-types {
-      list-style-type: none;
-      padding: 0px;
-
-      li {
-        background-color: $color-white;
-        color: $color-text;
-        padding: 12px 12px 12px 24px;
-        border-left: 12px solid $color-flat-gray;
-        cursor: pointer;
-
-        .name {
-          font-weight: bold;
-          font-size: 18px;
-        }
-        .description {
-          font-size: 16px;
-          margin-bottom: 12px;
-        }
-        .examples {
-
-        }
-        .image {
-          text-align: right;
-          img {
-            height: 80px;
-          }
-        }
-      }
-
-      li.active {
-        border-left: 24px solid $color-flat-green;
-        padding-left: 12px;
-      }
-    }
-  }
-}
+@import 'YardBuilder';
+@import 'YardList';
