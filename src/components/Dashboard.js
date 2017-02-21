@@ -28,9 +28,10 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    let children = this.props.children || <YardList/>;
+    let children = this.props.children || <div>Dashboard</div>;
     return(
       <div className='dashboards'>
+        <div>Dashboard</div>
         {children}
       </div>
     );

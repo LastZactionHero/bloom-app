@@ -46,7 +46,6 @@ class YardBuilder extends React.Component {
             </div>
           </div>
           : null }
-        <div>{this.props.params.splat}</div>
       </div>
     )
   }

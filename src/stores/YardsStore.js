@@ -8,19 +8,28 @@ class YardsStore {
       handleIndexFetched: YardsActions.INDEX_FETCHED,
       handleIndexFetchFailed: YardsActions.INDEX_FETCH_FAILED
     })
+    this.exportPublicMethods({
+      findYardById: this.findYardById
+    });
+
+    this.pendingFirstFetch = true;
     this.yards = [];
   }
 
+  findYardById(id) {
+    return this.getState().yards.find((y) => {return y.id == parseInt(id)})
+  }
+
   handleStartFetchIndex() {
-    // TODO: Handle this?
   }
 
   handleIndexFetched(yards) {
     this.yards = yards;
+    this.pendingFirstFetch = false;
   }
 
   handleIndexFetchFailed(xhr) {
-    // TODO: Handle this?
+    this.fetchingData = false;
   }
 }
 
