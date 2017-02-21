@@ -1,5 +1,5 @@
 import React from 'react';
-import YardsStore from '../../stores/YardsStore';
+import BedBuilderStore from '../../stores/BedBuilderStore';
 import BedBuilderStepDimensions from './BedBuilderStepDimensions';
 import BedBuilderStepPosition from './BedBuilderStepPosition';
 import BedBuilderStepSunlight from './BedBuilderStepSunlight';
@@ -8,13 +8,13 @@ import BedBuilderStepMoisture from './BedBuilderStepMoisture';
 class BedBuilder extends React.Component {
   constructor() {
     super();
-    this.state =  YardsStore.getState();
+    this.state =  BedBuilderStore.getState();
   }
   componentDidMount = () => {
-    YardsStore.listen(this.onChange);
+    BedBuilderStore.listen(this.onChange);
   }
   componentWillUnmount = () => {
-    YardsStore.unlisten(this.onChange);
+    BedBuilderStore.unlisten(this.onChange);
   }
   onChange = (state) => {
     this.setState(state);
@@ -25,10 +25,10 @@ class BedBuilder extends React.Component {
       <div className='builder bed-builder'>
         <div>Bed Builder, Yard #{this.props.params.yard_id}</div>
         <div>
-          <BedBuilderStepDimensions active={true} incomplete={false} />
-          <BedBuilderStepPosition active={true} incomplete={false} />
-          <BedBuilderStepSunlight active={true} incomplete={false} />
-          <BedBuilderStepMoisture active={true} incomplete={false} />
+          <BedBuilderStepDimensions active={this.state.activeStep == 'dimensions'} incomplete={!this.state.steps.dimensions.complete} />
+          <BedBuilderStepPosition   active={this.state.activeStep == 'position'} incomplete={!this.state.steps.position.complete} />
+          <BedBuilderStepSunlight   active={this.state.activeStep == 'sunlight'} incomplete={!this.state.steps.sunlight.complete} />
+          <BedBuilderStepMoisture   active={this.state.activeStep == 'moisture'} incomplete={!this.state.steps.moisture.complete}  />
         </div>
       </div>
     )

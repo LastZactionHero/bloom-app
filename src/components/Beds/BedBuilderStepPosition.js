@@ -5,7 +5,7 @@ class BedBuilderStepPosition extends BedBuilderStep {
   render() {
     return(
       <div className={`step step-position ${this.stepStateClass()}` }>
-        <div className='step-title' onClick={() => {this.selectStep('location')}}>Relation to House</div>
+        <div className='step-title' onClick={() => {this.selectStep('position')}}>Relation to House</div>
         <div className='step-contents'>
           <div className='row'>
             <div className='col-xs-12'>

@@ -32,6 +32,17 @@
         font-size: 16px;
       }
 
+      .form-error {
+        margin-top: 4px;
+        border-left: 4px solid $color-flat-red;
+        border-right: 4px solid $color-flat-red;
+        padding: 0px 4px 0px 4px;
+        background-color: $color-white;
+        color: $color-flat-red;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
       .title {
         margin-bottom: 16px;
         font-size: 36px;

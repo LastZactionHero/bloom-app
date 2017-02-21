@@ -5,7 +5,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
   render() {
     return(
       <div className={`step step-moisture ${this.stepStateClass()}` }>
-        <div className='step-title' onClick={() => {this.selectStep('location')}}>Soil Moisture</div>
+        <div className='step-title' onClick={() => {this.selectStep('moisture')}}>Soil Moisture</div>
         <div className='step-contents'>
           <div className='row'>
             <div className='col-xs-12'>
@@ -23,7 +23,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                   <label>
                     <input type="radio"
                            value="wet"
-                           checked={this.state.yard.soil == 'wet'}
+                           checked={this.state.bed.soil == 'wet'}
                            onChange={this.handleSoilChange} />
                     Wet
                   </label>
@@ -32,7 +32,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                   <label>
                     <input type="radio"
                            value="moderate"
-                           checked={this.state.yard.soil == 'moderate'}
+                           checked={this.state.bed.soil == 'moderate'}
                            onChange={this.handleSoilChange} />
                     Moderate
                   </label>
@@ -41,7 +41,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                   <label>
                     <input type="radio"
                            value="dry"
-                           checked={this.state.yard.soil == 'dry'}
+                           checked={this.state.bed.soil == 'dry'}
                            onChange={this.handleSoilChange} />
                     Dry
                   </label>

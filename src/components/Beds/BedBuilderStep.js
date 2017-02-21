@@ -1,21 +1,21 @@
 import React from 'react';
-import YardBuilderStore from '../../stores/YardBuilderStore';
-import YardBuilderActions from '../../actions/YardBuilderActions';
+import BedBuilderStore from '../../stores/BedBuilderStore';
+import BedBuilderActions from '../../actions/BedBuilderActions';
 import ReactScroll from 'react-scroll';
 
 
 class BedBuilderStep extends React.Component {
   constructor() {
     super();
-    this.state = YardBuilderStore.getState();
+    this.state = BedBuilderStore.getState();
   }
 
   componentDidMount = () => {
-    YardBuilderStore.listen(this.onChange);
+    BedBuilderStore.listen(this.onChange);
   }
 
   componentWillUnmount = () => {
-    YardBuilderStore.unlisten(this.onChange);
+    BedBuilderStore.unlisten(this.onChange);
   }
 
   onChange = (state) => {
@@ -23,12 +23,12 @@ class BedBuilderStep extends React.Component {
   }
 
   nextStep = () => {
-    YardBuilderActions.nextStep();
+    BedBuilderActions.nextStep();
     ReactScroll.animateScroll.scrollToTop({duration: 250});
   }
 
   selectStep = (stepName) => {
-    YardBuilderActions.selectStep(stepName);
+    BedBuilderActions.selectStep(stepName);
     ReactScroll.animateScroll.scrollToTop({duration: 250});
   }
 
