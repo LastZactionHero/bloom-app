@@ -1,7 +1,7 @@
 import React from 'react';
 import YardList from './Yards/YardList';
 import SessionStore from '../stores/SessionStore';
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 
 class Dashboard extends React.Component {
   constructor() {
@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    let children = this.props.children || <div>Dashboard</div>;
+    let children = this.props.children || <div><Link className='btn btn-default' to={{pathname: `/dashboard/yards`}}>Yards</Link></div>;
     return(
       <div className='dashboards'>
         <div>Dashboard</div>

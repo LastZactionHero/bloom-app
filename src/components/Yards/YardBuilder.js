@@ -4,6 +4,7 @@ import YardBuilderStepLocation from './YardBuilderStepLocation';
 import YardBuilderStepPlantPreferences from './YardBuilderStepPlantPreferences';
 import YardBuilderStore from '../../stores/YardBuilderStore';
 import YardBuilderActions from '../../actions/YardBuilderActions';
+import { browserHistory } from 'react-router'
 
 class YardBuilder extends React.Component {
   constructor() {
@@ -26,6 +27,7 @@ class YardBuilder extends React.Component {
   createYard = () => {
     if(!this.state.submitting) {
       YardBuilderActions.startCreateYard(this.state.yard);
+      browserHistory.replace('/dashboard/yards'); // Probably a bad spot for this...
     }
   }
 
