@@ -31,7 +31,7 @@ class YardBuilder extends React.Component {
 
   render() {
     return(
-      <div className='yard-builder'>
+      <div className='builder yard-builder'>
         <div>
           <YardBuilderStepLocation active={this.state.activeStep == 'location'} incomplete={!this.state.steps.location.complete} />
           <YardBuilderStepSoil active={this.state.activeStep == 'soil'} incomplete={!this.state.steps.soil.complete}  />

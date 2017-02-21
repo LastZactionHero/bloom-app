@@ -20,7 +20,7 @@ body {
 
 .index .notice {
   margin: 20px auto;
-  rpadding: 15px 0;
+  padding: 15px 0;
   text-align: center;
   border: 1px solid #000;
   border-width: 1px 0;
@@ -76,5 +76,7 @@ body {
   }
 }
 
+@import 'Builder';
 @import 'YardBuilder';
+@import 'BedBuilder';
 @import 'YardList';

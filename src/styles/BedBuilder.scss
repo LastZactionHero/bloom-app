@@ -1,0 +1,19 @@
+@import 'Colors';
+
+.bed-builder {
+  .step-dimensions {
+    background-color: $color-flat-green;
+    .name {
+      //width: 128px;
+    }
+  }
+  .step-position {
+    background-color: $color-flat-purple;
+  }
+  .step-sunlight {
+    background-color: $color-flat-yellow;
+  }
+  .step-moisture {
+    background-color: $color-flat-blue;
+  }
+}

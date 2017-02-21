@@ -1,4 +1,4 @@
-import 'core-js/fn/object/assign';
+  import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './components/Main';
@@ -30,7 +30,7 @@ ReactDOM.render(
       <Route path="dashboard" component={Dashboard}>
         <Route path="yards" component={YardsMain}>
           <Route path="new" component={YardBuilder} />
-          <Route path=":id" component={YardMain}>
+          <Route path=":yard_id" component={YardMain}>
             <Route path="beds/new" component={BedBuilder} />
           </Route>
         </Route>
