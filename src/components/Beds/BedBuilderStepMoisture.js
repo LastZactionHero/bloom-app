@@ -1,7 +1,16 @@
 import React from 'react';
 import BedBuilderStep from './BedBuilderStep';
+import BedBuilderActions from '../../actions/BedBuilderActions';
 
 class BedBuilderStepMoisture extends BedBuilderStep {
+  handleSoilChange = (event) => {
+    BedBuilderActions.soilChange(event.target.value);
+  }
+
+  handleWateredChange = (event) => {
+    BedBuilderActions.wateredChange(event.target.value == 'on');
+  }
+
   render() {
     return(
       <div className={`step step-moisture ${this.stepStateClass()}` }>
@@ -52,7 +61,9 @@ class BedBuilderStepMoisture extends BedBuilderStep {
 
               <div className="checkbox">
                 <label>
-                  <input type="checkbox"/> This bed has watering equipment
+                  <input type="checkbox"
+                         checked={this.state.bed.watered}
+                         onChange={this.handleWateredChange} /> This bed has watering equipment
                 </label>
                 <p className='help-block'>Sprinkler, drip irrigation system, etc.</p>
               </div>

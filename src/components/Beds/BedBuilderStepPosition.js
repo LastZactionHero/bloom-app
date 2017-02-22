@@ -1,7 +1,16 @@
 import React from 'react';
 import BedBuilderStep from './BedBuilderStep';
+import BedBuilderActions from '../../actions/BedBuilderActions';
 
 class BedBuilderStepPosition extends BedBuilderStep {
+  handleOrientationChange(event) {
+    BedBuilderActions.orientationChange(event.target.value);
+  }
+
+  handleAttachedToHouseChange(event) {
+    BedBuilderActions.attachedToHouseChange(event.target.value == 'true')
+  }
+
   render() {
     return(
       <div className={`step step-position ${this.stepStateClass()}` }>
@@ -26,17 +35,17 @@ class BedBuilderStepPosition extends BedBuilderStep {
                         <label>
                           <input type="radio"
                                  value="true"
-                                 checked={true}
-                                 onChange={null} />
+                                 checked={this.state.bed.attached_to_house === true}
+                                 onChange={this.handleAttachedToHouseChange} />
                           Yes, it&apos;s connected to the house.
                         </label>
                       </div>
                       <div className="radio">
                         <label>
                           <input type="radio"
-                                 value="true"
-                                 checked={false}
-                                 onChange={null} />
+                                 value="false"
+                                 checked={this.state.bed.attached_to_house === false}
+                                 onChange={this.handleAttachedToHouseChange} />
                           No, it&apos;s somewhere else in the yard.
                         </label>
                       </div>
@@ -50,18 +59,18 @@ class BedBuilderStepPosition extends BedBuilderStep {
                           <div className="radio">
                             <label>
                               <input type="radio"
-                                     value="true"
-                                     checked={false}
-                                     onChange={null} />
+                                     value="north"
+                                     checked={this.state.bed.orientation == 'north'}
+                                     onChange={this.handleOrientationChange} />
                               North
                             </label>
                           </div>
                           <div className="radio">
                             <label>
                               <input type="radio"
-                                     value="true"
-                                     checked={false}
-                                     onChange={null} />
+                                     value="south"
+                                     checked={this.state.bed.orientation == 'south'}
+                                     onChange={this.handleOrientationChange} />
                               South
                             </label>
                           </div>
@@ -70,18 +79,18 @@ class BedBuilderStepPosition extends BedBuilderStep {
                           <div className="radio">
                             <label>
                               <input type="radio"
-                                     value="true"
-                                     checked={false}
-                                     onChange={null} />
+                                     value="east"
+                                     checked={this.state.bed.orientation == 'east'}
+                                     onChange={this.handleOrientationChange} />
                               East
                             </label>
                           </div>
                           <div className="radio">
                             <label>
                               <input type="radio"
-                                     value="true"
-                                     checked={false}
-                                     onChange={null} />
+                                     value="west"
+                                     checked={this.state.bed.orientation == 'west'}
+                                     onChange={this.handleOrientationChange} />
                               West
                             </label>
                           </div>
@@ -91,6 +100,14 @@ class BedBuilderStepPosition extends BedBuilderStep {
                   </div>
                 </div>
               </div>
+              {this.state.steps.position.complete ?
+                <div className='text-right'>
+                  <a className='btn btn-primary'
+                     href='javascript:void(0)'
+                     onClick={this.nextStep}>Next</a>
+                </div>
+                : null
+              }
             </div>
           </div>
         </div>

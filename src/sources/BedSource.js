@@ -6,7 +6,10 @@ export default {
       $.ajax({
         method: 'GET',
         url: `${API_USER_HOST}/beds/${bedID}`,
-        contentType: 'application/json'
+        contentType: 'application/json',
+        xhrFields: {
+          withCredentials: true
+        }
       }).done( (response) => {
         resolve(response);
       }).fail( (xhr, textStatus, errorThrown) => {
@@ -21,6 +24,9 @@ export default {
         method: 'POST',
         url: `${API_USER_HOST}/beds`,
         contentType: 'application/json',
+        xhrFields: {
+          withCredentials: true
+        },
         data: JSON.stringify(bed)
       }).done( (response) => {
         resolve(response);
@@ -36,6 +42,9 @@ export default {
         method: 'PATCH',
         url: `${API_USER_HOST}/beds/${bed.id}`,
         contentType: 'application/json',
+        xhrFields: {
+          withCredentials: true
+        },
         data: JSON.stringify(bed)
       }).done( (response) => {
         resolve(response);
@@ -49,7 +58,10 @@ export default {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'DELETE',
-        url: `${API_USER_HOST}/beds/${bed.id}`
+        url: `${API_USER_HOST}/beds/${bed.id}`,
+        xhrFields: {
+          withCredentials: true
+        }
       }).done(
         () => { resolve();
       }).fail( (xhr, textStatus, errorThrown) => {

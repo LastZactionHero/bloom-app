@@ -1,7 +1,15 @@
 import React from 'react';
 import BedBuilderStep from './BedBuilderStep';
+import BedBuilderActions from '../../actions/BedBuilderActions';
 
 class BedBuilderStepSunlight extends BedBuilderStep {
+  handleSunlightMorningChange(sunlight) {
+    BedBuilderActions.sunlightMorningChange(sunlight);
+  }
+  handleSunlightAfternoonChange(sunlight) {
+    BedBuilderActions.sunlightAfternoonChange(sunlight);
+  }
+
   render() {
     return(
       <div className={`step step-sunlight ${this.stepStateClass()}` }>
@@ -24,15 +32,27 @@ class BedBuilderStepSunlight extends BedBuilderStep {
                       <div><label>Morning</label></div>
                       <h4>Direct Sunlight</h4>
                       <div className="btn-group" role="group">
-                        <button type="button" className="btn btn-default">Full Sun</button>
-                        <button type="button" className="btn btn-default">Partial Sun</button>
-                        <button type="button" className="btn btn-default">Partial Shade</button>
-                        <button type="button" className="btn btn-default">Full Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('full_sun')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'full_sun' ? 'btn-primary' : 'btn-default'}`}>Full Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('partial_sun')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'partial_sun' ? 'btn-primary' : 'btn-default'}`}>Partial Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('partial_shade')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'partial_shade' ? 'btn-primary' : 'btn-default'}`}>Partial Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('full_shade')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'full_shade' ? 'btn-primary' : 'btn-default'}`}>Full Shade</button>
                       </div>
                       <h4>Filtered Sunlight</h4>
                       <div className='btn-group' role='group'>
-                        <button type="button" className="btn btn-default">Filtered Sun</button>
-                        <button type="button" className="btn btn-default">Filtered Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('filtered_sun')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'filtered_sun' ? 'btn-primary' : 'btn-default'}`}>Filtered Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightMorningChange('filtered_shade')} }
+                                className={`btn ${this.state.bed.sunlight_morning == 'filtered_shade' ? 'btn-primary' : 'btn-default'}`}>Filtered Shade</button>
                       </div>
                     </div>
                   </div>
@@ -41,20 +61,40 @@ class BedBuilderStepSunlight extends BedBuilderStep {
                       <div><label>Afternoon</label></div>
                       <h4>Direct Sunlight</h4>
                       <div className="btn-group" role="group">
-                        <button type="button" className="btn btn-default">Full Sun</button>
-                        <button type="button" className="btn btn-default">Partial Sun</button>
-                        <button type="button" className="btn btn-default">Partial Shade</button>
-                        <button type="button" className="btn btn-default">Full Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('full_sun')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'full_sun' ? 'btn-primary' : 'btn-default'}`}>Full Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('partial_sun')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'partial_sun' ? 'btn-primary' : 'btn-default'}`}>Partial Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('partial_shade')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'partial_shade' ? 'btn-primary' : 'btn-default'}`}>Partial Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('full_shade')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'full_shade' ? 'btn-primary' : 'btn-default'}`}>Full Shade</button>
                       </div>
                       <h4>Filtered Sunlight</h4>
                       <div className='btn-group' role='group'>
-                        <button type="button" className="btn btn-default">Filtered Sun</button>
-                        <button type="button" className="btn btn-default">Filtered Shade</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('filtered_sun')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'filtered_sun' ? 'btn-primary' : 'btn-default'}`}>Filtered Sun</button>
+                        <button type="button"
+                                onClick={ () => {this.handleSunlightAfternoonChange('filtered_shade')} }
+                                className={`btn ${this.state.bed.sunlight_afternoon == 'filtered_shade' ? 'btn-primary' : 'btn-default'}`}>Filtered Shade</button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {this.state.steps.sunlight.complete ?
+                <div className='text-right'>
+                  <a className='btn btn-primary'
+                     href='javascript:void(0)'
+                     onClick={this.nextStep}>Next</a>
+                </div>
+                : null
+              }
             </div>
           </div>
         </div>

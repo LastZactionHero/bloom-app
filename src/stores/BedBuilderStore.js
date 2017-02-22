@@ -4,29 +4,33 @@ import BedBuilderActions from '../actions/BedBuilderActions';
 class BedBuilderStore {
   constructor() {
     this.bindListeners({
+      handleYardIDChange: BedBuilderActions.YARD_ID_CHANGE,
       handleNextStep: BedBuilderActions.NEXT_STEP,
       handleSelectStep: BedBuilderActions.SELECT_STEP,
 
       handleNameChange: BedBuilderActions.NAME_CHANGE,
       handleWidthChange: BedBuilderActions.WIDTH_CHANGE,
-      handleDepthChange: BedBuilderActions.DEPTH_CHANGE
-    });
+      handleDepthChange: BedBuilderActions.DEPTH_CHANGE,
 
-    //   handleZipcodeChange: YardBuilderActions.ZIPCODE_CHANGE,
-    //   handleZoneChange: YardBuilderActions.ZONE_CHANGE,
-    //   handleZoneFetchFail: YardBuilderActions.ZONE_FETCH_FAIL,
-    //   handleSoilChange: YardBuilderActions.SOIL_CHANGE,
-    //   handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE,
-    //   handleStartCreateYard: YardBuilderActions.START_CREATE_YARD,
-    //   handleCreatedYard: YardBuilderActions.CREATED_YARD,
-    //   handleCreateYardFail: YardBuilderActions.CREATE_YARD_FAIL
-    // });
+      handleSoilChange: BedBuilderActions.SOIL_CHANGE,
+      handleWateredChange: BedBuilderActions.WATERED_CHANGE,
+
+      handleAttachedToHouseChange: BedBuilderActions.ATTACHED_TO_HOUSE_CHANGE,
+      handleOrientationChange: BedBuilderActions.ORIENTATION_CHANGE,
+
+      handleSunlightMorningChange: BedBuilderActions.SUNLIGHT_MORNING_CHANGE,
+      handleSunlightAfternoonChange: BedBuilderActions.SUNLIGHT_AFTERNOON_CHANGE,
+
+      handleStartCreateBed: BedBuilderActions.START_CREATE_BED,
+      handleCreatedBed: BedBuilderActions.CREATED_BED,
+      handleCreateBedFail: BedBuilderActions.CREATE_BED_FAIL
+    });
 
     this.bed = {
       yard_id: null,
       name: '',
-      attached_to_house: false,
-      orientation: null,
+      attached_to_house: null,
+      orientation: '',
       width: '',
       depth: '',
       sunlight_morning: '',
@@ -65,6 +69,10 @@ class BedBuilderStore {
     if(this.steps[stepName].complete) {
       this.activeStep = stepName;
     }
+  }
+
+  handleYardIDChange(yardID) {
+    this.bed.yard_id = yardID;
   }
 
   handleNameChange(name) {
@@ -116,34 +124,71 @@ class BedBuilderStore {
     this.checkStepCompletion();
   }
 
+  handleWateredChange(watered) {
+    this.bed.watered = watered;
+  }
+
+  handleSoilChange(soil) {
+    this.bed.soil = soil;
+    this.checkStepCompletion();
+  }
+
+  handleAttachedToHouseChange(attached) {
+    this.bed.attached_to_house = attached;
+    this.checkStepCompletion();
+  }
+
+  handleOrientationChange(orientation) {
+    this.bed.orientation = orientation;
+    this.checkStepCompletion();
+  }
+
+  handleSunlightMorningChange(sunlight) {
+    this.bed.sunlight_morning = sunlight;
+    this.checkStepCompletion();
+  }
+
+  handleSunlightAfternoonChange(sunlight) {
+    this.bed.sunlight_afternoon = sunlight;
+    this.checkStepCompletion();
+  }
+
   checkStepCompletion() {
     this.steps.dimensions.complete =
       this.bed.name.length > 0
       && this.bed.width && this.bed.width >= 3 && this.bed.width <= 99
-      && this.bed.depth && this.bed.depth >= 3 && this.bed.depth <= 99
-    // this.steps.location.complete = (this.yard.zone && this.yard.zone != 'invalid');
-    // this.steps.soil.complete = (this.yard.soil.length > 0);
-    // // preferred_plant_types is set complete as soon as it's viewed
-    // 
-    // this.allComplete = (
-    //   this.steps.location.complete
-    //   && this.steps.soil.complete
-    //   && this.steps.plant_preferences.complete
-    // );
+      && this.bed.depth && this.bed.depth >= 3 && this.bed.depth <= 99;
+
+    this.steps.moisture.complete = this.bed.soil.length > 0;
+
+    this.steps.position.complete =
+      this.bed.attached_to_house != null &&
+      this.bed.orientation.length > 0;
+
+    this.steps.sunlight.complete =
+      this.bed.sunlight_morning.length > 0 &&
+      this.bed.sunlight_afternoon.length > 0;
+
+    this.allComplete = (
+      this.steps.dimensions.complete
+      && this.steps.position.complete
+      && this.steps.sunlight.complete
+      && this.steps.moisture.complete
+    );
   }
 
-  // handleStartCreateYard() {
-  //   this.submitting = true;
-  // }
-  // 
-  // handleCreatedYard(yard) {
-  //   // TODO: Something
-  // }
-  // 
-  // handleCreateYardFail(xhr) {
-  //   // TODO: Something
-  //   this.submitting = false;
-  // }
+  handleStartCreateBed() {
+    this.submitting = true;
+  }
+
+  handleCreatedBed(bed) {
+    // TODO: Something
+  }
+
+  handleCreateBedFail(xhr) {
+    // TODO: Something
+    this.submitting = false;
+  }
 }
 
 export default alt.createStore(BedBuilderStore, 'BedBuilderStore');
