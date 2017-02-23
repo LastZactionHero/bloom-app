@@ -50,7 +50,8 @@ class SessionActions {
         .then( (user) => {
           this.signedIn(user);
         }).catch( (xhr) => {
-          this.signInError(xhr.responseJSON.errors);
+          const errors = xhr.responseJSON ? xhr.responseJSON.errors : {server: ['An error occurred signing in.']};
+          this.signInError(errors);
         });
     } else {
       return false;
@@ -116,7 +117,8 @@ class SessionActions {
       .then( (user) => {
         this.signedIn(user);
       }).catch( (xhr) => {
-        this.signInError(xhr.responseJSON.errors);
+        const errors = xhr.responseJSON ? xhr.responseJSON.errors : {server: ['An error occurred signing up.']};
+        this.signInError(errors);
       });
     return true;
   }

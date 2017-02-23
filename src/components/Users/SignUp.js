@@ -20,6 +20,9 @@ class SignUp extends SessionForm {
             <div className='panel-body'>
               <h2 className='text-center'>Sign Up for Bloom</h2>
               <hr/>
+              {this.state.errors['server'] && this.state.errors['server'].length > 0 ?
+                <p className='alert alert-danger' >{this.state.errors['server'][0]}</p> : null
+              }
               <form onSubmit={this.handleSubmit}>
                 <div className='form-group'>
                   <label>Email</label>
