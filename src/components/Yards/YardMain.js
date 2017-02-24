@@ -19,7 +19,11 @@ class YardMain extends React.Component {
 
   render() {
     let yard = YardsStore.findYardById(this.props.params.yard_id);
+
     let children = this.props.children;
+    if(children) {
+      children = React.cloneElement(this.props.children, { yard: yard });
+    }
 
     return(
       <div>
@@ -33,6 +37,12 @@ class YardMain extends React.Component {
                 <div>Beds: {yard.beds.length}</div>
                 <Link className='btn btn-default'
                       to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>New Bed</Link>
+                {yard.beds.map( (bed) => {
+                  return <div key={`bed_template_link_${bed.id}`}>
+                    <Link className='btn btn-default'
+                          to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/template`}}>Template {bed.id} ({bed.name})</Link>
+                  </div>
+                })}
               </div> :
             <div>Not found</div>
         }

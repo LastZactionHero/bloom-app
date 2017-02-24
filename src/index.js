@@ -1,4 +1,4 @@
-  import 'core-js/fn/object/assign';
+import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './components/Main';
@@ -9,6 +9,8 @@ import YardsMain from './components/Yards/YardsMain';
 import YardBuilder from './components/Yards/YardBuilder';
 import YardMain from './components/Yards/YardMain';
 import BedBuilder from './components/Beds/BedBuilder';
+import BedTemplateSelect from './components/Beds/BedTemplateSelect';
+import BedMain from './components/Beds/BedMain';
 
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 // Render the main component into the dom
@@ -20,6 +22,8 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
   /dashboard/yards/<id>                             *YardMain
   /dashboard/yards/<id>/beds                        *BedList
   /dashboard/yards/<id>/beds/new                    *BedBuilder
+  /dashboard/yards/<id>/beds/<id>                   *BedMain
+  /dashboard/yards/<id>/beds/<id>/template          *BedTemplateSelect
   /dashboard/yards/<id>/beds/<id>/plants            *BedPlantPicker
 */
 
@@ -32,6 +36,9 @@ ReactDOM.render(
           <Route path="new" component={YardBuilder} />
           <Route path=":yard_id" component={YardMain}>
             <Route path="beds/new" component={BedBuilder} />
+            <Route path="beds/:id" component={BedMain}>
+              <Route path="template" component={BedTemplateSelect} />
+            </Route>
           </Route>
         </Route>
       </Route>

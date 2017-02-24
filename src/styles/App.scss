@@ -1,14 +1,26 @@
 @import 'Colors';
 @import 'BootstrapOverrides';
 
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
 /* Base Application Styles */
 body {
+  height: 100%;
   padding-top: 70px;
   color: $color-text;
   background-color: $color-white;
 
   font-family: 'Raleway', sans-serif;
   font-weight: 200;
+}
+
+#app {
+  margin-bottom: 100px;
 }
 
 .index img {
@@ -28,9 +40,13 @@ body {
 }
 
 .footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   margin-top: 64px;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 
   background-color: $color-bg-gray;
   color: $color-text-white;
@@ -76,7 +92,13 @@ body {
   }
 }
 
+.loading {
+  margin: 64px;
+  font-size: 16px;
+}
+
 @import 'Builder';
 @import 'YardBuilder';
 @import 'BedBuilder';
+@import 'BedTemplateSelect';
 @import 'YardList';

@@ -38,7 +38,7 @@ class AppComponent extends React.Component {
             <div className='container-fluid'>
               <Navbar/>
             </div>
-            <div className='container'>
+            <div className='container container-content'>
               {children}
             </div>
             <div className='container-fluid'>

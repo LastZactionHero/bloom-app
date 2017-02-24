@@ -1,0 +1,19 @@
+@import 'Colors';
+
+.bed-template-select {
+  // padding: 20px;
+
+  .panel-heading {
+    background-color: $color-flat-green;
+    color: $color-white;
+  }
+
+  .template-choice {
+    margin-bottom: 24px;
+    border-top: 1px solid $color-flat-gray;
+  }
+}
+
+.template-choice {
+  padding: 12px;
+}
