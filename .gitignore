@@ -31,3 +31,6 @@ bower_components/
 
 # IDE/Editor data
 .idea
+
+assets_dev.json
+assets_dist.json
