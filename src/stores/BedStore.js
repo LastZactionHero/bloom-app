@@ -10,7 +10,9 @@ class BedStore {
       handleFetchedSuggestTemplates: BedActions.DONE_FETCH_SUGGEST_TEMPLATES,
       handleFailSuggestTemplates: BedActions.FAIL_FETCH_SUGGEST_TEMPLATES,
 
-      handleStartSelection: BedActions.START_SELECT_TEMPLATE
+      handleStartSelectTemplate: BedActions.START_SELECT_TEMPLATE,
+      handleFailSelectTemplate: BedActions.FAIL_SELECT_TEMPLATE,
+      handleSetTemplate: BedActions.DONE_SELECT_TEMPLATE
     });
 
     this.bed = null;
@@ -27,6 +29,7 @@ class BedStore {
 
   handleStartLoading() {
     this.loading = true;
+    this.error = null;
   }
   handleStopLoading() {
     this.loading = false;
@@ -40,8 +43,19 @@ class BedStore {
     this.error = response.errors || {};
   }
 
-  handleStartSelection() {
+  handleStartSelectTemplate() {
     this.selecting = true;
+    this.error = null;
+  }
+
+  handleFailSelectTemplate(response) {
+    this.selecting = false;
+    this.error = response.errors || {};
+  }
+
+  handleSetTemplate(bed) {
+    this.bed = bed;
+    this.selecting = false;
   }
 
 }

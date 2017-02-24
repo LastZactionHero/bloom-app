@@ -118,6 +118,42 @@ describe('BedSource', function() {
     });
   });
 
+  describe('setTemplate', function(){
+    it('requests to update bed template', function(done) {
+      const bedFixture = fixture.load('beds/bed.json');
+      const templateFixture = fixture.load('bed_templates/template.json');
+
+      BedSource.setTemplate(bedFixture, templateFixture).then( (bed) => {
+        bed.should.deep.equal(bedFixture);
+        done();
+      });
+
+      const request = server.requests[0];
+      request.url.should.equal(`${API_USER_HOST}/beds/${bedFixture.id}/set_template`);
+      request.method.should.equal('PATCH');
+
+      const requestBody = JSON.parse(request.requestBody);
+      console.log(requestBody);
+      // requestBody.should.deep.equal({template_id: templateFixture.id});
+
+      request.respond(200, { 'Content-Type' : 'application/json' }, JSON.stringify(bedFixture));
+    });
+
+    it('handle an error', function(done) {
+      const bedFixture = fixture.load('beds/bed.json');
+      const errorData = { errors: { template_id: ['is not valid']}};
+
+      BedSource.update(bedFixture).catch( (xhr) => {
+        xhr.status.should.equal(400)
+        xhr.responseJSON.should.deep.equal(errorData);
+        done();
+      });
+
+      const request = server.requests[0];
+      request.respond(400, { 'Content-Type' : 'application/json' }, JSON.stringify(errorData));
+    });
+  });
+
   describe('destroy', function() {
     it('requests to destroy a bed', function(done) {
       const bedFixture = fixture.load('beds/bed.json');

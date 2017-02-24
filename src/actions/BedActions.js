@@ -1,5 +1,6 @@
 import alt from '../alt';
 import BedTemplateSource from '../sources/BedTemplateSource';
+import BedSource from '../sources/BedSource';
 
 class BedActions {
   init(bed) {
@@ -17,7 +18,20 @@ class BedActions {
   failFetchSuggestTemplates(xhr) { return xhr.responseJSON || {}; }
 
   startSelectTemplate(bed, template) {
+    BedSource.setTemplate(bed, template)
+      .then( (bed) => { this.doneSelectTemplate(bed); })
+      .catch( (xhr) => {this.failSelectTemplate(xhr) })
     return null;
+  }
+
+  doneSelectTemplate(bed) {
+    // stopped here, set this up second
+    return bed;
+  }
+
+  failSelectTemplate(xhr) {
+    // stopped here, set this up first
+    return xhr.responseJSON || {};
   }
 }
 

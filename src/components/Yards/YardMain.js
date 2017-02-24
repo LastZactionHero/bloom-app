@@ -35,12 +35,23 @@ class YardMain extends React.Component {
               <div>
                 <div>{yard.id}</div>
                 <div>Beds: {yard.beds.length}</div>
-                <Link className='btn btn-default'
-                      to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>New Bed</Link>
+                <Link className='btn btn-primary'
+                      to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add New Bed</Link>
+                <hr/>
+
                 {yard.beds.map( (bed) => {
                   return <div key={`bed_template_link_${bed.id}`}>
-                    <Link className='btn btn-default'
-                          to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/template`}}>Template {bed.id} ({bed.name})</Link>
+                    <div><strong>ID {bed.id}: {bed.name}</strong></div>
+                    <div>{bed.width}&apos; W x {bed.depth}&apos; H</div>
+                    <div>Attached to House: {bed.attached_to_house}</div>
+                    <div>Orientation: {bed.orientation}</div>
+                    <div>Sunlight, Morning: {bed.sunlight_morning}</div>
+                    <div>Sunlight, Afternoon: {bed.sunlight_afternoon}</div>
+                    <div>Watered: {bed.watered}</div>
+                    <div>Template ID: {bed.template_id}</div>
+
+                    <Link className='btn btn-primary'
+                          to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/template`}}>Select Template</Link>
                   </div>
                 })}
               </div> :

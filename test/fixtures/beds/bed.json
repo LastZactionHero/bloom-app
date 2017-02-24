@@ -8,5 +8,6 @@
   "depth": 6.0,
   "sunlight_morning": "full_sun",
   "sunlight_afternoon": "partial_sun",
-  "watered": false
+  "watered": false,
+  "template_id": 3
 }

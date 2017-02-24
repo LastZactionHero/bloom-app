@@ -68,5 +68,22 @@ export default {
           reject(xhr, textStatus, errorThrown);
       });
     });
+  },
+
+  setTemplate: function(bed, template) {
+    return new Promise( (resolve, reject) => {
+      $.ajax({
+        method: 'PATCH',
+        url: `${API_USER_HOST}/beds/${bed.id}/set_template`,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          template_id: template.id
+        }),
+        xhrFields: {
+          withCredentials: true
+        }
+      }).done( (response) => { resolve(response) } )
+      .fail( (xhr, textStatus, errorThrown) => { reject(xhr, textStatus, errorThrown) });
+    });
   }
 }

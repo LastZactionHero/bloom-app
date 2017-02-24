@@ -38,6 +38,7 @@ class BedTemplateSelect extends React.Component {
           <h3>Select a style for <em>{this.state.bed.name}</em></h3>
         </div>
         <div className='panel-body'>
+          {this.state.error ? <ErrorAlert error={this.state.error} /> : null}
           { this.state.loading ?
               <Loading message='Loading style suggestions' /> :
                 this.state.suggestedTemplates.length > 0 ?
@@ -51,7 +52,6 @@ class BedTemplateSelect extends React.Component {
                   </div>
                   : <div />
           }
-          {this.state.error ? <ErrorAlert error={this.state.error} /> : null}
         </div>
       </div>
     )
