@@ -1,10 +1,10 @@
 import React from 'react';
-import BedBuilderStore from '../../stores/BedBuilderStore';
+import BedBuilderStore from '../../../stores/BedBuilderStore';
 import BedBuilderStepDimensions from './BedBuilderStepDimensions';
 import BedBuilderStepPosition from './BedBuilderStepPosition';
 import BedBuilderStepSunlight from './BedBuilderStepSunlight';
 import BedBuilderStepMoisture from './BedBuilderStepMoisture';
-import BedBuilderActions from '../../actions/BedBuilderActions';
+import BedBuilderActions from '../../../actions/BedBuilderActions';
 import { browserHistory } from 'react-router'
 
 class BedBuilder extends React.Component {
@@ -27,7 +27,6 @@ class BedBuilder extends React.Component {
   createBed = () => {
     if(!this.state.submitting) {
       BedBuilderActions.startCreateBed(this.state.bed);
-      browserHistory.replace('/dashboard/yards/' + this.props.params.yard_id); // Probably a bad spot for this...
     }
   }
 

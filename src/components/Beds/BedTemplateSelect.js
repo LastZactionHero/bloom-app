@@ -4,6 +4,7 @@ import BedActions from '../../actions/BedActions';
 import Loading from '../Common/Loading';
 import ErrorAlert from '../Common/ErrorAlert';
 import TemplateChoice from './TemplateChoice';
+import { Link } from 'react-router'
 
 class BedTemplateSelect extends React.Component {
 
@@ -44,6 +45,13 @@ class BedTemplateSelect extends React.Component {
                 this.state.suggestedTemplates.length > 0 ?
                   <div>
                     <h4>Here are some styles that would work for this garden bed. Pick one that you prefer:</h4>
+                    {this.state.bed.template_id ? 
+                      <div className='alert alert-danger'>
+                        You have already selected a template for this bed. If you select a different template, it will remove any plant selections for this bed.
+                        <br/>
+                        <Link className='btn btn-default' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>Cancel</Link>
+                      </div> : null}
+
                     {this.state.suggestedTemplates.map( (template) => {
                       return <TemplateChoice key={`suggested_template_choice_${template.id}`}
                                              template={template}

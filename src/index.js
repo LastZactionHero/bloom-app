@@ -8,9 +8,10 @@ import UserSignUp from './components/Users/SignUp';
 import YardsMain from './components/Yards/YardsMain';
 import YardBuilder from './components/Yards/YardBuilder';
 import YardMain from './components/Yards/YardMain';
-import BedBuilder from './components/Beds/BedBuilder';
+import BedBuilder from './components/Beds/BedBuilder/BedBuilder';
 import BedTemplateSelect from './components/Beds/BedTemplateSelect';
 import BedMain from './components/Beds/BedMain';
+import BedPlantsSelect from './components/Beds/BedPlantsSelect';
 
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 // Render the main component into the dom
@@ -38,6 +39,7 @@ ReactDOM.render(
             <Route path="beds/new" component={BedBuilder} />
             <Route path="beds/:id" component={BedMain}>
               <Route path="template" component={BedTemplateSelect} />
+              <Route path="plants" component={BedPlantsSelect} />
             </Route>
           </Route>
         </Route>

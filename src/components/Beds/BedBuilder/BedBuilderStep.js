@@ -1,6 +1,6 @@
 import React from 'react';
-import BedBuilderStore from '../../stores/BedBuilderStore';
-import BedBuilderActions from '../../actions/BedBuilderActions';
+import BedBuilderStore from '../../../stores/BedBuilderStore';
+import BedBuilderActions from '../../../actions/BedBuilderActions';
 import ReactScroll from 'react-scroll';
 
 

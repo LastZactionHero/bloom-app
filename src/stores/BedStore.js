@@ -1,5 +1,6 @@
 import alt from '../alt';
 import BedActions from '../actions/BedActions';
+import { browserHistory } from 'react-router'
 
 class BedStore {
   constructor() {
@@ -12,7 +13,7 @@ class BedStore {
 
       handleStartSelectTemplate: BedActions.START_SELECT_TEMPLATE,
       handleFailSelectTemplate: BedActions.FAIL_SELECT_TEMPLATE,
-      handleSetTemplate: BedActions.DONE_SELECT_TEMPLATE
+      handleSetTemplate: BedActions.DONE_SELECT_TEMPLATE,
     });
 
     this.bed = null;
@@ -56,6 +57,9 @@ class BedStore {
   handleSetTemplate(bed) {
     this.bed = bed;
     this.selecting = false;
+    setTimeout(() => {
+      browserHistory.push(`/dashboard/yards/${bed.yard_id}/beds/${bed.id}/plants`);
+    });
   }
 
 }

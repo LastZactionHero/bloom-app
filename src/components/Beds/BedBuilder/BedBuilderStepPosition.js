@@ -1,6 +1,6 @@
 import React from 'react';
 import BedBuilderStep from './BedBuilderStep';
-import BedBuilderActions from '../../actions/BedBuilderActions';
+import BedBuilderActions from '../../../actions/BedBuilderActions';
 
 class BedBuilderStepPosition extends BedBuilderStep {
   handleOrientationChange(event) {
