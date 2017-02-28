@@ -28,10 +28,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    let children = this.props.children || <div><Link className='btn btn-default' to={{pathname: `/dashboard/yards`}}>Yards</Link></div>;
+    let children = this.props.children || <div><Link className='btn btn-default' to={{pathname: `/dashboard/yards`}}>My Yards</Link></div>;
     return(
       <div className='dashboards'>
-        <div>Dashboard</div>
         {children}
       </div>
     );

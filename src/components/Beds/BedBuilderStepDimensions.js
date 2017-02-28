@@ -14,6 +14,8 @@ class BedBuilderStepDimensions extends BedBuilderStep {
   }
 
   render() {
+    const firstBed = this.props.yard.beds.length == 0;
+
     return(
       <div className={`step step-dimensions ${this.stepStateClass()}` }>
         <div className='step-title' onClick={() => {this.selectStep('dimensions')}}>Dimensions</div>
@@ -22,12 +24,17 @@ class BedBuilderStepDimensions extends BedBuilderStep {
             <div className='col-xs-12'>
               <div className='title'>
                 <i className="fa fa-leaf" aria-hidden="true"></i>&nbsp;
-                Create a new garden bed
+                { firstBed ? 'Let\'s design your first garden bed' : 'Add another garden bed' }
               </div>
             </div>
           </div>
           <div className='row'>
             <div className='col-sm-10 col-sm-offset-1'>
+              {firstBed ?
+                <div className='step-hint'>
+                  Pick one garden bed in your yard to start with, and answer the questions below. We'll use this to suggest plants and designs.
+                </div> : null}
+
               <div className='form'>
                 <div className='form-group'>
                   <label>Name</label>

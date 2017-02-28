@@ -1,5 +1,7 @@
 import alt from '../alt';
 import YardBuilderActions from '../actions/YardBuilderActions';
+import YardsActions from '../actions/YardsActions';
+import { browserHistory } from 'react-router'
 
 class YardBuilderStore {
   constructor() {
@@ -106,7 +108,10 @@ class YardBuilderStore {
   }
 
   handleCreatedYard(yard) {
-    // TODO: Something
+    setTimeout(() => {
+      YardsActions.startFetchIndex();
+      browserHistory.push(`/dashboard/yards/${yard.id}/beds/new`);
+    });
   }
 
   handleCreateYardFail(xhr) {

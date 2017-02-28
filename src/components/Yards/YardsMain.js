@@ -2,6 +2,7 @@ import React from 'react';
 import YardList from './YardList';
 import YardsStore from '../../stores/YardsStore';
 import YardsActions from '../../actions/YardsActions';
+import Loading from '../Common/Loading';
 
 class YardsMain extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ class YardsMain extends React.Component {
     let children = this.props.children || <YardList/>;
     return(
       <div>
-        {this.state.pendingFirstFetch ?  <div>Loading...</div> : children}
+        {this.state.pendingFirstFetch ?  <Loading message='Loading yards' /> : children}
       </div>
     )
   }

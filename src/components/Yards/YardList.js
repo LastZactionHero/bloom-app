@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router'
 import YardsStore from '../../stores/YardsStore';
+import StringUtil from '../../util/string';
 
 class YardList extends React.Component {
   constructor() {
@@ -28,19 +29,29 @@ class YardList extends React.Component {
 
             <Link className='btn btn-success btn-first-yard' to={{pathname: '/dashboard/yards/new'}}>Start Designing your Yard</Link>
           </div>
-          : <div className='text-right'>
-            <Link className='btn btn-primary' to={{pathname: '/dashboard/yards/new'}}>Start a New Yard</Link>
+          :
+          <div>
+            <div>
+              <h2>My Yards</h2>
+              <Link className='btn btn-primary' to={{pathname: '/dashboard/yards/new'}}>Start a New Yard</Link>
+            </div>
+
+            <hr />
+
+            <div className='row'>
+              {this.state.yards.map( (yard) => {
+                return <div className='col-sm-12 col-md-5 yard-list-tile'
+                            key={`yard_${yard.id}`}
+                            onClick={() => { browserHistory.push( `/dashboard/yards/${yard.id}` )}}>
+                  <h3 className='text-center'>Zone {yard.zone} ({yard.zipcode})</h3>
+                  <div>{StringUtil.pluralize(yard.beds.length, 'Bed', 'Beds')}</div>
+                  <div>Created {yard.created_at}</div>
+
+                </div>
+              })}
+            </div>
           </div>
         }
-
-        <ul>
-          {this.state.yards.map( (yard) => {
-            return <li key={`yard_${yard.id}`}>
-              <div>{yard.id} | {yard.zipcode} | {yard.zone} | {yard.soil} | {yard.preferred_plant_types} | {yard.created_at}</div>
-              <Link className='btn btn-default' to={{pathname: `/dashboard/yards/${yard.id}`}}>View</Link>
-            </li>
-          })}
-        </ul>
       </div>
     )
   }

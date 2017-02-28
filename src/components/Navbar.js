@@ -40,7 +40,7 @@ class Navbar extends React.Component {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><a href="javascript:void(0)" onClick=''></a></li> :
+              <li><Link to={{pathname: '/dashboard/yards'}}>My Yards</Link></li> :
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
