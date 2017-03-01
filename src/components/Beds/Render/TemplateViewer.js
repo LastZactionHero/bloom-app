@@ -1,37 +1,38 @@
 import React from 'react'
-import TemplateSource from '../../../sources/TemplateSource';
 import TemplateRenderCanvas from './TemplateRenderCanvas';
+import TemplateActions from 'actions/TemplateActions';
+import YardsStore from 'stores/YardsStore';
+import Loading from 'components/Common/Loading';
 
 class TemplateViewer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {placements: null}
+    this.state = YardsStore.getState();
   }
 
   componentDidMount = () => {
-    this.startDraw();
+    YardsStore.listen(this.onChange);
+    setTimeout( () => { TemplateActions.fetchPlacements(this.props.bed); })
   }
 
-  startDraw = () => {
-    TemplateSource.fetchPlacements(
-      this.props.bed.template_id,
-      this.props.bed.width * 12,
-      this.props.bed.depth * 12
-    ).then( (response) => {
-      console.log(response);
-      this.setState({placements: response.placements});
-    }).catch( (xhr) => {
-      console.log(xhr)
-    });
+  componentWillUnmount = () => {
+    YardsStore.unlisten(this.onChange);
+  }
+
+  onChange = (state) => {
+    this.setState(state);
   }
 
   render() {
     return(
       <div>
-        <div>Render Canvas {this.state.placements ? this.state.placements.length : null}</div>
-        <div>
-          {this.state.placements ? <TemplateRenderCanvas placements={this.state.placements} placementWidth={this.props.bed.width * 12} placementHeight={this.props.bed.depth * 12}/> : null}
-        </div>
+        {this.state.loading.placements ?
+          <Loading message='Rendering bed' /> :
+          <div>
+            {this.state.placements ? <TemplateRenderCanvas placements={this.state.placements} placementWidth={this.props.bed.width * 12} placementHeight={this.props.bed.depth * 12}/> : null}
+          </div>
+        }
+
       </div>
     )
   }

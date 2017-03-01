@@ -1,0 +1,36 @@
+@import 'Colors';
+
+.template-plant {
+  padding: 12px 8px;
+  background-color: $color-flat-light-gray;
+  color: $color-text;
+  border-bottom: 1px solid $color-flat-dark-gray;
+
+  .plant-label {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .plant-type {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .plant-tooltip {
+    font-size: 16px;
+  }
+
+  .unselected {
+    text-align: center;
+    margin-top: 8px;
+
+    .btn {
+      font-size: 16px;
+      padding: 12px 20px;
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+
+}

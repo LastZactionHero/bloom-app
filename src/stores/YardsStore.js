@@ -3,6 +3,7 @@ import YardsActions from '../actions/YardsActions'
 import BedActions from '../actions/BedActions';
 import BedBuilderActions from 'actions/BedBuilderActions';
 import YardBuilderActions from 'actions/YardBuilderActions';
+import TemplateActions from 'actions/TemplateActions';
 import { browserHistory } from 'react-router'
 
 class YardsStore {
@@ -29,7 +30,12 @@ class YardsStore {
       // Bed Select Template
       selectTemplateStart: BedActions.START_SELECT_TEMPLATE,
       selectTemplateFail: BedActions.FAIL_SELECT_TEMPLATE,
-      selectTemplateDone: BedActions.DONE_SELECT_TEMPLATE
+      selectTemplateDone: BedActions.DONE_SELECT_TEMPLATE,
+
+      // Fetch Placements
+      fetchPlacementsStart: TemplateActions.FETCH_PLACEMENTS,
+      fetchPlacementsDone: TemplateActions.FETCH_PLACEMENTS_DONE,
+      fetchPlacementsFail: TemplateActions.FETCH_PLACEMENTS_FAIL
     });
 
     this.exportPublicMethods({
@@ -38,11 +44,15 @@ class YardsStore {
 
     this.yards = [];
     this.suggestedTemplates = [];
+    this.placements = null;
+    this.templatePlants = [];
+
     this.loading = {
       yards: false,
       createYard: false,
       suggestedTemplates: false,
-      selectTemplate: false
+      selectTemplate: false,
+      placements: false
     }
   }
 
@@ -130,6 +140,30 @@ class YardsStore {
     setTimeout(() => {
       browserHistory.push(`/dashboard/yards/${bed.yard_id}/beds/${bed.id}/plants`);
     });
+  }
+
+  // Fetch Placements
+  fetchPlacementsStart() {
+    this.loading.placements = true;
+    this.error = null;
+  }
+
+  fetchPlacementsDone(placements) {
+    this.placements = placements;
+
+    // Pull all unique plant placeholders from the placements
+    this.templatePlants = [];
+    const plantLabels = new Set(this.placements.map( (p) => { return p.plant.label } ));
+    plantLabels.forEach( (label) => {
+      const placement = this.placements.find( (p) => { return p.plant.label == label });
+      this.templatePlants.push(placement.plant);
+    });
+    this.loading.placements = false;
+  }
+
+  fetchPlacementsFail(response) {
+    this.error = response.errors || {};
+    this.loading.placements = false;
   }
 
 }
