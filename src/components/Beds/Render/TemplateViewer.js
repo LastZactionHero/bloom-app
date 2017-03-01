@@ -12,7 +12,6 @@ class TemplateViewer extends React.Component {
 
   componentDidMount = () => {
     YardsStore.listen(this.onChange);
-    setTimeout( () => { TemplateActions.fetchPlacements(this.props.bed); })
   }
 
   componentWillUnmount = () => {
@@ -29,10 +28,15 @@ class TemplateViewer extends React.Component {
         {this.state.loading.placements ?
           <Loading message='Rendering bed' /> :
           <div>
-            {this.state.placements ? <TemplateRenderCanvas placements={this.state.placements} placementWidth={this.props.bed.width * 12} placementHeight={this.props.bed.depth * 12}/> : null}
+            {this.props.bed.meta.placements ?
+              <TemplateRenderCanvas placements={this.props.bed.meta.placements}
+                                    placementWidth={this.props.bed.width * 12}
+                                    placementHeight={this.props.bed.depth * 12}
+                                    renderWidth={this.props.renderWidth}
+                                    renderHeight={this.props.renderHeight}/>
+              : null}
           </div>
         }
-
       </div>
     )
   }

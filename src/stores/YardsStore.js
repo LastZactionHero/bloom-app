@@ -44,8 +44,6 @@ class YardsStore {
 
     this.yards = [];
     this.suggestedTemplates = [];
-    this.placements = null;
-    this.templatePlants = [];
 
     this.loading = {
       yards: false,
@@ -148,20 +146,34 @@ class YardsStore {
     this.error = null;
   }
 
-  fetchPlacementsDone(placements) {
-    this.placements = placements;
+  fetchPlacementsDone(bedPlacements) {
+    const bed = bedPlacements.bed;
+    const placements = bedPlacements.placements;
+
+    bed.meta = bed.meta || {
+      templatePlants: [],
+      placements: placements
+    };
 
     // Pull all unique plant placeholders from the placements
-    this.templatePlants = [];
-    const plantLabels = new Set(this.placements.map( (p) => { return p.plant.label } ));
+    bed.meta.templatePlants = [];
+    const plantLabels = new Set(placements.map( (p) => { return p.plant.label } ));
     plantLabels.forEach( (label) => {
-      const placement = this.placements.find( (p) => { return p.plant.label == label });
-      this.templatePlants.push(placement.plant);
+      const placement = placements.find( (p) => { return p.plant.label == label });
+      bed.meta.templatePlants.push(placement.plant);
     });
+
     this.loading.placements = false;
   }
 
-  fetchPlacementsFail(response) {
+  fetchPlacementsFail(bedErrorResponse) {
+    const bed = bedErrorResponse.bed;
+    const response = bedErrorResponse.response;
+
+    bed.meta = {
+      templatePlants: [],
+      placements: []
+    };
     this.error = response.errors || {};
     this.loading.placements = false;
   }

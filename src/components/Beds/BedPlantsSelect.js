@@ -3,6 +3,8 @@ import TemplateViewer from './Render/TemplateViewer';
 import YardsStore from 'stores/YardsStore';
 import StringUtil from '../../util/string';
 import TemplatePlant from './Plants/TemplatePlant'
+import Loading from 'components/Common/Loading'
+import TemplateActions from 'actions/TemplateActions';
 
 class BedPlantsSelect extends React.Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class BedPlantsSelect extends React.Component {
 
   componentDidMount = () => {
     YardsStore.listen(this.onChange);
+    setTimeout( () => { TemplateActions.fetchPlacements(this.props.bed); })
   }
 
   componentWillUnmount = () => {
@@ -24,18 +27,20 @@ class BedPlantsSelect extends React.Component {
 
   render() {
     return(
-      <div>
-        <div>Bed Plants Select {this.props.bed.id}</div>
-        <h3>We recommend {StringUtil.pluralize(this.state.templatePlants.length, 'plant', 'plants')} for your bed:</h3>
+      <div>{this.props.bed.meta ?
         <div>
-          {this.state.templatePlants.map( (templatePlant) => {
-            return <TemplatePlant key={`plant_${templatePlant.label}`} templatePlant={templatePlant} />
-          })}
-        </div>
+          <div>Bed Plants Select {this.props.bed.id}</div>
+          <h3>We recommend {StringUtil.pluralize(this.props.bed.meta.templatePlants.length, 'plant', 'plants')} for your bed:</h3>
+          <div>
+            {this.props.bed.meta.templatePlants.map( (templatePlant) => {
+              return <TemplatePlant key={`plant_${templatePlant.label}`} templatePlant={templatePlant} />
+            })}
+          </div>
 
-        <hr/>
+          <hr/>
 
-        <TemplateViewer bed={this.props.bed} />
+          <TemplateViewer bed={this.props.bed} renderWidth={700} renderHeight={700} />
+        </div> : <Loading message='Loading plants' />}
       </div>
     )
   }

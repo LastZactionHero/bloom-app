@@ -8,19 +8,19 @@ class TemplateActions {
       bed.width * 12,
       bed.depth * 12
     ).then( (response) => {
-      this.fetchPlacementsDone(response.placements);
+      this.fetchPlacementsDone(bed, response.placements);
     }).catch( (xhr) => {
-      this.fetchPlacementsFail(xhr);
+      this.fetchPlacementsFail(bed, xhr);
     });
     return null;
   }
 
-  fetchPlacementsDone(placements) {
-    return placements;
+  fetchPlacementsDone(bed, placements) {
+    return { bed: bed, placements: placements };
   }
 
-  fetchPlacementsFail(xhr) {
-    return xhr.responseJSON || {};
+  fetchPlacementsFail(bed, xhr) {
+    return { bed: bed, response: (xhr.responseJSON || {}) };
   }
 }
 

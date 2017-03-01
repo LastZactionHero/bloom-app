@@ -3,8 +3,6 @@ import React from 'react';
 class TemplateRenderCanvas extends React.Component {
   constructor(props) {
     super(props)
-    this.canvasWidth = 450;
-    this.canvasHeight = 450;
   }
 
   componentDidMount = () => {
@@ -18,8 +16,8 @@ class TemplateRenderCanvas extends React.Component {
     let ctx = canvas.getContext('2d');
 
     // Determine Image Scaling
-    let xImageScale = this.canvasWidth / this.props.placementWidth;
-    let yImageScale = this.canvasHeight / this.props.placementHeight;
+    let xImageScale = this.props.renderWidth / this.props.placementWidth;
+    let yImageScale = this.props.renderHeight / this.props.placementHeight;
     let imageScale = Math.min(xImageScale, yImageScale);
 
     // Draw Border
@@ -47,7 +45,7 @@ class TemplateRenderCanvas extends React.Component {
   render() {
     return(
       <div>
-        <canvas id='placementsCanvas' width={this.canvasWidth} height={this.canvasHeight} />
+        <canvas id='placementsCanvas' width={this.props.renderWidth} height={this.props.renderHeight} />
       </div>
     )
   }
