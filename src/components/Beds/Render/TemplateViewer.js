@@ -33,7 +33,8 @@ class TemplateViewer extends React.Component {
                                     placementWidth={this.props.bed.width * 12}
                                     placementHeight={this.props.bed.depth * 12}
                                     renderWidth={this.props.renderWidth}
-                                    renderHeight={this.props.renderHeight}/>
+                                    renderHeight={this.props.renderHeight}
+                                    renderFontSizeLabel={this.props.renderFontSizeLabel}/>
               : null}
           </div>
         }

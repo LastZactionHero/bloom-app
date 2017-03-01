@@ -2,7 +2,8 @@ import React from 'react';
 
 class TemplateRenderCanvas extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.canvasID = `canvas_${parseInt(Math.random()*1000000000)}`;
   }
 
   componentDidMount = () => {
@@ -12,7 +13,7 @@ class TemplateRenderCanvas extends React.Component {
   }
 
   renderPlacements = () => {
-    let canvas = document.getElementById('placementsCanvas');
+    let canvas = document.getElementById(this.canvasID);
     let ctx = canvas.getContext('2d');
 
     // Determine Image Scaling
@@ -37,7 +38,8 @@ class TemplateRenderCanvas extends React.Component {
       ctx.stroke();
 
       // Plant Label
-      ctx.font="12px Helvetica";
+      const fontSizeLabel = this.props.renderFontSizeLabel || 12;
+      ctx.font=`${fontSizeLabel}px Helvetica`;
       ctx.fillText(placement.plant.label,xPos-4, yPos + 2);
     });
   }
@@ -45,7 +47,7 @@ class TemplateRenderCanvas extends React.Component {
   render() {
     return(
       <div>
-        <canvas id='placementsCanvas' width={this.props.renderWidth} height={this.props.renderHeight} />
+        <canvas id={this.canvasID} width={this.props.renderWidth} height={this.props.renderHeight} />
       </div>
     )
   }

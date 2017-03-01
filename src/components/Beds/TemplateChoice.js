@@ -1,15 +1,44 @@
 import React from 'react';
-import BedActions from '../../actions/BedActions';
+import TemplateSource from 'sources/TemplateSource';
 import YardsStore from 'stores/YardsStore';
+import BedActions from '../../actions/BedActions';
+import Loading from 'components/Common/Loading';
+import TemplateViewer from './Render/TemplateViewer';
 
 class TemplateChoice extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = YardsStore.getState();
+    this.state.loading = true;
+    this.state.error = false;
+    this.state.mockBed = {
+      width: props.bed.width,
+      depth: props.bed.depth,
+      meta: {placements: []}
+    };
   }
 
-  componentDidMount = () => { YardsStore.listen(this.onChange) }
-  componentWillUnmount = () => { YardsStore.unlisten(this.onChange) }
+  componentDidMount = () => {
+    YardsStore.listen(this.onChange)
+
+    TemplateSource.fetchPlacements(
+      this.props.template.id,
+      this.props.bed.width * 12,
+      this.props.bed.depth * 12
+    ).then( (response) => {
+      let mockBed = this.state.mockBed;
+      mockBed.meta.placements = response.placements;
+      this.setState({mockBed: mockBed, loading: false});
+    }).catch( (xhr) => {
+      this.setState({loading: false, error: true});
+    });
+  }
+
+  componentWillUnmount = () => {
+    YardsStore.unlisten(this.onChange)
+  }
+
   onChange = (state) => {
     this.setState(state);
   }
@@ -27,10 +56,16 @@ class TemplateChoice extends React.Component {
             <p>Some creative details about this template choice.</p>
           </div>
           <div className='col-md-4'>
-            <p>Preview Image</p>
+            {this.state.loading ?
+              <Loading message=' ' />
+              :
+              this.state.error ?
+                'Preview unavailable' :
+                <TemplateViewer bed={this.state.mockBed} renderWidth={200} renderHeight={100} renderFontSizeLabel={8} />
+            }
           </div>
           <div className='col-md-2'>
-            <button className={`btn btn-primary ${this.state.selecting ? 'disabled' : null}`}
+            <button className={`btn btn-primary ${this.state.loading.selectTemplate ? 'disabled' : null}`}
                     onClick={this.handleSelectTemplate}>Select</button>
           </div>
         </div>
