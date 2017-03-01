@@ -1,6 +1,4 @@
 import React from 'react'
-// import TemplateStore from '../stores/TemplateStore';
-// import TemplateActions from '../actions/TemplateActions';
 import TemplateSource from '../../../sources/TemplateSource';
 import TemplateRenderCanvas from './TemplateRenderCanvas';
 

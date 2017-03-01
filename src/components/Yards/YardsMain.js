@@ -24,7 +24,7 @@ class YardsMain extends React.Component {
     let children = this.props.children || <YardList/>;
     return(
       <div>
-        {this.state.pendingFirstFetch ?  <Loading message='Loading yards' /> : children}
+        {this.state.loading.yards ?  <Loading message='Loading yards' /> : children}
       </div>
     )
   }

@@ -19,18 +19,16 @@ class BedActions {
 
   startSelectTemplate(bed, template) {
     BedSource.setTemplate(bed, template)
-      .then( (bed) => { this.doneSelectTemplate(bed); })
+      .then( (response) => { this.doneSelectTemplate(response); })
       .catch( (xhr) => {this.failSelectTemplate(xhr) })
     return null;
   }
 
   doneSelectTemplate(bed) {
-    // stopped here, set this up second
     return bed;
   }
 
   failSelectTemplate(xhr) {
-    // stopped here, set this up first
     return xhr.responseJSON || {};
   }
 }

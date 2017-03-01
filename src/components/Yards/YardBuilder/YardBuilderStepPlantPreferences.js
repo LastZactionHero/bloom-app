@@ -1,6 +1,6 @@
 import React from 'react';
 import YardBuilderStep from './YardBuilderStep';
-import YardBuilderActions from '../../actions/YardBuilderActions';
+import YardBuilderActions from 'actions/YardBuilderActions';
 
 class YardBuilderStepPlantPreferences extends YardBuilderStep {
   selectPlantPreference = (plantType) => {

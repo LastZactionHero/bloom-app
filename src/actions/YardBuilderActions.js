@@ -49,7 +49,7 @@ class YardBuilderActions {
   }
 
   createYardFail(xhr) {
-    return xhr;
+    return xhr.responseJSON || {};
   }
 }
 

@@ -52,7 +52,7 @@ class BedBuilderActions {
 
   startCreateBed(bed) {
     BedSource.create(bed)
-      .then( (response) => {this.createBed(bed)} )
+      .then( (response) => {this.createdBed(response)} )
       .catch( (xhr) => {this.createBedFail(xhr)} )
     return null;
   }
@@ -64,12 +64,7 @@ class BedBuilderActions {
   createBedFail(xhr) {
     return xhr;
   }
-  // startCreateYard(yard) {
-  //   YardSource.create(yard)
-  //     .then( (response) => { this.createdYard(response) } )
-  //     .catch( (xhr) => { this.createYardFail(xhr) })
-  //   return null;
-  //
+
 }
 
 export default alt.createActions(BedBuilderActions);

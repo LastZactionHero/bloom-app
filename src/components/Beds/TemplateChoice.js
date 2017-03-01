@@ -1,15 +1,15 @@
 import React from 'react';
 import BedActions from '../../actions/BedActions';
-import BedStore from '../../stores/BedStore';
+import YardsStore from 'stores/YardsStore';
 
 class TemplateChoice extends React.Component {
   constructor() {
     super();
-    this.state = BedStore.getState();
+    this.state = YardsStore.getState();
   }
 
-  componentDidMount = () => { BedStore.listen(this.onChange) }
-  componentWillUnmount = () => { BedStore.unlisten(this.onChange) }
+  componentDidMount = () => { YardsStore.listen(this.onChange) }
+  componentWillUnmount = () => { YardsStore.unlisten(this.onChange) }
   onChange = (state) => {
     this.setState(state);
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import BedStore from '../../stores/BedStore';
+import YardsStore from '../../stores/YardsStore';
 import BedActions from '../../actions/BedActions';
 import Loading from '../Common/Loading';
 import ErrorAlert from '../Common/ErrorAlert';
@@ -10,20 +10,19 @@ class BedTemplateSelect extends React.Component {
 
   constructor() {
     super();
-    this.state = BedStore.getState();
+    this.state = YardsStore.getState();
   }
 
   componentDidMount = () => {
-    BedStore.listen(this.onChange);
+    YardsStore.listen(this.onChange);
 
     setTimeout( () => {
-      BedActions.init(this.props.bed);
       BedActions.startFetchSuggestTemplates(this.props.bed);
     });
   }
 
   componentWillUnmount = () => {
-    BedStore.unlisten(this.onChange);
+    YardsStore.unlisten(this.onChange);
   }
 
   onChange = (state) => {
@@ -31,21 +30,21 @@ class BedTemplateSelect extends React.Component {
   }
 
   render() {
-    if(this.state.bed == null) return(<div />); // Initing state
+    if(this.props.bed == null) return(<div />); // Initing state
 
     return (
       <div className='bed-template-select panel panel-default'>
         <div className='panel-heading'>
-          <h3>Select a style for <em>{this.state.bed.name}</em></h3>
+          <h3>Select a style for <em>{this.props.bed.name}</em></h3>
         </div>
         <div className='panel-body'>
           {this.state.error ? <ErrorAlert error={this.state.error} /> : null}
-          { this.state.loading ?
+          { this.state.loading.suggestedTemplates ?
               <Loading message='Loading style suggestions' /> :
                 this.state.suggestedTemplates.length > 0 ?
                   <div>
                     <h4>Here are some styles that would work for this garden bed. Pick one that you prefer:</h4>
-                    {this.state.bed.template_id ? 
+                    {this.props.bed.template_id ?
                       <div className='alert alert-danger'>
                         You have already selected a template for this bed. If you select a different template, it will remove any plant selections for this bed.
                         <br/>
@@ -55,7 +54,7 @@ class BedTemplateSelect extends React.Component {
                     {this.state.suggestedTemplates.map( (template) => {
                       return <TemplateChoice key={`suggested_template_choice_${template.id}`}
                                              template={template}
-                                             bed={this.state.bed} />
+                                             bed={this.props.bed} />
                     })}
                   </div>
                   : <div />

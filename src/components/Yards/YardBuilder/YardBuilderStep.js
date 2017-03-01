@@ -1,6 +1,6 @@
 import React from 'react';
-import YardBuilderStore from '../../stores/YardBuilderStore';
-import YardBuilderActions from '../../actions/YardBuilderActions';
+import YardBuilderStore from 'stores/YardBuilderStore';
+import YardBuilderActions from 'actions/YardBuilderActions';
 import ReactScroll from 'react-scroll';
 
 

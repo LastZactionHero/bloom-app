@@ -22,7 +22,6 @@ class BedBuilderStore {
       handleSunlightAfternoonChange: BedBuilderActions.SUNLIGHT_AFTERNOON_CHANGE,
 
       handleStartCreateBed: BedBuilderActions.START_CREATE_BED,
-      handleCreatedBed: BedBuilderActions.CREATED_BED,
       handleCreateBedFail: BedBuilderActions.CREATE_BED_FAIL
     });
 
@@ -179,10 +178,6 @@ class BedBuilderStore {
 
   handleStartCreateBed() {
     this.submitting = true;
-  }
-
-  handleCreatedBed(bed) {
-    // TODO: Something
   }
 
   handleCreateBedFail(xhr) {

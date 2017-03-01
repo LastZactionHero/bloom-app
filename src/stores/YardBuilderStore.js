@@ -12,10 +12,7 @@ class YardBuilderStore {
       handleZoneChange: YardBuilderActions.ZONE_CHANGE,
       handleZoneFetchFail: YardBuilderActions.ZONE_FETCH_FAIL,
       handleSoilChange: YardBuilderActions.SOIL_CHANGE,
-      handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE,
-      handleStartCreateYard: YardBuilderActions.START_CREATE_YARD,
-      handleCreatedYard: YardBuilderActions.CREATED_YARD,
-      handleCreateYardFail: YardBuilderActions.CREATE_YARD_FAIL
+      handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE
     });
 
     this.yard = {
@@ -103,21 +100,6 @@ class YardBuilderStore {
       }
   }
 
-  handleStartCreateYard() {
-    this.submitting = true;
-  }
-
-  handleCreatedYard(yard) {
-    setTimeout(() => {
-      YardsActions.startFetchIndex();
-      browserHistory.push(`/dashboard/yards/${yard.id}/beds/new`);
-    });
-  }
-
-  handleCreateYardFail(xhr) {
-    // TODO: Something
-    this.submitting = false;
-  }
 }
 
 export default alt.createStore(YardBuilderStore, 'YardBuilderStore');

@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard';
 import UserSignIn from './components/Users/SignIn';
 import UserSignUp from './components/Users/SignUp';
 import YardsMain from './components/Yards/YardsMain';
-import YardBuilder from './components/Yards/YardBuilder';
+import YardBuilder from './components/Yards/YardBuilder/YardBuilder';
 import YardMain from './components/Yards/YardMain';
 import BedBuilder from './components/Beds/BedBuilder/BedBuilder';
 import BedTemplateSelect from './components/Beds/BedTemplateSelect';
