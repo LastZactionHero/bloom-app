@@ -13,7 +13,9 @@ class TemplatePlant extends React.Component {
         </div>
         <div className='col-xs-12 col-sm-6'>
           <div className='unselected'>
-            <a href='javascript:void(0)' className='btn btn-primary'>
+            <a href='javascript:void(0)'
+               className='btn btn-primary'
+               onClick={this.props.onStartSearch}>
               <i className="fa fa-search" aria-hidden="true" />
               Find a specific plant
             </a>
