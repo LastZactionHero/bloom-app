@@ -15,7 +15,7 @@ class TemplateChoice extends React.Component {
     this.state.mockBed = {
       width: props.bed.width,
       depth: props.bed.depth,
-      meta: {placements: []}
+      template_placements: []
     };
   }
 
@@ -28,7 +28,7 @@ class TemplateChoice extends React.Component {
       this.props.bed.depth * 12
     ).then( (response) => {
       let mockBed = this.state.mockBed;
-      mockBed.meta.placements = response.placements;
+      mockBed.template_placements = response.placements;
       this.setState({mockBed: mockBed, loading: false});
     }).catch( (xhr) => {
       this.setState({loading: false, error: true});

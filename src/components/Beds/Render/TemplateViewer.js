@@ -25,11 +25,11 @@ class TemplateViewer extends React.Component {
   render() {
     return(
       <div>
-        {this.state.loading.placements ?
+        {this.state.loading.template_placements ?
           <Loading message='Rendering bed' /> :
           <div>
-            {this.props.bed.meta.placements ?
-              <TemplateRenderCanvas placements={this.props.bed.meta.placements}
+            {this.props.bed.template_placements ?
+              <TemplateRenderCanvas placements={this.props.bed.template_placements}
                                     placementWidth={this.props.bed.width * 12}
                                     placementHeight={this.props.bed.depth * 12}
                                     renderWidth={this.props.renderWidth}

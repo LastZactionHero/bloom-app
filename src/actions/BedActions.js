@@ -31,6 +31,12 @@ class BedActions {
   failSelectTemplate(xhr) {
     return xhr.responseJSON || {};
   }
+
+
+  startUpdate(bed) {
+    BedSource.update(bed);
+    return null;
+  }
 }
 
 export default alt.createActions(BedActions);

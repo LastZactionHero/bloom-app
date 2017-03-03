@@ -151,9 +151,9 @@ class YardsStore {
     const placements = bedPlacements.placements;
 
     bed.meta = bed.meta || {
-      templatePlants: [],
-      placements: placements
+      templatePlants: []
     };
+    bed.template_placements = placements;
 
     // Pull all unique plant placeholders from the placements
     bed.meta.templatePlants = [];
@@ -164,6 +164,8 @@ class YardsStore {
     });
 
     this.loading.placements = false;
+
+    setTimeout( () => { BedActions.startUpdate(bed) } )
   }
 
   fetchPlacementsFail(bedErrorResponse) {
