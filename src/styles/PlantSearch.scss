@@ -1,0 +1,28 @@
+@import 'Colors';
+
+.plant-search {
+  .basic-template-search {
+    .visual-search-result {
+      position: relative;
+      height: 150px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+
+      cursor: pointer;
+
+      .plant-name {
+        position: absolute;
+        top: 8px;
+        left: 0px;
+        right: 0px;
+        background-color: $color-flat-dark-gray;
+        opacity: 0.8;
+        color: $color-white;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  }
+}
