@@ -44,8 +44,7 @@ class BasicTemplateSearch extends React.Component {
   }
 
 
-  render() {
-    console.log(this.state.results)
+  render() 
     return(
       <div className='plant-search'>
         <div className='basic-template-search'>
