@@ -16,7 +16,11 @@ class BasicTemplateSearch extends React.Component {
 
   componentDidMount = () => {
     PlantSearchStore.listen(this.onChange);
-    PlantSearchActions.startFetchResults(this.props.templatePlant.search_query, 0);
+
+    PlantSearchActions.setupQueryAndFetch(
+      this.props.templatePlant.search_query,
+      this.props.bed,
+      this.props.yard);
   }
 
   componentWillUnmount = () => {

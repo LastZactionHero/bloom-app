@@ -14,29 +14,14 @@ class PlantSeachStore {
       fetchResultsDone: PlantSearchActions.FETCHED_RESULTS,
       fetchResultsFail: PlantSearchActions.FETCH_RESULTS_FAIL,
 
-      updatePage: PlantSearchActions.UPDATE_PAGE
+      updatePage: PlantSearchActions.UPDATE_PAGE,
+
+      setupQueryAndFetch: PlantSearchActions.SETUP_QUERY_AND_FETCH
     });
 
     this.options = {};
     this.pageIdx = 0;
-    this.query = {
-      common_name: '',
-      height: {min: null, max: null},
-      width: {min: null, max: null},
-      leave_types: [],
-      growth_rates: [],
-      flower_colors: [],
-      foliage_colors: [],
-      light_needs: [],
-      watering_needs: [],
-      key_features: [],
-      special_features: [],
-      zones: [],
-      usages: [],
-      garden_styles: [],
-      flower_attributes: [],
-      plant_types: []
-    };
+    this.query = {};
     this.results = {
       meta: {page_idx: 0, total: 0, total_pages: 0},
       plants: []
@@ -90,8 +75,43 @@ class PlantSeachStore {
     this.error = response.errors || {};
   }
 
+  // Update Page
   updatePage(pageIdx) {
     this.pageIdx = pageIdx;
+    setTimeout(() => {PlantSearchActions.startFetchResults(this.query, this.pageIdx)});
+  }
+
+  // Set Query
+  // query: {}, bed: {} (optional), yard: {} (optional)
+  setupQueryAndFetch(queryData) {
+    this.query = Object.assign({
+      common_name: '',
+      height: {min: null, max: null},
+      width: {min: null, max: null},
+      leave_types: [],
+      growth_rates: [],
+      flower_colors: [],
+      foliage_colors: [],
+      light_needs: [],
+      watering_needs: [],
+      key_features: [],
+      special_features: [],
+      zones: [],
+      usages: [],
+      garden_styles: [],
+      flower_attributes: [],
+      plant_types: []
+    }, queryData.query);
+
+    // TODO: Bed data, watering, lighting, etc
+
+    const yard = queryData.yard;
+    if(yard) {
+      this.query.zones.push(yard.zone)
+    }
+
+    this.pageIdx = 0; // reset page
+
     setTimeout(() => {PlantSearchActions.startFetchResults(this.query, this.pageIdx)});
   }
 

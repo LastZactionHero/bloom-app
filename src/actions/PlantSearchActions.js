@@ -41,6 +41,10 @@ class PlantSearchActions {
     return (xhr.responseJSON || {});
   }
 
+  setupQueryAndFetch(query, bed, yard) {
+    return {query: query, bed: bed, yard: yard};    
+  }
+
   // clearQuery(key) {
   //   return key;
   // }
