@@ -118,6 +118,10 @@ body {
   font-size: 16px;
 }
 
+.pagination {
+  cursor: pointer;
+}
+
 @import 'Builder';
 @import 'YardBuilder';
 @import 'BedBuilder';

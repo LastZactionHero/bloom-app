@@ -12,7 +12,9 @@ class PlantSeachStore {
 
       fetchResultsStart: PlantSearchActions.START_FETCH_RESULTS,
       fetchResultsDone: PlantSearchActions.FETCHED_RESULTS,
-      fetchResultsFail: PlantSearchActions.FETCH_RESULTS_FAIL
+      fetchResultsFail: PlantSearchActions.FETCH_RESULTS_FAIL,
+
+      updatePage: PlantSearchActions.UPDATE_PAGE
     });
 
     this.options = {};
@@ -88,6 +90,10 @@ class PlantSeachStore {
     this.error = response.errors || {};
   }
 
+  updatePage(pageIdx) {
+    this.pageIdx = pageIdx;
+    setTimeout(() => {PlantSearchActions.startFetchResults(this.query, this.pageIdx)});
+  }
 
   // handleUpdateOptions(options) {
   //   this.options = options;

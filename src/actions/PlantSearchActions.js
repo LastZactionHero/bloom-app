@@ -49,9 +49,9 @@ class PlantSearchActions {
   //   return options;
   // }
 
-  // updatePage(pageIdx) {
-  //   return pageIdx;
-  // }
+  updatePage(pageIdx) {
+    return pageIdx;
+  }
   //
   // updateQuery(key, values) {
   //   return {key: key, values: values}
