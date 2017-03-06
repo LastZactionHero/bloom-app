@@ -37,7 +37,7 @@ class Pagination extends React.Component {
   render(){
     return(
       <div>
-        {this.props.total > 0 ?
+        {this.props.total > 1 ?
           <ul className="pagination">
             <li className={this.props.current == 0 ? 'disabled' : ''}>
               <a href="javascript:void(0)" aria-label="Previous" onClick={this.prevPage}>
