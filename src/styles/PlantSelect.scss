@@ -1,5 +1,9 @@
 @import 'Colors';
 
+.template-plants-list {
+  margin-bottom: 24px;
+}
+
 .template-plant {
   padding: 12px 8px;
   background-color: $color-flat-light-gray;
@@ -20,17 +24,25 @@
     font-size: 16px;
   }
 
-  .unselected {
-    text-align: center;
-    margin-top: 8px;
-
-    .btn {
-      font-size: 16px;
-      padding: 12px 20px;
-      i {
-        margin-right: 8px;
-      }
+  .btn {
+    font-size: 16px;
+    padding: 12px 20px;
+    i {
+      margin-right: 8px;
     }
+  }
+
+  .selected {
+    .selected-plant-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+  }
+
+  .unselected {
+    text-align: right;
+    margin-top: 8px;
   }
 
 }

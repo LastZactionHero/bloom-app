@@ -1,11 +1,13 @@
 import React from 'react';
-import TemplateViewer from './Render/TemplateViewer';
 import YardsStore from 'stores/YardsStore';
+import BedActions from 'actions/BedActions';
+import TemplateActions from 'actions/TemplateActions';
 import StringUtil from '../../util/string';
+import TemplateViewer from './Render/TemplateViewer';
 import TemplatePlant from './Plants/TemplatePlant'
 import Loading from 'components/Common/Loading'
-import TemplateActions from 'actions/TemplateActions';
 import BasicTemplateSearch from 'components/PlantSearch/BasicTemplateSearch';
+import { Link } from 'react-router'
 
 class BedPlantsSelect extends React.Component {
   constructor(props) {
@@ -33,8 +35,21 @@ class BedPlantsSelect extends React.Component {
     this.setState({viewMode: 'search', activeTemplatePlant: templatePlant});
   }
 
-  finishSearch = () => {
+  finishSearch = (templatePlant, plant) => {
     this.setState({viewMode: 'list'});
+    BedActions.mapTemplatePlant(this.props.bed, templatePlant, plant);
+  }
+
+  selectionFinished = () => {
+    let finished = true;
+    const labels = new Set(this.props.bed.template_placements.map((p) => {return p.plant.label}));
+    labels.forEach((label) => {
+      if(this.props.bed.template_plant_mapping[label] == undefined){
+        finished = false;
+      }
+    });
+
+    return finished;
   }
 
   render() {
@@ -44,14 +59,24 @@ class BedPlantsSelect extends React.Component {
           return <div>
             <div>Bed Plants Select {this.props.bed.id}</div>
             <h3>We recommend {StringUtil.pluralize(this.props.bed.meta.templatePlants.length, 'plant', 'plants')} for your bed:</h3>
-            <div>
+            <div className='template-plants-list'>
               {this.props.bed.meta.templatePlants.map( (templatePlant) => {
                 return <TemplatePlant key={`plant_${templatePlant.label}`}
                                       templatePlant={templatePlant}
+                                      selectedPlant={this.props.bed.template_plant_mapping[templatePlant.label]}
                                       onStartSearch={ () => { this.startSearch(templatePlant) } } />
               })}
             </div>
+
+            {this.selectionFinished() ?
+              <div className='alert alert-success'>
+                Looks great! You can update your choices,&nbsp;
+                <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}`}}>review your yard</Link>,
+                or <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/new`}}>start another bed</Link>.
+              </div>
+              : null}
             <hr/>
+
             <TemplateViewer bed={this.props.bed} renderWidth={700} renderHeight={700} />
           </div>;
         case 'search':

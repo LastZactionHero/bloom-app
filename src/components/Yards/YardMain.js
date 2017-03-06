@@ -50,6 +50,11 @@ class YardMain extends React.Component {
                     <div>Watered: {bed.watered}</div>
                     <div>Template ID: {bed.template_id}</div>
 
+                    {bed.template_id ?
+                      <Link className='btn btn-primary'
+                            to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/plants`}}>Pick Plants</Link> : null
+                    }
+                    &nbsp;
                     <Link className='btn btn-primary'
                           to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/template`}}>Select Template</Link>
                   </div>

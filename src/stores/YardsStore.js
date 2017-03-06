@@ -35,7 +35,10 @@ class YardsStore {
       // Fetch Placements
       fetchPlacementsStart: TemplateActions.FETCH_PLACEMENTS,
       fetchPlacementsDone: TemplateActions.FETCH_PLACEMENTS_DONE,
-      fetchPlacementsFail: TemplateActions.FETCH_PLACEMENTS_FAIL
+      fetchPlacementsFail: TemplateActions.FETCH_PLACEMENTS_FAIL,
+
+      // Map Plant to Template Plant
+      mapTemplatePlant: BedActions.MAP_TEMPLATE_PLANT
     });
 
     this.exportPublicMethods({
@@ -180,6 +183,14 @@ class YardsStore {
     this.loading.placements = false;
   }
 
+  mapTemplatePlant(mapping) {
+    const bed = mapping.bed;
+    bed.template_plant_mapping = bed.template_plant_mapping || {}; // init if not defined
+
+    bed.template_plant_mapping[mapping.templatePlant.label] = mapping.plant;
+
+    setTimeout( () => { BedActions.startUpdate(bed) } )
+  }
 }
 
 export default alt.createStore(YardsStore, 'YardsStore');

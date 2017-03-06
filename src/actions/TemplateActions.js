@@ -6,7 +6,8 @@ class TemplateActions {
     TemplateSource.fetchPlacements(
       bed.template_id,
       bed.width * 12,
-      bed.depth * 12
+      bed.depth * 12,
+      bed.template_plant_mapping
     ).then( (response) => {
       this.fetchPlacementsDone(bed, response.placements);
     }).catch( (xhr) => {

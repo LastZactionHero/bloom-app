@@ -3,11 +3,13 @@ import PlantSearchActions from 'actions/PlantSearchActions';
 import PlantSearchStore from 'stores/PlantSearchStore';
 import Loading from 'components/Common/Loading';
 import VisualSearchResult from './VisualSearchResult';
+import PlantPreview from './PlantPreview';
 
 class BasicTemplateSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = PlantSearchStore.getState();
+    this.state.plantPreview = null;
   }
 
   componentDidMount = () => {
@@ -23,6 +25,18 @@ class BasicTemplateSearch extends React.Component {
     this.setState(state);
   }
 
+  showPlantPreview = (plant) => {
+    this.setState({plantPreview: plant});
+  }
+
+  onPlantSelectConfirm = (plant) => {
+    this.props.onSelect(this.props.templatePlant, plant);
+  }
+
+  onPlantSelectCancel = () => {
+    this.setState({plantPreview: null});
+  }
+
   render() {
     return(
       <div className='plant-search'>
@@ -34,10 +48,20 @@ class BasicTemplateSearch extends React.Component {
           {this.state.loading.results ?
             <Loading message='Searching' /> :
             <div>
-              <div className='row'>
-                {this.state.results.plants.map( (plant) => {
-                  return <VisualSearchResult key={`search_result_${plant.id}`} plant={plant} />
-                })}
+              <div>
+                {this.state.plantPreview ?
+                  <PlantPreview plant={this.state.plantPreview}
+                                onSelect={this.onPlantSelectConfirm}
+                                onCancel={this.onPlantSelectCancel} /> :
+                  <div className='row'>
+                    {this.state.results.plants.map( (plant) => {
+                      return <VisualSearchResult key={`search_result_${plant.id}`}
+                                                 plant={plant}
+                                                 onSelect={this.showPlantPreview} />
+                    })}
+                  </div>
+                }
+
               </div>
             </div>
           }

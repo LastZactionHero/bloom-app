@@ -12,14 +12,32 @@ class TemplatePlant extends React.Component {
           <div className='plant-tooltip'>{this.props.templatePlant.tooltip}</div>
         </div>
         <div className='col-xs-12 col-sm-6'>
-          <div className='unselected'>
-            <a href='javascript:void(0)'
-               className='btn btn-primary'
-               onClick={this.props.onStartSearch}>
-              <i className="fa fa-search" aria-hidden="true" />
-              Find a specific plant
-            </a>
-          </div>
+          {this.props.selectedPlant ?
+            <div className='selected'>
+              <div className='row'>
+                <div className='col-sm-8'>
+                  <div className='selected-plant-name'>{this.props.selectedPlant.common_name}</div>
+                </div>
+                <div className='col-sm-4'>
+                  <a href='javascript:void(0)'
+                     className='btn btn-danger'
+                     onClick={this.props.onStartSearch}>
+                    <i className="fa fa-search" aria-hidden="true" />
+                    Replace plant
+                  </a>
+                </div>
+              </div>
+            </div>
+            :
+            <div className='unselected'>
+              <a href='javascript:void(0)'
+                 className='btn btn-primary'
+                 onClick={this.props.onStartSearch}>
+                <i className="fa fa-search" aria-hidden="true" />
+                Find a specific plant
+              </a>
+            </div>
+          }
         </div>
       </div>
     )

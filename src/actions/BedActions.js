@@ -32,10 +32,13 @@ class BedActions {
     return xhr.responseJSON || {};
   }
 
-
   startUpdate(bed) {
     BedSource.update(bed);
     return null;
+  }
+
+  mapTemplatePlant(bed, templatePlant, plant) {
+    return {bed: bed, templatePlant: templatePlant, plant: plant};
   }
 }
 

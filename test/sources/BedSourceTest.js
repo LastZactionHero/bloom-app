@@ -133,8 +133,6 @@ describe('BedSource', function() {
       request.method.should.equal('PATCH');
 
       const requestBody = JSON.parse(request.requestBody);
-      console.log(requestBody);
-      // requestBody.should.deep.equal({template_id: templateFixture.id});
 
       request.respond(200, { 'Content-Type' : 'application/json' }, JSON.stringify(bedFixture));
     });

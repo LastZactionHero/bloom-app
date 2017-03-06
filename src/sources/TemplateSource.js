@@ -13,7 +13,15 @@ export default {
     });
   },
 
-  fetchPlacements(templateID, width, height) {
+  fetchPlacements(templateID, width, height, templatePlantMapping) {
+    // Redefine mapping as {template_label: plant_permalink}
+    let mapping = {}
+    if(templatePlantMapping){
+      for(const label in templatePlantMapping){
+        mapping[label] = templatePlantMapping[label].permalink
+      }
+    }
+
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'GET',
@@ -21,7 +29,8 @@ export default {
         contentType: 'application/json',
         data: {
           width: width,
-          height: height
+          height: height,
+          template_plant_mapping: mapping
         }
       }).done((response) => {
         resolve(response);
@@ -30,7 +39,7 @@ export default {
       });
     });
   },
-  
+
   saveConfig(template) {
     return new Promise( (resolve, reject) => {
       $.ajax({
