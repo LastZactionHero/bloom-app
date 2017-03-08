@@ -26,5 +26,12 @@
         font-weight: bold;
       }
     }
+
+    .visual-search-result.favorite {
+      .plant-name {
+        color: $color-text;
+        background-color: $color-flat-yellow;
+      }
+    }
   }
 }
