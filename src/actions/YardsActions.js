@@ -16,6 +16,21 @@ class YardsActions {
   indexFetchFailed(xhr) {
     return xhr;
   }
+
+  startDelete(yard) {
+    YardSource.destroy(yard)
+      .then(this.doneDelete)
+      .catch(this.failDelete)
+    return null;
+  }
+
+  doneDelete() {
+    return null;
+  }
+
+  failDelete(xhr) {
+    return xhr.responseJSON || {};
+  }
 }
 
 export default alt.createActions(YardsActions);

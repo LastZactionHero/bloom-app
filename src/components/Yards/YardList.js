@@ -1,7 +1,8 @@
 import React from 'react';
-import { browserHistory, Link } from 'react-router'
+import { Link } from 'react-router'
 import YardsStore from '../../stores/YardsStore';
-import StringUtil from '../../util/string';
+
+import YardListItem from './YardListItem';
 
 class YardList extends React.Component {
   constructor() {
@@ -40,14 +41,7 @@ class YardList extends React.Component {
 
             <div className='row'>
               {this.state.yards.map( (yard) => {
-                return <div className='col-sm-12 col-md-5 yard-list-tile'
-                            key={`yard_${yard.id}`}
-                            onClick={() => { browserHistory.push( `/dashboard/yards/${yard.id}` )}}>
-                  <h3 className='text-center'>Zone {yard.zone} ({yard.zipcode})</h3>
-                  <div>{StringUtil.pluralize(yard.beds.length, 'Bed', 'Beds')}</div>
-                  <div>Created {yard.created_at}</div>
-
-                </div>
+                return <YardListItem key={`yard_${yard.id}`} yard={yard} />
               })}
             </div>
           </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import YardList from './Yards/YardList';
 import SessionStore from '../stores/SessionStore';
 import { browserHistory, Link } from 'react-router'
 

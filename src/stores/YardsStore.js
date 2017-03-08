@@ -38,7 +38,17 @@ class YardsStore {
       fetchPlacementsFail: TemplateActions.FETCH_PLACEMENTS_FAIL,
 
       // Map Plant to Template Plant
-      mapTemplatePlant: BedActions.MAP_TEMPLATE_PLANT
+      mapTemplatePlant: BedActions.MAP_TEMPLATE_PLANT,
+
+      // Delete Bed
+      deleteBedStart: BedActions.START_DELETE,
+      deleteBedDone: BedActions.DONE_DELETE,
+      deleteBedFail: BedActions.FAIL_DELETE,
+
+      // Delete Yard
+      deleteYardStart: YardsActions.START_DELETE,
+      deleteYardDone: YardsActions.DONE_DELETE,
+      deleteYardFail: YardsActions.FAIL_DELETE
     });
 
     this.exportPublicMethods({
@@ -53,7 +63,8 @@ class YardsStore {
       createYard: false,
       suggestedTemplates: false,
       selectTemplate: false,
-      placements: false
+      placements: false,
+      bed: false
     }
   }
 
@@ -191,6 +202,45 @@ class YardsStore {
 
     setTimeout( () => { BedActions.startUpdate(bed) } )
   }
+
+  // Delete Bed
+  deleteBedStart() {
+    this.loading.bed = true;
+  }
+
+  deleteBedDone(yardID) {
+    this.loading.bed = false;
+    setTimeout( () => {
+      this.yards = [];
+      YardsActions.startFetchIndex();
+      browserHistory.push(`/dashboard/yards/${yardID}`);
+    })
+  }
+
+  deleteBedFail(response) {
+    this.loading.bed = false;
+    this.error = response.errors || {}
+  }
+
+  // Delete Yard
+  deleteYardStart() {
+    this.loading.yards = true;
+  }
+
+  deleteYardDone() {
+    this.loading.yards = false;
+    setTimeout( () => {
+      this.yards = [];
+      YardsActions.startFetchIndex();
+      browserHistory.push('/dashboard/yards');
+    })
+  }
+
+  deleteYardFail(response) {
+    this.loading.yards = false;
+    this.error = response.errors || {}
+  }
+
 }
 
 export default alt.createStore(YardsStore, 'YardsStore');

@@ -3,7 +3,6 @@ import React from 'react';
 class TemplateRenderCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.canvasID = `canvas_${parseInt(Math.random()*1000000000)}`;
   }
 
   componentDidMount = () => {
@@ -13,8 +12,7 @@ class TemplateRenderCanvas extends React.Component {
   }
 
   renderPlacements = () => {
-    let canvas = document.getElementById(this.canvasID);
-    let ctx = canvas.getContext('2d');
+    let ctx = this.refs.canvas.getContext('2d');
 
     // Determine Image Scaling
     let xImageScale = this.props.renderWidth / this.props.placementWidth;
@@ -72,7 +70,7 @@ class TemplateRenderCanvas extends React.Component {
   render() {
     return(
       <div>
-        <canvas id={this.canvasID} width={this.props.renderWidth} height={this.props.renderHeight} />
+        <canvas ref='canvas' width={this.props.renderWidth} height={this.props.renderHeight} />
       </div>
     )
   }

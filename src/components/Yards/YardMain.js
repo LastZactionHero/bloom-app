@@ -1,6 +1,7 @@
 import React from 'react'
 import YardsStore from '../../stores/YardsStore';
 import { Link } from 'react-router';
+import BedListItem from './BedListItem';
 
 class YardMain extends React.Component {
   constructor() {
@@ -40,24 +41,7 @@ class YardMain extends React.Component {
                 <hr/>
 
                 {yard.beds.map( (bed) => {
-                  return <div key={`bed_template_link_${bed.id}`}>
-                    <div><strong>ID {bed.id}: {bed.name}</strong></div>
-                    <div>{bed.width}&apos; W x {bed.depth}&apos; H</div>
-                    <div>Attached to House: {bed.attached_to_house}</div>
-                    <div>Orientation: {bed.orientation}</div>
-                    <div>Sunlight, Morning: {bed.sunlight_morning}</div>
-                    <div>Sunlight, Afternoon: {bed.sunlight_afternoon}</div>
-                    <div>Watered: {bed.watered}</div>
-                    <div>Template ID: {bed.template_id}</div>
-
-                    {bed.template_id ?
-                      <Link className='btn btn-primary'
-                            to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/plants`}}>Pick Plants</Link> : null
-                    }
-                    &nbsp;
-                    <Link className='btn btn-primary'
-                          to={{pathname: `/dashboard/yards/${yard.id}/beds/${bed.id}/template`}}>Select Template</Link>
-                  </div>
+                  return <BedListItem bed={bed} key={`bed_list_item_${bed.id}`} />
                 })}
               </div> :
             <div>Not found</div>

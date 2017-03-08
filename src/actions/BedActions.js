@@ -40,6 +40,23 @@ class BedActions {
   mapTemplatePlant(bed, templatePlant, plant) {
     return {bed: bed, templatePlant: templatePlant, plant: plant};
   }
+
+  startDelete(bed) {
+    const yardID = bed.yard_id;
+    BedSource.destroy(bed)
+      .then( () => { this.doneDelete(yardID) })
+      .catch( (xhr) => {this.failDelete(xhr) })
+    return null;
+  }
+
+  doneDelete(yardID) {
+    return yardID;
+  }
+
+  failDelete(xhr) {
+    return xhr.responseJSON || {};
+  }
+
 }
 
 export default alt.createActions(BedActions);
