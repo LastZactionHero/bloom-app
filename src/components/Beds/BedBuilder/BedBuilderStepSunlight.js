@@ -3,11 +3,11 @@ import BedBuilderStep from './BedBuilderStep';
 import BedBuilderActions from '../../../actions/BedBuilderActions';
 
 class BedBuilderStepSunlight extends BedBuilderStep {
-  handleSunlightMorningChange(sunlight) {
-    BedBuilderActions.sunlightMorningChange(sunlight);
+  handleSunlightMorningChange(event) {
+    BedBuilderActions.sunlightMorningChange(event.target.value == 'true');
   }
-  handleSunlightAfternoonChange(sunlight) {
-    BedBuilderActions.sunlightAfternoonChange(sunlight);
+  handleSunlightAfternoonChange(event) {
+    BedBuilderActions.sunlightAfternoonChange(event.target.value == 'true');
   }
 
   render() {
@@ -28,60 +28,52 @@ class BedBuilderStepSunlight extends BedBuilderStep {
               <div className='form'>
                 <div className='row'>
                   <div className='col-sm-12'>
+                    <div className='step-hint'>
+                      We guessed about sunlight based on the side of the house.
+                    </div>
+
                     <div className='form-group'>
-                      <div><label>Morning</label></div>
-                      <h4>Direct Sunlight</h4>
-                      <div className="btn-group" role="group">
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('full_sun')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'full_sun' ? 'btn-primary' : 'btn-default'}`}>Full Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('partial_sun')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'partial_sun' ? 'btn-primary' : 'btn-default'}`}>Partial Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('partial_shade')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'partial_shade' ? 'btn-primary' : 'btn-default'}`}>Partial Shade</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('full_shade')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'full_shade' ? 'btn-primary' : 'btn-default'}`}>Full Shade</button>
+                      <div><label>Does this bed receive sunlight in the morning?</label></div>
+                      <div className="radio">
+                        <label>
+                          <input type="radio"
+                                 value={true}
+                                 checked={this.state.bed.sunlight_morning == true}
+                                 onChange={this.handleSunlightMorningChange} />
+                          Yes
+                        </label>
                       </div>
-                      <h4>Filtered Sunlight</h4>
-                      <div className='btn-group' role='group'>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('filtered_sun')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'filtered_sun' ? 'btn-primary' : 'btn-default'}`}>Filtered Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightMorningChange('filtered_shade')} }
-                                className={`btn ${this.state.bed.sunlight_morning == 'filtered_shade' ? 'btn-primary' : 'btn-default'}`}>Filtered Shade</button>
+                      <div className="radio">
+                        <label>
+                          <input type="radio"
+                                 value={false}
+                                 checked={this.state.bed.sunlight_morning == false}
+                                 onChange={this.handleSunlightMorningChange} />
+                          No
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div className='col-sm-12'>
                     <div className='form-group'>
-                      <div><label>Afternoon</label></div>
-                      <h4>Direct Sunlight</h4>
-                      <div className="btn-group" role="group">
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('full_sun')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'full_sun' ? 'btn-primary' : 'btn-default'}`}>Full Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('partial_sun')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'partial_sun' ? 'btn-primary' : 'btn-default'}`}>Partial Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('partial_shade')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'partial_shade' ? 'btn-primary' : 'btn-default'}`}>Partial Shade</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('full_shade')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'full_shade' ? 'btn-primary' : 'btn-default'}`}>Full Shade</button>
+                      <div><label>Does this bed receive sunlight in the afternoon?</label></div>
+                      <div className="radio">
+                        <label>
+                          <input type="radio"
+                                 value={true}
+                                 checked={this.state.bed.sunlight_afternoon == true}
+                                 onChange={this.handleSunlightAfternoonChange} />
+                          Yes
+                        </label>
                       </div>
-                      <h4>Filtered Sunlight</h4>
-                      <div className='btn-group' role='group'>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('filtered_sun')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'filtered_sun' ? 'btn-primary' : 'btn-default'}`}>Filtered Sun</button>
-                        <button type="button"
-                                onClick={ () => {this.handleSunlightAfternoonChange('filtered_shade')} }
-                                className={`btn ${this.state.bed.sunlight_afternoon == 'filtered_shade' ? 'btn-primary' : 'btn-default'}`}>Filtered Shade</button>
+                      <div className="radio">
+                        <label>
+                          <input type="radio"
+                                 value={false}
+                                 checked={this.state.bed.sunlight_afternoon == false}
+                                 onChange={this.handleSunlightAfternoonChange} />
+                          No
+                        </label>
                       </div>
                     </div>
                   </div>

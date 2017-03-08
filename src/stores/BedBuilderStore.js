@@ -32,8 +32,8 @@ class BedBuilderStore {
       orientation: '',
       width: '',
       depth: '',
-      sunlight_morning: '',
-      sunlight_afternoon: '',
+      sunlight_morning: null,
+      sunlight_afternoon: null,
       soil: '',
       watered: false
     }
@@ -139,6 +139,29 @@ class BedBuilderStore {
 
   handleOrientationChange(orientation) {
     this.bed.orientation = orientation;
+
+    // Infer the bed sunlight by orientation
+    if(this.bed.sunlight_morning == null && this.bed.sunlight_afternoon == null){
+      switch(orientation){
+        case 'north':
+          this.bed.sunlight_morning = false;
+          this.bed.sunlight_afternoon = false;
+          break;
+        case 'south':
+          this.bed.sunlight_morning = true;
+          this.bed.sunlight_afternoon = true;
+          break;
+        case 'east':
+          this.bed.sunlight_morning = true;
+          this.bed.sunlight_afternoon = false;
+          break;
+        case 'west':
+          this.bed.sunlight_morning = false;
+          this.bed.sunlight_afternoon = true;
+          break;
+      }
+    }
+
     this.checkStepCompletion();
   }
 
@@ -165,8 +188,8 @@ class BedBuilderStore {
       this.bed.orientation.length > 0;
 
     this.steps.sunlight.complete =
-      this.bed.sunlight_morning.length > 0 &&
-      this.bed.sunlight_afternoon.length > 0;
+      this.bed.sunlight_morning != null &&
+      this.bed.sunlight_afternoon != null
 
     this.allComplete = (
       this.steps.dimensions.complete
