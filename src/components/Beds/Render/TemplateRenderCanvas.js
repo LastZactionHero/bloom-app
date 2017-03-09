@@ -5,12 +5,6 @@ class TemplateRenderCanvas extends React.Component {
     super(props);
   }
 
-  componentDidMount = () => {
-    setTimeout( () => {
-      this.renderBed();
-    })
-  }
-
   renderBed = () => {
     let ctx = this.refs.canvas.getContext('2d');
 
@@ -89,8 +83,6 @@ class TemplateRenderCanvas extends React.Component {
     ctx.fillStyle = colorBrown;
     ctx.fillRect(lineWidth, lineWidth, imageScale * this.props.placementWidth - 2 * lineWidth, imageScale * this.props.placementHeight - 2 * lineWidth);
 
-    console.log(this.props.placements)
-
     const labels = Array.from(new Set(this.props.placements.map((p) => {return p.plant.label})));
     labels.forEach(  (label, index, wx) => {
       const highlightColor = highlightColors[index % highlightColors.length];
@@ -131,6 +123,7 @@ class TemplateRenderCanvas extends React.Component {
   }
 
   render() {
+    setTimeout(() => {this.renderBed();});
     return(
       <div>
         <canvas ref='canvas' width={this.props.renderWidth} height={this.props.renderHeight} />

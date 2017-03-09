@@ -1,6 +1,5 @@
 import React from 'react'
 import TemplateRenderCanvas from './TemplateRenderCanvas';
-import TemplateActions from 'actions/TemplateActions';
 import YardsStore from 'stores/YardsStore';
 import Loading from 'components/Common/Loading';
 

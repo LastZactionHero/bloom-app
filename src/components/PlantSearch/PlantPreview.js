@@ -16,11 +16,11 @@ class PlantPreview extends React.Component {
 
             <div className='row'>
               <div className='col-sm-6'><strong>Average Width:</strong></div>
-              <div className='col-sm-6'>{this.props.plant.size.avg_width}&quot;</div>
+              <div className='col-sm-6'>{this.props.plant.size.avg_width} in</div>
             </div>
             <div className='row'>
               <div className='col-sm-6'><strong>Average Height:</strong></div>
-              <div className='col-sm-6'>{this.props.plant.size.avg_height}&quot;</div>
+              <div className='col-sm-6'>{this.props.plant.size.avg_height} in</div>
             </div>
             {this.props.plant.leave_type ?
               <div className='row'>

@@ -38,6 +38,8 @@ class BedPlantsSelect extends React.Component {
   finishSearch = (templatePlant, plant) => {
     this.setState({viewMode: 'list'});
     BedActions.mapTemplatePlant(this.props.bed, templatePlant, plant);
+
+    setTimeout( () => { TemplateActions.fetchPlacements(this.props.bed); }); // redraw
   }
 
   selectionFinished = () => {
