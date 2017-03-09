@@ -20,27 +20,43 @@ class TemplateRenderCanvas extends React.Component {
     let imageScale = Math.min(xImageScale, yImageScale);
 
     const lineWidth = 1;
-    const colorBrown = '#e8b76a';
+    const colorBrown = '#c9b89d';
     const colorGreen = '#27ae60';
     const colorLightGreen = '#2ecc71';
     const colorBlack = '#000000';
     const colorGray = '#7f8c8d';
     const colorDarkGray = '#2c3e50';
 
+    const colorYellow = '#f1c40f';
+    const colorBlue   = '#3498db';
+    const colorPurple = '#9b59b6';
+    const colorOrange = '#f39c12';
+    const colorRed    = '#e74c3c';
+    const highlightColors = [
+      colorBlue,
+      colorPurple,
+      colorOrange,
+      colorRed,
+      colorYellow
+    ]
+
     // Draw Border
     ctx.strokeStyle = colorBlack;
     ctx.lineWidth = lineWidth;
     ctx.strokeRect(0, 0, imageScale * this.props.placementWidth, imageScale * this.props.placementHeight);
 
-    ctx.fillStyle = colorBrown ;
+      ctx.fillStyle = colorBrown ;
     ctx.fillRect(lineWidth, lineWidth, imageScale * this.props.placementWidth - 2 * lineWidth, imageScale * this.props.placementHeight - 2 * lineWidth);
 
-    const labels = new Set(this.props.placements.map((p) => {return p.plant.label}));
-    labels.forEach( (label) => {
+
+    const labels = Array.from(new Set(this.props.placements.map((p) => {return p.plant.label})));
+    labels.forEach(  (label, index, wx) => {
+      const highlightColor = highlightColors[index % highlightColors.length];
+
       const labelPlacements = this.props.placements.filter((p) => {return p.plant.label == label});
-      this.renderPlacements(ctx, imageScale, labelPlacements, colorGray, {radiusAdjust: 0, offsetLeft: 1, offsetTop: -1} );
-      this.renderPlacements(ctx, imageScale, labelPlacements, colorGreen, {} );
-      this.renderPlacements(ctx, imageScale, labelPlacements, colorLightGreen, {radiusAdjust: -2, printLabel: true}  );
+      this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );
+      this.renderPlacements(ctx, imageScale, labelPlacements, highlightColor, {radiusAdjust: -2} );
+      this.renderPlacements(ctx, imageScale, labelPlacements, colorLightGreen, {radiusAdjust: -6, printLabel: true}  );
     })
   }
 
