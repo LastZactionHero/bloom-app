@@ -1,0 +1,15 @@
+@import 'Colors';
+
+.plant-preview {
+  .image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  ul.usages {
+    padding-left: 14px;
+  }
+}
