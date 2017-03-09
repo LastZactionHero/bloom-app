@@ -77,7 +77,7 @@ class BedPlantsSelect extends React.Component {
               : null}
             <hr/>
 
-            <TemplateViewer bed={this.props.bed} renderWidth={700} renderHeight={700} />
+            <TemplateViewer bed={this.props.bed} renderWidth={700} renderHeight={700} legend={true} />
           </div>;
         case 'search':
           return <BasicTemplateSearch bed={this.props.bed}

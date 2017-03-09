@@ -14,9 +14,15 @@ class TemplateRenderCanvas extends React.Component {
   renderBed = () => {
     let ctx = this.refs.canvas.getContext('2d');
 
+    let bedRenderWidth = this.props.renderWidth;
+    let bedRenderHeight = this.props.renderHeight;
+    if(this.props.legend) {
+      bedRenderWidth -= 30;
+      bedRenderHeight -= 30;
+    }
     // Determine Image Scaling
-    let xImageScale = this.props.renderWidth / this.props.placementWidth;
-    let yImageScale = this.props.renderHeight / this.props.placementHeight;
+    let xImageScale = bedRenderWidth / this.props.placementWidth;
+    let yImageScale = bedRenderHeight / this.props.placementHeight;
     let imageScale = Math.min(xImageScale, yImageScale);
 
     const lineWidth = 1;
@@ -40,14 +46,50 @@ class TemplateRenderCanvas extends React.Component {
       colorYellow
     ]
 
-    // Draw Border
+    // Draw Total Border
+    if(this.props.legend) {
+      const legendXStartY = imageScale * this.props.placementHeight;
+      const legendYStartX = imageScale * this.props.placementWidth;
+
+      // X Legend
+      for(let tick = 1; tick < this.props.placementWidth / 12; tick++){
+        const xTickPosn = tick * 12 * imageScale;
+        ctx.beginPath();
+        ctx.moveTo(xTickPosn + 1, legendXStartY);
+        ctx.lineTo(xTickPosn + 1, legendXStartY + 10);
+        ctx.stroke();
+
+        ctx.font="12px Helvetica";
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
+        ctx.fillText(`${tick}'`, xTickPosn, legendXStartY + 24);
+      }
+
+      // Y Legend
+      for(let tick = 1; tick < this.props.placementHeight / 12; tick++){
+        const yTickPosn = tick * 12 * imageScale;
+        ctx.beginPath();
+        ctx.moveTo(legendYStartX, yTickPosn);
+        ctx.lineTo(legendYStartX + 10, yTickPosn);
+        ctx.stroke();
+
+        ctx.font="12px Helvetica";
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'left';
+        ctx.fillText(`${tick}'`, legendYStartX + 12, yTickPosn + 4);
+      }
+
+    }
+
+    // Draw Placement Border
     ctx.strokeStyle = colorBlack;
     ctx.lineWidth = lineWidth;
     ctx.strokeRect(0, 0, imageScale * this.props.placementWidth, imageScale * this.props.placementHeight);
 
-      ctx.fillStyle = colorBrown ;
+    ctx.fillStyle = colorBrown;
     ctx.fillRect(lineWidth, lineWidth, imageScale * this.props.placementWidth - 2 * lineWidth, imageScale * this.props.placementHeight - 2 * lineWidth);
 
+    console.log(this.props.placements)
 
     const labels = Array.from(new Set(this.props.placements.map((p) => {return p.plant.label})));
     labels.forEach(  (label, index, wx) => {
