@@ -20,7 +20,9 @@ body {
 }
 
 #app {
-  margin-bottom: 100px;
+  position: relative;
+  height: auto !important;
+  min-height: 100%;
 }
 
 .index img {
@@ -40,13 +42,12 @@ body {
 }
 
 .footer {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin-top: 64px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  position: absolute;
+  width: 100%;
+  bottom: -70px; /* stick to bottom */
+
+  padding-top: 12px;
+  padding-bottom: 12px;
 
   background-color: $color-bg-gray;
   color: $color-text-white;
