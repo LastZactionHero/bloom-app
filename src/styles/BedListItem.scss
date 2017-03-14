@@ -1,0 +1,29 @@
+@import 'Colors';
+
+.bed-list-item {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $color-flat-dark-gray;
+
+  .title-subtext {
+    color: $color-flat-gray;
+    font-size: 16px;
+  }
+
+  .description {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  ul.plant-list {
+    padding-left: 0px;
+    li {
+      list-style-type: none;
+      font-size: 14px;
+
+      .unselected {
+        color: $color-flat-gray;
+      }
+    }
+  }
+}

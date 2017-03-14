@@ -53,7 +53,8 @@ class YardsStore {
 
     this.exportPublicMethods({
       findYardById: this.findYardById,
-      shoppingList: this.shoppingList
+      shoppingList: this.shoppingList,
+      plantSelectionList: this.plantSelectionList
     });
 
     this.yards = [];
@@ -71,6 +72,15 @@ class YardsStore {
 
   findYardById(id) {
     return this.getState().yards.find((y) => {return y.id == parseInt(id)})
+  }
+
+  plantSelectionList(bed) {
+    if(!Array.isArray(bed.template_placements)){return []} // TODO: Shouldn't happen, bad init?
+
+    const labels = Array.from(new Set(bed.template_placements.map((tp) => {return tp.plant.label})));
+    return labels.map((label) => {
+      return {label: label, plant: bed.template_plant_mapping[label]}
+    })
   }
 
   shoppingList(yard) {

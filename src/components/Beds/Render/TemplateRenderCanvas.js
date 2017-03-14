@@ -7,10 +7,26 @@ class TemplateRenderCanvas extends React.Component {
   }
 
   renderBed = () => {
+    const containerWidth = $(this.refs.canvasContainer).width();
+    const containerHeight = $(this.refs.canvasContainer).height();
+    const maxDimension = Math.max(containerWidth, containerHeight);
+
+    let canvasWidth = maxDimension;
+    let canvasHeight = maxDimension;
+
+    if(this.props.placementWidth > this.props.placementHeight) {
+      canvasHeight = Math.floor(maxDimension * this.props.placementHeight / this.props.placementWidth)
+    } else {
+      canvasWidth = Math.floor(maxDimension * this.props.placementWidth / this.props.placementHeight)
+    }
+
+    this.refs.canvas.width = canvasWidth;
+    this.refs.canvas.height = canvasHeight;
+
     let ctx = this.refs.canvas.getContext('2d');
 
-    let bedRenderWidth = this.props.renderWidth;
-    let bedRenderHeight = this.props.renderHeight;
+    let bedRenderWidth = canvasWidth;
+    let bedRenderHeight = canvasHeight;
     if(this.props.legend) {
       bedRenderWidth -= 30;
       bedRenderHeight -= 30;
@@ -43,7 +59,7 @@ class TemplateRenderCanvas extends React.Component {
     ]
 
     // Clear canvas
-    ctx.clearRect(0, 0, this.props.renderWidth, this.props.renderHeight);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Draw Total Border
     if(this.props.legend) {
@@ -143,8 +159,8 @@ class TemplateRenderCanvas extends React.Component {
   render() {
     setTimeout(() => {this.renderBed();});
     return(
-      <div>
-        <canvas ref='canvas' width={this.props.renderWidth} height={this.props.renderHeight} />
+      <div ref='canvasContainer'>
+        <canvas ref='canvas'/>
       </div>
     )
   }

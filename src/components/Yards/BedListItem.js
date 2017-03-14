@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import BedActions from 'actions/BedActions';
 import Modal from 'components/Common/Modal';
+import TemplateViewer from '../Beds/Render/TemplateViewer';
+import BedDescriptionUtil from '../../util/bed_description';
+import YardsStore from 'stores/YardsStore';
 
 class BedListItem extends React.Component {
   constructor(props) {
@@ -14,26 +17,54 @@ class BedListItem extends React.Component {
   }
 
   render() {
-    return(
-      <div>
-        <div><strong>ID {this.props.bed.id}: {this.props.bed.name}</strong></div>
-        <div>{this.props.bed.width}&apos; W x {this.props.bed.depth}&apos; H</div>
-        <div>Attached to House: {this.props.bed.attached_to_house}</div>
-        <div>Orientation: {this.props.bed.orientation}</div>
-        <div>Sunlight, Morning: {this.props.bed.sunlight_morning}</div>
-        <div>Sunlight, Afternoon: {this.props.bed.sunlight_afternoon}</div>
-        <div>Watered: {this.props.bed.watered}</div>
-        <div>Template ID: {this.props.bed.template_id}</div>
+    const plantList = YardsStore.plantSelectionList(this.props.bed);
 
-        {this.props.bed.template_id ?
-          <Link className='btn btn-primary'
-                to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick Plants</Link> : null
-        }
-        &nbsp;
-        <Link className='btn btn-primary'
-              to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Select Template</Link>
-        &nbsp;
-        <a className='btn btn-danger' onClick={() => {this.setState({delete: true})}}>Delete</a>
+    return(
+      <div className='bed-list-item'>
+        <h3>{this.props.bed.name} <span className='title-subtext'>({this.props.bed.width}&apos; W x {this.props.bed.depth}&apos; H)</span></h3>
+        <p className='description'>
+          {BedDescriptionUtil.sunlight(this.props.bed)}.&nbsp;
+          {BedDescriptionUtil.orientation(this.props.bed)}.
+        </p>
+
+        <div className='row'>
+          <div className='col-md-8'>
+            <TemplateViewer bed={this.props.bed} renderFontSizeLabel={14} legend={true} selecting={true}/>
+            <div>
+              <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Pick a different template</Link>
+            </div>
+          </div>
+          <div className='col-md-4'>
+
+            <div className='text-right'>
+              <div className="dropdown">
+                <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Edit&nbsp;<span className="caret"></span>
+                </button>
+                <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                  <li>
+                    <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Select a different template</Link>
+                  </li>
+                  <li>
+                    <a href='javascript:void(0)' onClick={() => {this.setState({delete: true})}}>Delete bed</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr/>
+            <h4>Plants</h4>
+            <ul className='plant-list'>
+              {plantList.map((plantListItem) => {
+                return <li><strong>{plantListItem.label}:</strong> {plantListItem.plant ? plantListItem.plant.common_name : <span className='unselected'>-Unselected-</span>}
+                </li>
+              })}
+            </ul>
+            {this.props.bed.template_id ?
+              <Link className='btn btn-primary'
+                    to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick Plants</Link> : null
+            }
+          </div>
+        </div>
 
         {this.state.delete ?
           <Modal title='Delete this garden bed?'

@@ -32,8 +32,6 @@ class TemplateViewer extends React.Component {
                                     templatePlantMapping={this.props.bed.template_plant_mapping}
                                     placementWidth={this.props.bed.width * 12}
                                     placementHeight={this.props.bed.depth * 12}
-                                    renderWidth={this.props.renderWidth}
-                                    renderHeight={this.props.renderHeight}
                                     renderFontSizeLabel={this.props.renderFontSizeLabel}
                                     legend={this.props.legend}
                                     selecting={this.props.selecting}/>

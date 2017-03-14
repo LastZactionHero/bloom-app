@@ -61,7 +61,7 @@ class TemplateChoice extends React.Component {
               :
               this.state.error ?
                 'Preview unavailable' :
-                <TemplateViewer bed={this.state.mockBed} renderWidth={200} renderHeight={100} renderFontSizeLabel={8} />
+                <TemplateViewer bed={this.state.mockBed} renderFontSizeLabel={8} />
             }
           </div>
           <div className='col-md-2'>

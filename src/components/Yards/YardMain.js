@@ -27,26 +27,50 @@ class YardMain extends React.Component {
     }
 
     return(
-      <div>
-        <div>Yard Main, #{this.props.params.yard_id}</div>
+      <div className='yard'>
         {
           yard ?
             children ?
               children :
               <div>
-                <div>{yard.id}</div>
-                <div>Beds: {yard.beds.length}</div>
-                <Link className='btn btn-primary'
-                      to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add New Bed</Link>
-                &nbsp;
-                <Link className='btn btn-primary'
-                      to={{pathname: `/dashboard/yards/${yard.id}/shopping_list`}}>Shopping List</Link>
+                {yard.beds.length == 0 ? null :
+                  <div className="btn-group" role="group">
+                    <Link className='btn btn-default'
+                          to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>
+                      Add New Bed&nbsp;
+                      <i className="fa fa-plus" aria-hidden="true"></i>
+                    </Link>
+                    <Link className='btn btn-default'
+                        to={{pathname: `/dashboard/yards/${yard.id}/shopping_list`}}>
+                      Nursery Shopping List&nbsp;
+                      <i className="fa fa-shopping-cart" />
+                    </Link>
+                  </div>
 
-                <hr/>
+                }
 
-                {yard.beds.map( (bed) => {
-                  return <BedListItem bed={bed} key={`bed_list_item_${bed.id}`} />
-                })}
+                {yard.beds.length == 0 ?
+                  <div>
+                    <div className='alert alert-warning'>You have not set up any garden beds!</div>
+                    <div className='text-center'>
+                      <Link className='btn btn-success btn-lg'
+                            to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add your First Bed&nbsp;<i className="fa fa-plus" aria-hidden="true"></i></Link>
+                    </div>
+                  </div>
+                  : null
+                }
+                <div className='bed-list'>
+                  {yard.beds.map( (bed) => {
+                    return <BedListItem bed={bed} key={`bed_list_item_${bed.id}`} />
+                  })}
+                </div>
+
+                {yard.beds.length == 0 ? null :
+                  <div className='text-center'>
+                    <Link className='btn btn-success btn-lg'
+                          to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add Another Bed&nbsp;<i className="fa fa-plus" aria-hidden="true"></i></Link>
+                  </div>
+                }
               </div> :
             <div>Not found</div>
         }
