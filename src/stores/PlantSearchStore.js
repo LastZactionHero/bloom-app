@@ -16,7 +16,9 @@ class PlantSeachStore {
 
       updatePage: PlantSearchActions.UPDATE_PAGE,
 
-      setupQueryAndFetch: PlantSearchActions.SETUP_QUERY_AND_FETCH
+      setupQueryAndFetch: PlantSearchActions.SETUP_QUERY_AND_FETCH,
+
+      changeCommonName: PlantSearchActions.CHANGE_COMMON_NAME
     });
 
     this.options = {};
@@ -124,6 +126,19 @@ class PlantSeachStore {
     this.pageIdx = 0; // reset page
 
     setTimeout(() => {PlantSearchActions.startFetchResults(this.query, this.pageIdx)});
+  }
+
+  changeCommonName(commonName) {
+    this.query.common_name = commonName;
+
+    // Prevent multiple submits
+    if(this.queryTimeout){ clearTimeout(this.queryTimeout); }
+    this.queryTimeout = null;
+    this.queryTimeout = setTimeout(() => {
+      this.queryTimeout = null;
+      this.pageIdx = 0; // reset page
+      PlantSearchActions.startFetchResults(this.query, this.pageIdx);
+    }, 250);
   }
 
   // handleUpdateOptions(options) {

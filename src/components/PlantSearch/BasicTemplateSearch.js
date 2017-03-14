@@ -32,6 +32,10 @@ class BasicTemplateSearch extends React.Component {
     this.setState(state);
   }
 
+  onCommonNameChange = (event) => {
+    PlantSearchActions.changeCommonName(event.target.value);
+  }
+
   showPlantPreview = (plant) => {
     this.setState({plantPreview: plant});
   }
@@ -57,32 +61,37 @@ class BasicTemplateSearch extends React.Component {
           <p>{this.props.templatePlant.tooltip}</p>
           <p>{JSON.stringify(this.props.templatePlant.search_query)}</p>
 
+          <div className='form-group form-group-lg'>
+            <input type='text'
+                   className='form-control'
+                   placeholder='Search these plants'
+                   onChange={this.onCommonNameChange}
+                   value={this.state.query.common_name} />
+          </div>
+
           {this.state.loading.results ?
             <Loading message='Searching' /> :
             <div>
+
               <div>
-
-                <div>
-                  <div className='row'>
-                    {this.state.results.plants.map( (plant) => {
-                      return <VisualSearchResult key={`search_result_${plant.id}`}
-                                                 plant={plant}
-                                                 onSelect={this.showPlantPreview} />
-                    })}
-                  </div>
-                  <div>Page {this.state.results.meta.page_idx + 1} of {this.state.results.meta.total_pages}</div>
-                  <div>{StingUtil.pluralize(this.state.results.meta.total, 'plant', 'plants')}</div>
-
-                  {this.state.results ?
-                    <Pagination current={this.state.results.meta.page_idx}
-                                total={this.state.results.meta.total_pages}
-                                onChangePage={this.onChangePage} />
-                    : null
-                  }
-
+                <div className='row'>
+                  {this.state.results.plants.map( (plant) => {
+                    return <VisualSearchResult key={`search_result_${plant.id}`}
+                                               plant={plant}
+                                               onSelect={this.showPlantPreview} />
+                  })}
                 </div>
+                <div>Page {this.state.results.meta.page_idx + 1} of {this.state.results.meta.total_pages}</div>
+                <div>{StingUtil.pluralize(this.state.results.meta.total, 'plant', 'plants')}</div>
 
+                {this.state.results ?
+                  <Pagination current={this.state.results.meta.page_idx}
+                              total={this.state.results.meta.total_pages}
+                              onChangePage={this.onChangePage} />
+                  : null
+                }
               </div>
+
 
               {this.state.plantPreview ?
                 <Modal title={this.state.plantPreview.common_name}

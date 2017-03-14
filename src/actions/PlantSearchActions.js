@@ -42,7 +42,7 @@ class PlantSearchActions {
   }
 
   setupQueryAndFetch(query, bed, yard) {
-    return {query: query, bed: bed, yard: yard};    
+    return {query: query, bed: bed, yard: yard};
   }
 
   // clearQuery(key) {
@@ -55,6 +55,10 @@ class PlantSearchActions {
 
   updatePage(pageIdx) {
     return pageIdx;
+  }
+
+  changeCommonName(commonName) {
+    return commonName;
   }
   //
   // updateQuery(key, values) {
