@@ -42,6 +42,9 @@ class TemplateRenderCanvas extends React.Component {
       colorYellow
     ]
 
+    // Clear canvas
+    ctx.clearRect(0, 0, this.props.renderWidth, this.props.renderHeight);
+
     // Draw Total Border
     if(this.props.legend) {
       const legendXStartY = imageScale * this.props.placementHeight;
