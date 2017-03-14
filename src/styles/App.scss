@@ -107,6 +107,8 @@ body {
   position: relative;
   padding: 8px 8px 8px 24px;
   background-color: $color-flat-dark-gray;
+  color: $color-white;
+
   .protip-title {
     font-weight: bold;
     margin-bottom: 4px;
@@ -131,3 +133,4 @@ body {
 @import 'PlantSelect';
 @import 'PlantSearch';
 @import 'PlantPreview';
+@import 'ShoppingList';

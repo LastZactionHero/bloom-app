@@ -52,7 +52,8 @@ class YardsStore {
     });
 
     this.exportPublicMethods({
-      findYardById: this.findYardById
+      findYardById: this.findYardById,
+      shoppingList: this.shoppingList
     });
 
     this.yards = [];
@@ -70,6 +71,38 @@ class YardsStore {
 
   findYardById(id) {
     return this.getState().yards.find((y) => {return y.id == parseInt(id)})
+  }
+
+  shoppingList(yard) {
+    let shoppingList = [];
+
+    // For each bed in the yard...
+    yard.beds.forEach( (bed) => {
+      if(Array.isArray(bed.template_placements)) { // TODO: Why is this necessary? Bad init?
+        // For each placement in the bed...
+        bed.template_placements.map((placement) => {return placement.plant.label}).forEach( (label) => {
+          const plant = bed.template_plant_mapping[label] // Find the plant for the placement
+          if(plant){
+            // Does it exist in the shopping list already?
+            let shoppingListItem = shoppingList.find((p) => {return p.plant.permalink == plant.permalink})
+
+            if(shoppingListItem == undefined) {
+              // No - Create a new list item
+              shoppingListItem = {plant: plant, count: 1, beds: [bed]}
+              shoppingList.push(shoppingListItem)
+            } else {
+              // Yes - Append to the existing list item
+              shoppingListItem.count += 1
+              if(shoppingListItem.beds.indexOf(bed) == -1){
+                shoppingListItem.beds.push(bed)
+              }
+            }
+          }
+        });
+      }
+    });
+
+    return shoppingList;
   }
 
   // Yards Index
@@ -240,7 +273,6 @@ class YardsStore {
     this.loading.yards = false;
     this.error = response.errors || {}
   }
-
 }
 
 export default alt.createStore(YardsStore, 'YardsStore');

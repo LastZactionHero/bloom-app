@@ -12,6 +12,7 @@ import BedBuilder from './components/Beds/BedBuilder/BedBuilder';
 import BedTemplateSelect from './components/Beds/BedTemplateSelect';
 import BedMain from './components/Beds/BedMain';
 import BedPlantsSelect from './components/Beds/BedPlantsSelect';
+import ShoppingList from './components/Yards/ShoppingList';
 
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 // Render the main component into the dom
@@ -26,6 +27,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
   /dashboard/yards/<id>/beds/<id>                   *BedMain
   /dashboard/yards/<id>/beds/<id>/template          *BedTemplateSelect
   /dashboard/yards/<id>/beds/<id>/plants            *BedPlantPicker
+  /dashboard/yards/<id>/shopping_list               *ShoppingList
 */
 
 ReactDOM.render(
@@ -41,6 +43,7 @@ ReactDOM.render(
               <Route path="template" component={BedTemplateSelect} />
               <Route path="plants" component={BedPlantsSelect} />
             </Route>
+            <Route path="shopping_list" component={ShoppingList} />
           </Route>
         </Route>
       </Route>

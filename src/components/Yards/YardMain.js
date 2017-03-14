@@ -38,6 +38,10 @@ class YardMain extends React.Component {
                 <div>Beds: {yard.beds.length}</div>
                 <Link className='btn btn-primary'
                       to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add New Bed</Link>
+                &nbsp;
+                <Link className='btn btn-primary'
+                      to={{pathname: `/dashboard/yards/${yard.id}/shopping_list`}}>Shopping List</Link>
+
                 <hr/>
 
                 {yard.beds.map( (bed) => {

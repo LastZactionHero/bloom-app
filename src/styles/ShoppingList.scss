@@ -1,0 +1,23 @@
+@import 'Colors';
+
+.shopping-list {
+  .header {
+    padding-bottom: 12px;
+    border-bottom: 1px solid $color-flat-gray;
+    font-size: 18px;
+  }
+
+  ul {
+    padding-left: 0px;
+    li {
+      padding: 8px;
+      list-style-type: none;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid $color-flat-gray;
+    }
+    li:nth-child(even) {
+      background-color: $color-flat-light-gray;
+    }
+  }
+}
