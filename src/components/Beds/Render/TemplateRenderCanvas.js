@@ -26,6 +26,7 @@ class TemplateRenderCanvas extends React.Component {
     const colorBlack = '#000000';
     const colorGray = '#7f8c8d';
     const colorDarkGray = '#2c3e50';
+    const colorLightGray = '#ecf0f1';
 
     const colorYellow = '#f1c40f';
     const colorBlue   = '#3498db';
@@ -85,13 +86,24 @@ class TemplateRenderCanvas extends React.Component {
 
     const labels = Array.from(new Set(this.props.placements.map((p) => {return p.plant.label})));
     labels.forEach(  (label, index, wx) => {
-      const highlightColor = highlightColors[index % highlightColors.length];
-
       const labelPlacements = this.props.placements.filter((p) => {return p.plant.label == label});
-      this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );
-      this.renderPlacements(ctx, imageScale, labelPlacements, highlightColor, {radiusAdjust: -2} );
-      this.renderPlacements(ctx, imageScale, labelPlacements, colorLightGreen, {radiusAdjust: -6, printLabel: true}  );
-    })
+
+      if(this.props.selecting){
+        // Selecting Mode
+        this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );
+
+        const highlightColor = highlightColors[index % highlightColors.length];
+        this.renderPlacements(ctx, imageScale, labelPlacements, highlightColor, {radiusAdjust: -2} );
+
+        const plantIsSelected = this.props.templatePlantMapping[labelPlacements[0].plant.label] !== undefined;
+        const mainPlantColor = plantIsSelected ? colorLightGreen : colorLightGray;
+        this.renderPlacements(ctx, imageScale, labelPlacements, mainPlantColor, {radiusAdjust: -6, printLabel: true});
+      } else {
+        // Standard display mode
+        this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );
+        this.renderPlacements(ctx, imageScale, labelPlacements, colorLightGreen, {radiusAdjust: 0, printLabel: true});
+      }
+    });
   }
 
   renderPlacements = (ctx, imageScale, placements, color, options) => {
@@ -129,6 +141,10 @@ class TemplateRenderCanvas extends React.Component {
         <canvas ref='canvas' width={this.props.renderWidth} height={this.props.renderHeight} />
       </div>
     )
+  }
+
+  isPlantSelected(label) {
+
   }
 }
 
