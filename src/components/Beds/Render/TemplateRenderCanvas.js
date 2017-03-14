@@ -1,4 +1,5 @@
 import React from 'react';
+import PlantShapes from '../../../util/plant_shapes';
 
 class TemplateRenderCanvas extends React.Component {
   constructor(props) {
@@ -119,10 +120,12 @@ class TemplateRenderCanvas extends React.Component {
 
       // Plant Circle
       ctx.fillStyle = color;
-      ctx.beginPath();
-
-      ctx.arc(xPos, yPos, plantRadius + radiusAdjust, 0, 2 * Math.PI);
-      ctx.fill();
+      PlantShapes.drawPlant(
+        ctx,
+        xPos,
+        yPos,
+        plantRadius + radiusAdjust,
+        placement.plant);
 
       // Plant Label
       if(printLabel){
