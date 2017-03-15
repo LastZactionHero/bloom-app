@@ -3,7 +3,9 @@ import React from 'react';
 class TemplatePlant extends React.Component {
   render(){
     return(
-      <div className='row template-plant'>
+      <div className='row template-plant'
+        onMouseEnter={() => {this.props.onHoverStart(this.props.templatePlant)}}
+        onMouseLeave={() => {this.props.onHoverEnd(this.props.templatePlant)}}>
         <div className='col-xs-1 plant-label'>
           {this.props.templatePlant.label}
         </div>
@@ -15,8 +17,11 @@ class TemplatePlant extends React.Component {
           {this.props.selectedPlant ?
             <div className='selected'>
               <div className='row'>
-                <div className='col-sm-8'>
+                <div className='col-sm-4'>
                   <div className='selected-plant-name'>{this.props.selectedPlant.common_name}</div>
+                </div>
+                <div className='col-sm-4'>
+                  <div className='image' style={{backgroundImage: `url("${this.props.selectedPlant.image_url}")`}} />
                 </div>
                 <div className='col-sm-4'>
                   <a href='javascript:void(0)'
@@ -34,7 +39,7 @@ class TemplatePlant extends React.Component {
                  className='btn btn-primary'
                  onClick={this.props.onStartSearch}>
                 <i className="fa fa-search" aria-hidden="true" />
-                Find a specific plant
+                Select a plant
               </a>
             </div>
           }

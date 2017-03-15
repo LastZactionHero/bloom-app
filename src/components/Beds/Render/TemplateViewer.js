@@ -34,7 +34,8 @@ class TemplateViewer extends React.Component {
                                     placementHeight={this.props.bed.depth * 12}
                                     renderFontSizeLabel={this.props.renderFontSizeLabel}
                                     legend={this.props.legend}
-                                    selecting={this.props.selecting}/>
+                                    selecting={this.props.selecting}
+                                    highlightTemplatePlant={this.props.highlightTemplatePlant}/>
               : null}
           </div>
         }

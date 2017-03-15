@@ -54,11 +54,12 @@ class TemplateRenderCanvas extends React.Component {
     const colorOrange = '#f39c12';
     const colorRed    = '#e74c3c';
     const highlightColors = [
-      colorBlue,
-      colorPurple,
-      colorOrange,
-      colorRed,
-      colorYellow
+      '#87D37C',
+      '#90C695',
+      '#26A65B',
+      '#66CC99',
+      '#3FC380',
+      '#03A678'
     ]
 
     // Clear canvas
@@ -115,12 +116,13 @@ class TemplateRenderCanvas extends React.Component {
         // Selecting Mode
         this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );
 
-        const highlightColor = highlightColors[index % highlightColors.length];
-        this.renderPlacements(ctx, imageScale, labelPlacements, highlightColor, {radiusAdjust: -2} );
+        // const borderColor = highlightColors[0 % highlightColors.length];
+        // this.renderPlacements(ctx, imageScale, labelPlacements, borderColor, {radiusAdjust: -2} );
 
+        const plantIsHighlighted = this.props.highlightTemplatePlant && this.props.highlightTemplatePlant.label == labelPlacements[0].plant.label;
         const plantIsSelected = this.props.templatePlantMapping[labelPlacements[0].plant.label] !== undefined;
-        const mainPlantColor = plantIsSelected ? colorLightGreen : colorLightGray;
-        this.renderPlacements(ctx, imageScale, labelPlacements, mainPlantColor, {radiusAdjust: -6, printLabel: true});
+        const mainPlantColor = plantIsHighlighted ? colorYellow : plantIsSelected ? colorLightGreen : colorLightGray;
+        this.renderPlacements(ctx, imageScale, labelPlacements, mainPlantColor, {radiusAdjust: -3, printLabel: true});
       } else {
         // Standard display mode
         this.renderPlacements(ctx, imageScale, labelPlacements, colorDarkGray, {radiusAdjust: 1, offsetLeft: 0, offsetTop: 0} );

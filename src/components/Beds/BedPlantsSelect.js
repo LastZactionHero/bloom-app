@@ -16,6 +16,7 @@ class BedPlantsSelect extends React.Component {
 
     this.state.viewMode = 'list';
     this.state.activeTemplatePlant = null;
+    this.state.hoverTemplatePlant = null;
   }
 
   componentDidMount = () => {
@@ -54,6 +55,14 @@ class BedPlantsSelect extends React.Component {
     return finished;
   }
 
+  startHover = (templatePlant) => {
+    this.setState({hoverTemplatePlant: templatePlant});
+  }
+
+  endHover = (templatePlant) => {
+    this.setState({hoverTemplatePlant: null});
+  }
+
   render() {
     let contents = (viewMode) => {
       switch(viewMode) {
@@ -66,6 +75,8 @@ class BedPlantsSelect extends React.Component {
                 return <TemplatePlant key={`plant_${templatePlant.label}`}
                                       templatePlant={templatePlant}
                                       selectedPlant={this.props.bed.template_plant_mapping[templatePlant.label]}
+                                      onHoverStart={this.startHover}
+                                      onHoverEnd={this.endHover}
                                       onStartSearch={ () => { this.startSearch(templatePlant) } } />
               })}
             </div>
@@ -79,7 +90,7 @@ class BedPlantsSelect extends React.Component {
               : null}
             <hr/>
 
-            <TemplateViewer bed={this.props.bed} legend={true} selecting={true}/>
+            <TemplateViewer bed={this.props.bed} legend={true} selecting={true} highlightTemplatePlant={this.state.hoverTemplatePlant}/>
           </div>;
         case 'search':
           return <BasicTemplateSearch bed={this.props.bed}

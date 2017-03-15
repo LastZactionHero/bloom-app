@@ -61,7 +61,7 @@ class BedListItem extends React.Component {
             </ul>
             {this.props.bed.template_id ?
               <Link className='btn btn-primary'
-                    to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick Plants</Link> : null
+                    to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick/Review Plants</Link> : null
             }
           </div>
         </div>
