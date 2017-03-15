@@ -2,6 +2,8 @@ import React from 'react';
 import SessionActions from '../actions/SessionActions'
 import SessionStore from '../stores/SessionStore';
 import { Link } from 'react-router';
+import $ from 'jquery';
+
 class Navbar extends React.Component {
   constructor() {
     super();
@@ -25,6 +27,15 @@ class Navbar extends React.Component {
   }
 
   render() {
+    setTimeout( () => {
+      $(".navbar-nav a").click(function() {
+        if(!$('.navbar-toggle').hasClass('collapsed')){
+          $(".navbar-toggle").click();
+        }
+
+}     );
+    });
+
     return(
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
