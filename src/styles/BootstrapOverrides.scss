@@ -71,3 +71,18 @@
 .alert-danger.alert-inverted {
   background-color: $color-flat-red;
 }
+
+.navbar-default {
+  background-color: $color-flat-dark-gray;
+  color: $color-white;
+  .navbar-nav {
+    li {
+      a {
+        color: $color-white;
+      }
+    }
+  }
+  a.navbar-brand {
+    color: $color-white;
+  }
+}
