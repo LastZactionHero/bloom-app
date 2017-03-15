@@ -82,8 +82,8 @@ class BedPlantsSelect extends React.Component {
             </div>
 
             {this.selectionFinished() ?
-              <div className='alert alert-success'>
-                Looks great! You can update your choices,&nbsp;
+              <div className='alert alert-success alert-inverted'>
+                Looks great! You can&nbsp;
                 <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}`}}>review your yard</Link>,
                 or <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/new`}}>start another bed</Link>.
               </div>

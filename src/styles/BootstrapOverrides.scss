@@ -48,3 +48,22 @@
   border-left: 8px solid $color-flat-green;
   border-right: 8px solid $color-flat-green;
 }
+
+.alert-inverted {
+  border: none;
+  color: $color-white;
+
+  a {
+    color: $color-white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.alert-warning.alert-inverted {
+  background-color: $color-flat-yellow;
+}
+
+.alert-success.alert-inverted {
+  background-color: $color-flat-green;
+}

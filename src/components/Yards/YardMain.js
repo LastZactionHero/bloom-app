@@ -51,7 +51,7 @@ class YardMain extends React.Component {
 
                 {yard.beds.length == 0 ?
                   <div>
-                    <div className='alert alert-warning'>You have not set up any garden beds!</div>
+                    <div className='alert alert-warning alert-inverted'>You have not set up any garden beds!</div>
                     <div className='text-center'>
                       <Link className='btn btn-success btn-lg'
                             to={{pathname: `/dashboard/yards/${yard.id}/beds/new`}}>Add your First Bed&nbsp;<i className="fa fa-plus" aria-hidden="true"></i></Link>

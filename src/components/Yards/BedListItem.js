@@ -27,45 +27,52 @@ class BedListItem extends React.Component {
           {BedDescriptionUtil.orientation(this.props.bed)}.
         </p>
 
-        <div className='row'>
-          <div className='col-md-8'>
-            <TemplateViewer bed={this.props.bed} renderFontSizeLabel={14} legend={true} selecting={true}/>
-            <div>
-              <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Pick a different template</Link>
-            </div>
-          </div>
-          <div className='col-md-4'>
-
-            <div className='text-right'>
-              <div className="dropdown">
-                <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  Edit&nbsp;<span className="caret"></span>
-                </button>
-                <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-                  <li>
-                    <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Select a different template</Link>
-                  </li>
-                  <li>
-                    <a href='javascript:void(0)' onClick={() => {this.setState({delete: true})}}>Delete bed</a>
-                  </li>
-                </ul>
+        {this.props.bed.template_id ? 
+          <div className='row'>
+            <div className='col-md-8'>
+              <TemplateViewer bed={this.props.bed} renderFontSizeLabel={14} legend={true} selecting={true}/>
+              <div>
+                <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Pick a different template</Link>
               </div>
             </div>
-            <hr/>
-            <h4>Plants</h4>
-            <ul className='plant-list'>
-              {plantList.map((plantListItem) => {
-                return <li key={`bed_list_item_plant_${plantListItem.label}`}><strong>{plantListItem.label}:</strong> {plantListItem.plant ? plantListItem.plant.common_name : <span className='unselected'>-Unselected-</span>}
-                </li>
-              })}
-            </ul>
-            {this.props.bed.template_id ?
-              <Link className='btn btn-primary'
-                    to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick/Review Plants</Link> : null
-            }
-          </div>
-        </div>
+            <div className='col-md-4'>
 
+              <div className='text-right'>
+                <div className="dropdown">
+                  <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Edit&nbsp;<span className="caret"></span>
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                    <li>
+                      <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}}>Select a different template</Link>
+                    </li>
+                    <li>
+                      <a href='javascript:void(0)' onClick={() => {this.setState({delete: true})}}>Delete bed</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <hr/>
+              <h4>Plants</h4>
+              <ul className='plant-list'>
+                {plantList.map((plantListItem) => {
+                  return <li key={`bed_list_item_plant_${plantListItem.label}`}>
+                    <div className='image' style={{backgroundImage: `url("${plantListItem.plant ? plantListItem.plant.image_url : ''}")`}}/>
+                    <div className='name'>
+                      <strong>{plantListItem.label}:</strong>&nbsp;
+                      {plantListItem.plant ? plantListItem.plant.common_name : <span className='unselected'>-Unselected-</span>}
+                    </div>
+                  </li>
+                })}
+              </ul>
+              {this.props.bed.template_id ?
+                <Link className='btn btn-primary'
+                      to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/plants`}}>Pick/Review Plants</Link> : null
+              }
+            </div>
+          </div>
+          : <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}} className='btn btn-success btn-lg'>Pick a template</Link> 
+        }
         {this.state.delete ?
           <Modal title='Delete this garden bed?'
                  buttons={[{name: 'Cancel', onClick: () => {this.setState({delete: false})}},

@@ -17,9 +17,27 @@
 
   ul.plant-list {
     padding-left: 0px;
+    clear: both;
     li {
       list-style-type: none;
       font-size: 14px;
+      clear: both;
+      margin-bottom: 6px;
+      min-height: 48px;
+
+      .image {
+        float: left;
+        height: 48px;
+        width: 48px;
+        margin-right: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: $color-flat-light-gray;
+      }
+      .name {
+        line-height: 48px;
+      }
 
       .unselected {
         color: $color-flat-gray;

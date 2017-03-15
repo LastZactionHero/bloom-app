@@ -79,7 +79,7 @@ class ShoppingList extends React.Component {
                 })}
               </ul>
             </div>:
-            <div className='alert alert-warning'>
+            <div className='alert alert-warning alert-inverted'>
               You have not selected any plants!
             </div>
           }
