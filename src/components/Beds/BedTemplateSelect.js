@@ -45,10 +45,10 @@ class BedTemplateSelect extends React.Component {
                   <div>
                     <h4>Here are some styles that would work for this garden bed. Pick one that you prefer:</h4>
                     {this.props.bed.template_id ?
-                      <div className='alert alert-danger'>
+                      <div className='alert alert-danger alert-inverted'>
                         You have already selected a template for this bed. If you select a different template, it will remove any plant selections for this bed.
                         <br/>
-                        <Link className='btn btn-default' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>Cancel</Link>
+                        <Link className='' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>Cancel</Link>
                       </div> : null}
 
                     {this.state.suggestedTemplates.map( (template) => {
