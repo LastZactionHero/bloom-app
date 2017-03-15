@@ -19,7 +19,6 @@ class TemplateRenderCanvas extends React.Component {
     } else {
       canvasWidth = Math.floor(maxDimension * this.props.placementWidth / this.props.placementHeight)
     }
-
     this.refs.canvas.width = canvasWidth;
     this.refs.canvas.height = canvasHeight;
 
@@ -27,7 +26,11 @@ class TemplateRenderCanvas extends React.Component {
 
     let bedRenderWidth = canvasWidth;
     let bedRenderHeight = canvasHeight;
-    if(this.props.legend) {
+
+    const minLegendSize = 100;
+    const bigEnoughForLegend = (Math.min(bedRenderWidth, bedRenderHeight) > minLegendSize);
+
+    if(this.props.legend && bigEnoughForLegend) {
       bedRenderWidth -= 30;
       bedRenderHeight -= 30;
     }
@@ -62,7 +65,7 @@ class TemplateRenderCanvas extends React.Component {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Draw Total Border
-    if(this.props.legend) {
+    if(this.props.legend && bigEnoughForLegend) {
       const legendXStartY = imageScale * this.props.placementHeight;
       const legendYStartX = imageScale * this.props.placementWidth;
 
