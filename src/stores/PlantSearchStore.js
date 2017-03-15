@@ -1,5 +1,6 @@
 import alt from '../alt';
 import PlantSearchActions from 'actions/PlantSearchActions';
+import ArrayUtil from '../util/array';
 
 class PlantSeachStore {
   constructor() {
@@ -102,7 +103,8 @@ class PlantSeachStore {
       usages: [],
       garden_styles: [],
       flower_attributes: [],
-      plant_types: []
+      plant_types: [],
+      preference_permalinks: []
     }, queryData.query);
 
     // TODO: Bed data, watering, lighting, etc
@@ -110,6 +112,12 @@ class PlantSeachStore {
     const yard = queryData.yard;
     if(yard) {
       this.query.zones.push(yard.zone)
+    }
+
+    // Indicate any past plant picks, if present
+    const pastPlantPermalinks = ArrayUtil.flatten(yard.beds.map( (bed) => { return Object.values(bed.template_plant_mapping).map((p) => {return p.permalink})}))
+    if(pastPlantPermalinks.length > 0) {
+      this.query.preference_permalinks = pastPlantPermalinks
     }
 
     // Set a maximum width based on the dimensions of the bed to prevent picking a plant too large for the bed to
