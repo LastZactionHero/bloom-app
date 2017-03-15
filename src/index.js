@@ -31,7 +31,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 */
 
 ReactDOM.render(
-  <Router history={browserHistory}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
     <Route path="/" component={Main}>
       <IndexRedirect to="/dashboard" />
       <Route path="dashboard" component={Dashboard}>
