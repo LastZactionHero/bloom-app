@@ -4,6 +4,8 @@ import BedBuilderActions from '../actions/BedBuilderActions';
 class BedBuilderStore {
   constructor() {
     this.bindListeners({
+      reset: BedBuilderActions.RESET,
+
       handleYardIDChange: BedBuilderActions.YARD_ID_CHANGE,
       handleNextStep: BedBuilderActions.NEXT_STEP,
       handleSelectStep: BedBuilderActions.SELECT_STEP,
@@ -25,6 +27,10 @@ class BedBuilderStore {
       handleCreateBedFail: BedBuilderActions.CREATE_BED_FAIL
     });
 
+    this.reset();
+  }
+
+  reset() {
     this.bed = {
       yard_id: null,
       name: '',

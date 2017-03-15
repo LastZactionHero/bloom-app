@@ -13,6 +13,7 @@ class BedBuilder extends React.Component {
     this.state =  BedBuilderStore.getState();
   }
   componentDidMount = () => {
+    BedBuilderActions.reset();
     BedBuilderStore.listen(this.onChange);
     setTimeout( () => {
       BedBuilderActions.yardIdChange(this.props.params.yard_id);

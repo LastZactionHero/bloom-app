@@ -10,6 +10,7 @@ class YardBuilder extends React.Component {
   constructor() {
     super();
     this.state = YardBuilderStore.getState();
+    setTimeout(() => { YardBuilderActions.reset(); })
   }
 
   componentDidMount = () => {

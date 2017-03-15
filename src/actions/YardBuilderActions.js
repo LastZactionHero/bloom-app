@@ -3,6 +3,10 @@ import ZoneSource from '../sources/ZoneSource';
 import YardSource from '../sources/YardSource';
 
 class YardBuilderActions {
+  reset() {
+    return null;
+  }
+
   zipcodeChange(zipcode) {
     return zipcode;
   }

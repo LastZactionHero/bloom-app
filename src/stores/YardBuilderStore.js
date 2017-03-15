@@ -6,6 +6,8 @@ import { browserHistory } from 'react-router'
 class YardBuilderStore {
   constructor() {
     this.bindListeners({
+      reset: YardBuilderActions.RESET,
+
       handleNextStep: YardBuilderActions.NEXT_STEP,
       handleSelectStep: YardBuilderActions.SELECT_STEP,
       handleZipcodeChange: YardBuilderActions.ZIPCODE_CHANGE,
@@ -15,6 +17,10 @@ class YardBuilderStore {
       handleTogglePlantPreference: YardBuilderActions.TOGGLE_PLANT_PREFERENCE
     });
 
+    this.reset();
+  }
+
+  reset() {
     this.yard = {
       zipcode: '',
       zone: '',

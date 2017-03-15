@@ -55,7 +55,7 @@ class BedListItem extends React.Component {
             <h4>Plants</h4>
             <ul className='plant-list'>
               {plantList.map((plantListItem) => {
-                return <li><strong>{plantListItem.label}:</strong> {plantListItem.plant ? plantListItem.plant.common_name : <span className='unselected'>-Unselected-</span>}
+                return <li key={`bed_list_item_plant_${plantListItem.label}`}><strong>{plantListItem.label}:</strong> {plantListItem.plant ? plantListItem.plant.common_name : <span className='unselected'>-Unselected-</span>}
                 </li>
               })}
             </ul>

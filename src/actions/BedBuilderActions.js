@@ -2,6 +2,10 @@ import alt from '../alt';
 import BedSource from '../sources/BedSource';
 
 class BedBuilderActions {
+  reset() {
+    return null;
+  }
+
   nextStep() {
     return null;
   }
