@@ -13,7 +13,7 @@ import BedTemplateSelect from './components/Beds/BedTemplateSelect';
 import BedMain from './components/Beds/BedMain';
 import BedPlantsSelect from './components/Beds/BedPlantsSelect';
 import ShoppingList from './components/Yards/ShoppingList';
-
+import Upgrade from 'components/Upgrade/Upgrade';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 // Render the main component into the dom
 
@@ -28,6 +28,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
   /dashboard/yards/<id>/beds/<id>/template          *BedTemplateSelect
   /dashboard/yards/<id>/beds/<id>/plants            *BedPlantPicker
   /dashboard/yards/<id>/shopping_list               *ShoppingList
+  /dashboard/upgrade-modal                          *Upgrade
 */
 
 ReactDOM.render(
@@ -46,6 +47,7 @@ ReactDOM.render(
             <Route path="shopping_list" component={ShoppingList} />
           </Route>
         </Route>
+        <Route path="upgrade" component={Upgrade} />
       </Route>
       <Route path="sign_in" component={UserSignIn}/>
       <Route path="sign_up" component={UserSignUp}/>

@@ -1,5 +1,6 @@
 import alt from '../alt';
 import SessionActions from '../actions/SessionActions';
+import UpgradeActions from '../actions/UpgradeActions';
 
 class SessionStore {
   constructor() {
@@ -10,7 +11,10 @@ class SessionStore {
       handlePasswordChange: SessionActions.SET_PASSWORD,
       handlePasswordConfirmationChange: SessionActions.SET_PASSWORD_CONFIRMATION,
       handleStartSignIn: SessionActions.START_SIGN_IN,
-      handleStartSignUp: SessionActions.START_SIGN_UP
+      handleStartSignUp: SessionActions.START_SIGN_UP,
+
+      handleUpgradeStart: UpgradeActions.UPGRADE_START,
+      handleUpgradeDone: UpgradeActions.UPGRADE_DONE
     });
 
     this.initPing = false;
@@ -51,6 +55,14 @@ class SessionStore {
 
   handleStartSignUp(submitting) {
     this.submitting = submitting;
+  }
+
+  handleUpgradeStart() {
+
+  }
+
+  handleUpgradeDone(user) {
+    this.user = user;
   }
 }
 

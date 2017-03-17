@@ -71,5 +71,21 @@ export default {
       .done( (response) => { resolve(response) })
       .fail( () => {reject(); });
     })
+  },
+
+  upgrade: function(token) {
+    return new Promise( (resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        url: API_USER_HOST + '/users/upgrade',
+        contentType: 'application/json',
+        data: JSON.stringify(token),
+        xhrFields: {
+          withCredentials: true
+        }
+      })
+      .done( (response) => { resolve(response) })
+      .fail( () => {reject(); });
+    })
   }
 }
