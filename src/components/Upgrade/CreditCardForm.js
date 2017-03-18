@@ -23,7 +23,7 @@ class CreditCardForm extends React.Component {
   }
 
   onToken = (token) => {
-    UpgradeActions.upgradeStart(token);
+    UpgradeActions.upgradeStart(token, this.props.promoCode);
   }
 
   render() {
@@ -33,7 +33,7 @@ class CreditCardForm extends React.Component {
                       email={this.state.user.email}
                       name='Bloom Landscape Assistant'
                       description='1 Year Unlimited Access'
-                      amount={1499}
+                      amount={this.props.price * 100}
                        >
         <button className='btn btn-success btn-lg'>Upgrade</button>
       </StripeCheckout>

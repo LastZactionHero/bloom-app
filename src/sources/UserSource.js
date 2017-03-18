@@ -73,13 +73,13 @@ export default {
     })
   },
 
-  upgrade: function(token) {
+  upgrade: function(token, promoCode) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'POST',
         url: API_USER_HOST + '/users/upgrade',
         contentType: 'application/json',
-        data: JSON.stringify(token),
+        data: JSON.stringify({token: token, promo_code: promoCode}),
         xhrFields: {
           withCredentials: true
         }
