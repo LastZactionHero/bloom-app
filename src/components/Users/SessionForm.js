@@ -24,7 +24,7 @@ class SessionForm extends React.Component {
   }
 
   redirectIfSignedIn = () => {
-    if(this.state.user) { browserHistory.replace('/dashboard'); }
+    if(this.state.user) { browserHistory.replace('/dashboard/yards'); }
   }
 
   handleUpdateEmail = (event) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router'
+import YardsStore from 'stores/YardsStore';
 import YardsActions from 'actions/YardsActions';
 import StringUtil from '../../util/string';
 import Modal from 'components/Common/Modal';
@@ -16,22 +17,59 @@ class YardListItem extends React.Component {
 
   render() {
     return(
-      <div className='col-sm-12 yard-list-tile'>
-        <h3 className='text-center'>Zone {this.props.yard.zone} ({this.props.yard.zipcode})</h3>
-        <div>{StringUtil.pluralize(this.props.yard.beds.length, 'Bed', 'Beds')}</div>
-        <div>Created {this.props.yard.created_at}</div>
+      <div className='col-sm-12'>
+        <div className='panel panel-default panel-brand panel-yard-list-item'>
+          <div className='panel-heading'>
+            Zone {this.props.yard.zone} ({this.props.yard.zipcode})
+          </div>
+          <div className='panel-body'>
+            {this.props.yard.beds.length > 0 ?
 
-        <Link className='btn btn-primary' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>View</Link>
-        &nbsp;
-        <a className='btn btn-danger' onClick={() => {this.setState({delete: true})}}>Delete</a>
+              <div>
+                <strong>{StringUtil.pluralize(this.props.yard.beds.length, 'Bed', 'Beds ')}:</strong>&nbsp;
+                {this.props.yard.beds.map( (bed) => { return bed.name } ).join(', ')}
+              </div>
+              :
+              <div className='text-center'>
+                <Link className='btn btn-success btn-lg'
+                        to={{pathname: `/dashboard/yards/${this.props.yard.id}/beds/new`}}>Add your First Bed&nbsp;<i className="fa fa-plus" aria-hidden="true"></i></Link>
+              </div>
+            }
 
-        {this.state.delete ?
-          <Modal title='Delete this yard?'
-                 buttons={[{name: 'Cancel', onClick: () => {this.setState({delete: false})}},
-                           {name: 'Delete', class: 'btn-danger', onClick: this.handleDelete}]}>
-            <p>This cannot be undone.</p>
-          </Modal>
-          : null}
+            <div className='row'>
+              <div className='col-sm-12'>
+                <div className='plants-list'>
+                  {YardsStore.shoppingList(this.props.yard).map( (shoppingListItem) => {
+                    return <div key={`yard_plant_${this.props.yard.id}_${shoppingListItem.plant.permalink}`}
+                                className='plant-image-background'
+                                style={{backgroundImage: `url("${shoppingListItem.plant.image_url}")`}} >
+                    </div>
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <hr/>
+            <Link className='btn btn-primary' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>View / Edit</Link>
+            <Link className='btn btn-default' to={{pathname: `/dashboard/yards/${this.props.yard.id}/shopping_list`}}>
+              Nursery Shopping List&nbsp;
+              <i className="fa fa-shopping-cart" />
+            </Link>
+
+            &nbsp;
+            <div className='pull-right'>
+            <a className='btn btn-danger' onClick={() => {this.setState({delete: true})}}>Delete</a>
+            </div>
+
+            {this.state.delete ?
+              <Modal title='Delete this yard?'
+                     buttons={[{name: 'Cancel', onClick: () => {this.setState({delete: false})}},
+                               {name: 'Delete', class: 'btn-danger', onClick: this.handleDelete}]}>
+                <p>This cannot be undone.</p>
+              </Modal>
+            : null}
+          </div>
+        </div>
       </div>
     )
   }

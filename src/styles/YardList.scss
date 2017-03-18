@@ -6,11 +6,26 @@
     padding: 12px 18px;
   }
 
-  .yard-list-tile {
-    cursor: pointer;
-    border: 12px solid $color-flat-green;
-    padding: 12px 24px;
-    margin-right: 16px;
+}
+
+.panel-yard-list-item {
+  .panel-heading {
+    text-align: left;
+    font-size: 24px;
+  }
+  margin-bottom: 64px;
+
+  .plants-list {
+    margin: 24px;
+    .plant-image-background {
+      height: 100px;
+      width: 100px;
+      float: left;
+    }
+  }
+
+  .btn {
+    margin-right: 12px;
     margin-bottom: 12px;
   }
 }

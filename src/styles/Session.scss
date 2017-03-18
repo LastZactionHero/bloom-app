@@ -1,0 +1,17 @@
+@import 'Colors';
+
+.panel-sign-up {
+  margin: 48px 0px 64px 0px;
+  padding: 20px;
+
+  border: 2px solid $color-flat-light-gray;
+
+  .alternate-action {
+    margin-top: 24px;
+    font-size: 20px;
+    a {
+      font-weight: bold;
+      margin-left: 4px;
+    }
+  }
+}

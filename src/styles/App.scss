@@ -53,22 +53,6 @@ body {
   color: $color-text-white;
 }
 
-.panel-sign-up {
-  margin: 48px 0px 64px 0px;
-  padding: 20px;
-
-  border: 24px solid $color-flat-blue;
-
-  .alternate-action {
-    margin-top: 16px;
-    font-size: 14px;
-    a {
-      font-weight: bold;
-      margin-left: 4px;
-    }
-  }
-}
-
 .dashboard {
   background-color: $color-white;
 }
@@ -115,6 +99,10 @@ body {
   }
 }
 
+.field-error {
+  color: $color-flat-red;
+  font-weight: bold;
+}
 
 .loading {
   margin: 64px;
@@ -125,6 +113,21 @@ body {
   cursor: pointer;
 }
 
+.panel-brand {
+  .panel-heading {
+    background-color: $color-flat-green;
+    color: $color-white;
+    font-weight: bold;
+  }
+}
+
+.plant-image-background {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+@import 'Session';
 @import 'Builder';
 @import 'YardBuilder';
 @import 'BedBuilder';

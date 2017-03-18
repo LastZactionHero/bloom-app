@@ -34,7 +34,7 @@ import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 ReactDOM.render(
   <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
     <Route path="/" component={Main}>
-      <IndexRedirect to="/dashboard" />
+      <IndexRedirect to="/dashboard/yards" />
       <Route path="dashboard" component={Dashboard}>
         <Route path="yards" component={YardsMain}>
           <Route path="new" component={YardBuilder} />
