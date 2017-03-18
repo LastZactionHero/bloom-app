@@ -68,8 +68,24 @@ class BedPlantsSelect extends React.Component {
       switch(viewMode) {
         case 'list':
           return <div>
-            <div>Bed Plants Select {this.props.bed.id}</div>
-            <h3>We recommend {StringUtil.pluralize(this.props.bed.meta.templatePlants.length, 'plant', 'plants')} for your bed:</h3>
+            <h3>Pick plants for your garden bed</h3>
+            {this.selectionFinished() ? null :
+              <div className='step-hint'>
+                You&apos;ve chosen the overall look for the bed, but we haven&apos; picked the specific plants.
+                <br/>
+                Click <strong>Select a Plant</strong> to find a plant you like.
+              </div>
+            }
+
+
+            {this.selectionFinished() ?
+              <div className='alert alert-success alert-inverted'>
+                Looks great! You can&nbsp;
+                <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}`}}>review your yard</Link>,
+                or <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/new`}}>start another bed</Link>.
+              </div>
+              : null}
+
             <div className='template-plants-list'>
               {this.props.bed.meta.templatePlants.map( (templatePlant) => {
                 return <TemplatePlant key={`plant_${templatePlant.label}`}
@@ -81,13 +97,6 @@ class BedPlantsSelect extends React.Component {
               })}
             </div>
 
-            {this.selectionFinished() ?
-              <div className='alert alert-success alert-inverted'>
-                Looks great! You can&nbsp;
-                <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}`}}>review your yard</Link>,
-                or <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/new`}}>start another bed</Link>.
-              </div>
-              : null}
             <hr/>
 
             <TemplateViewer bed={this.props.bed} legend={true} selecting={true} highlightTemplatePlant={this.state.hoverTemplatePlant}/>

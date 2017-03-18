@@ -15,6 +15,7 @@ class BedBuilderActions {
   }
 
   yardIdChange(yardID) {
+    console.log('yardIDChange ' + yardID)
     return yardID
   }
 

@@ -29,7 +29,7 @@ class BedBuilderStepSunlight extends BedBuilderStep {
                 <div className='row'>
                   <div className='col-sm-12'>
                     <div className='step-hint'>
-                      We guessed about sunlight based on the side of the house.
+                      We guessed your sunlight based on the side of the house.
                     </div>
 
                     <div className='form-group'>

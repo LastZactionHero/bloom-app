@@ -23,12 +23,27 @@ class YardList extends React.Component {
     return(
       <div className='yards-list'>
         {this.state.yards.length == 0 ?
-          <div>
-            <h2 className='text-center'>Welcome to Bloom!</h2>
-            <hr/>
-            <div className='text-center'>
-              <h3>We&apos;re going to walk you through designing a garden bed.</h3>
-              <Link className='btn btn-success btn-first-yard' to={{pathname: '/dashboard/yards/new'}}>Start Designing your Yard</Link>
+          <div className='row'>
+            <div className='col-md-8 col-md-offset-2'>
+              <div className='panel panel-default panel-brand panel-yard-list-intro'>
+                <div className='panel-heading'>
+                  <h2 className='text-center'>Welcome to Bloom!</h2>
+                </div>
+                <div className='panel-body'>
+                  <p>
+                    Bloom is your personal landscape assistant.
+                    We&apos;re going to ask you about your yard, and aid you step-by-step to pick great designs and plants.
+                  </p>
+                  <p>
+                    While we walk you through the process, remember: <strong>you&apos;re   in charge</strong>.
+                    Consider Bloom as a resource of professional and creative suggestions to guide your own creativity.
+                  </p>
+                  <hr/>
+                  <div className='text-center'>
+                    <Link className='btn btn-success btn-first-yard' to={{pathname: '/dashboard/yards/new'}}>Start Designing!</Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           :

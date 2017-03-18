@@ -13,14 +13,13 @@ class BedBuilder extends React.Component {
   constructor(props) {
     super(props);
     this.state =  BedBuilderStore.getState();
-
     this.state.requiresUpgrade = SessionStore.getState().user.account.status == 'trial' && this.props.yard.beds.length > 0
   }
   componentDidMount = () => {
     BedBuilderActions.reset();
     BedBuilderStore.listen(this.onChange);
     setTimeout( () => {
-      BedBuilderActions.yardIdChange(this.props.params.yard_id);
+      BedBuilderActions.yardIdChange(this.props.yard.id);
     })
   }
   componentWillUnmount = () => {
@@ -39,7 +38,6 @@ class BedBuilder extends React.Component {
     return(
       <div>
         <div className='builder bed-builder'>
-          <div>Bed Builder, Yard #{this.state.bed.yard_id}</div>
           <div>
             <BedBuilderStepDimensions active={this.state.activeStep == 'dimensions'} incomplete={!this.state.steps.dimensions.complete} yard={this.props.yard} />
             <BedBuilderStepPosition   active={this.state.activeStep == 'position'} incomplete={!this.state.steps.position.complete} />

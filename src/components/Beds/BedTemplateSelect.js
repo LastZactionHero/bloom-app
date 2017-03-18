@@ -43,7 +43,13 @@ class BedTemplateSelect extends React.Component {
               <Loading message='Loading style suggestions' /> :
                 this.state.suggestedTemplates.length > 0 ?
                   <div>
-                    <h4>Here are some styles that would work for this garden bed. Pick one that you prefer:</h4>
+                    <h4>Here are some styles that would look good for garden bed of this size ({this.props.bed.width}ft x {this.props.bed.depth}ft). Pick one that you prefer:</h4>
+
+                    <div className='step-hint'>
+                      A template is a guide for the organization of your plants (e.g. straight lines of shrubs, clustering of groundcover).<br/>
+                      After picking a template, we&apos;ll guide you through selecting some plants.
+                    </div>
+
                     {this.props.bed.template_id ?
                       <div className='alert alert-danger alert-inverted'>
                         You have already selected a template for this bed. If you select a different template, it will remove any plant selections for this bed.
@@ -51,11 +57,15 @@ class BedTemplateSelect extends React.Component {
                         <Link className='' to={{pathname: `/dashboard/yards/${this.props.yard.id}`}}>Cancel</Link>
                       </div> : null}
 
+                    <div className='row'>
                     {this.state.suggestedTemplates.map( (template) => {
-                      return <TemplateChoice key={`suggested_template_choice_${template.id}`}
+                      return <div className='col-md-4'>
+                      <TemplateChoice key={`suggested_template_choice_${template.id}`}
                                              template={template}
                                              bed={this.props.bed} />
+                      </div>
                     })}
+                    </div>
                   </div>
                   : <div />
           }

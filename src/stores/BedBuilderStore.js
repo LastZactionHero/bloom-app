@@ -78,6 +78,7 @@ class BedBuilderStore {
 
   handleYardIDChange(yardID) {
     this.bed.yard_id = yardID;
+    console.log("yad id change!")
   }
 
   handleNameChange(name) {

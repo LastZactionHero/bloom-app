@@ -32,7 +32,7 @@ class BedBuilderStepDimensions extends BedBuilderStep {
             <div className='col-sm-10 col-sm-offset-1'>
               {firstBed ?
                 <div className='step-hint'>
-                  Pick one garden bed in your yard to start with, and answer the questions below. We'll use this to suggest plants and designs.
+                  Pick one garden bed in your yard to start with, and answer the questions below. We&apos;ll use this to suggest plants and designs.
                 </div> : null}
 
               <div className='form'>
@@ -66,6 +66,12 @@ class BedBuilderStepDimensions extends BedBuilderStep {
                 <div className='col-sm-12'>
                   <p className='help-block'>Approximate size (2' - 100'), used to recommend styles and plant placement.</p>
                 </div>
+              </div>
+
+              <div className='step-hint'>
+                Away from the house? Try some different sizes, like <strong>20 ft wide, 5 ft deep</strong>.
+                <br/>
+                Forgot your tape measure? Here&apos;s a tip: <strong>a standard rake or shovel about 5 ft long.</strong>
               </div>
 
               {this.state.steps.dimensions.complete ?

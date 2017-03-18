@@ -79,7 +79,8 @@ class UpgradeModal extends React.Component {
               Thank you for your purchase!
             </div> :
             <div>
-              <div>Your Bloom trial lets you create one yard and one garden bed. Upgrade and receive:</div>
+              <h4>Your Bloom trial lets you create one yard and one garden bed.</h4>
+                <h4>Upgrade and receive:</h4>
               <ul className='features'>
                 <li>Unlimited yards and garden beds</li>
                 <li>Unlimited access for one year - design all season!</li>
@@ -109,15 +110,18 @@ class UpgradeModal extends React.Component {
                         <div className='alert alert-danger alert-inverted'>{this.state.promo_code.error}</div>
                         : null
                     }
+                    <div className='well'>
                     <div className='form-group'>
-                      <label>Promo Code:</label>
-                      <input type='text' className='form-control' value={this.state.promo_code.code} onChange={this.handlePromoCodeChange}/>
+                      <input type='text' placeholder='Promo Code' className='form-control' value={this.state.promo_code.code} onChange={this.handlePromoCodeChange}/>
                     </div>
-                    {
-                      this.state.promo_code.submitting ?
-                        <Loading message='Validating' /> :
-                        <button className='btn btn-primary' onClick={this.handlePromoCodeValidate} >Redeem</button>
-                    }
+                    <div className='text-right'>
+                      {
+                        this.state.promo_code.submitting ?
+                          <Loading message='Validating' /> :
+                          <button className='btn btn-primary' onClick={this.handlePromoCodeValidate} >Redeem Promo Code</button>
+                      }
+                    </div>
+                    </div>
                   </div> :
                   <div><a href='javascript:void(0)' onClick={this.handleStartPromoCode}>Have a promo code?</a></div>
                 }</div>

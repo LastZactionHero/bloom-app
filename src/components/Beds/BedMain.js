@@ -12,7 +12,6 @@ class BedMain extends React.Component {
 
     return(
       <div>
-        Bed Main #{bed.id}
         {children ? children : null}
       </div>
     )

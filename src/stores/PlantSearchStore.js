@@ -127,7 +127,7 @@ class PlantSeachStore {
     this.query.width.max = maxWidth;
 
     const tooSmallReductionProportion = 0.75; // If the new max is smaller than the new min, reduce the min
-    if(this.query.width.min >= this.query.width.max) {
+    if(this.query.width.min >= this.query.width.max * tooSmallReductionProportion) {
       this.query.width.min = this.query.width_max * tooSmallReductionProportion
     }
 

@@ -27,6 +27,16 @@
       }
     }
 
+    .step-hint {
+      .plant-image-background {
+        width: 64px;
+        height: 64px;
+        float: left;
+        margin-left: 8px;
+
+      }
+    }
+
     .visual-search-result.favorite {
       .plant-name {
         color: $color-text;

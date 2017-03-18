@@ -5,6 +5,12 @@
   padding-bottom: 20px;
   border-bottom: 1px solid $color-flat-dark-gray;
 
+  .title {
+    background-color: $color-flat-dark-gray;
+    padding: 2px 12px;
+    color: $color-white;
+    margin-bottom: 8px;
+  }
   .title-subtext {
     color: $color-flat-gray;
     font-size: 16px;

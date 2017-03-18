@@ -50,25 +50,16 @@ class TemplateChoice extends React.Component {
   render() {
     return(
       <div className='template-choice'>
-        <div className='row'>
-          <div className='col-md-6'>
-            <h4>{this.props.template.name}</h4>
-            <p>Some creative details about this template choice.</p>
-          </div>
-          <div className='col-md-4'>
-            {this.state.loading ?
-              <Loading message=' ' />
-              :
-              this.state.error ?
-                'Preview unavailable' :
-                <TemplateViewer bed={this.state.mockBed} renderFontSizeLabel={8} />
-            }
-          </div>
-          <div className='col-md-2'>
-            <button className={`btn btn-primary ${this.state.loading.selectTemplate ? 'disabled' : null}`}
-                    onClick={this.handleSelectTemplate}>Select</button>
-          </div>
-        </div>
+        <h4>{this.props.template.name}</h4>
+        {this.state.loading ?
+          <Loading message=' ' />
+          :
+          this.state.error ?
+            'Preview unavailable' :
+            <TemplateViewer bed={this.state.mockBed} renderFontSizeLabel={8} />
+        }
+        <button className={`btn btn-primary ${this.state.loading.selectTemplate ? 'disabled' : null}`}
+                onClick={this.handleSelectTemplate}>Select Template</button>
 
       </div>
     )

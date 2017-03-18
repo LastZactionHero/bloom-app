@@ -1,6 +1,7 @@
 import React from 'react'
 import PlantSearchActions from 'actions/PlantSearchActions';
 import PlantSearchStore from 'stores/PlantSearchStore';
+import YardsStore from 'stores/YardsStore';
 import StingUtil from '../../util/string'
 import Loading from 'components/Common/Loading';
 import VisualSearchResult from './VisualSearchResult';
@@ -54,14 +55,32 @@ class BasicTemplateSearch extends React.Component {
 
 
   render() {
+    const shoppingList = YardsStore.shoppingList(this.props.yard)
+    console.log(this.props.templatePlant.search_query)
     return(
       <div className='plant-search'>
         <div className='basic-template-search'>
-          <h3>Basic Template Search: {this.props.templatePlant.plant_type}</h3>
-          <p>{this.props.templatePlant.tooltip}</p>
-          <p>{JSON.stringify(this.props.templatePlant.search_query)}</p>
+          <h3>Pick a Plant</h3>
+          <div className='step-hint'>
+            We&apos;ve narrowed down our database of plants to some specific choices we think would look good here.
+            This includes the detals you provided about your yard and bed (sunlight, moisture, location, etc.)
+            {shoppingList.length > 0 ?
+              <div><br/>
+                Other plants in your yard- they&apos;ll appear first in the list below if they&apos;re a good fit for this selection:
+                <div className='row'>
+                  <div className='col-md-12'>
+                    {shoppingList.map((shoppingListItem) => {
+                      return <div className='plant-image-background'
+                                  key={`other_plants_${shoppingListItem.plant.permalink}`}
+                                  style={{backgroundImage: `url("${shoppingListItem.plant.image_url}")`}} />
+                    })}
+                  </div>
+                </div>
+              </div> : null
+            }
+          </div>
 
-          <div className='form-group form-group-lg'>
+          <div className='form-group form-group-lg hidden '>
             <input type='text'
                    className='form-control'
                    placeholder='Search these plants'
@@ -69,10 +88,12 @@ class BasicTemplateSearch extends React.Component {
                    value={this.state.query.common_name} />
           </div>
 
+          <hr/>
+
           {this.state.loading.results ?
             <Loading message='Searching' /> :
             <div>
-
+              <h3 className='query-highlight'>{this.props.templatePlant.tooltip}</h3>
               <div>
                 <div className='row'>
                   {this.state.results.plants.map( (plant) => {

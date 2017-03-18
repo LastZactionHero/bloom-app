@@ -21,13 +21,15 @@ class BedListItem extends React.Component {
 
     return(
       <div className='bed-list-item'>
+        <div className='title'>
         <h3>{this.props.bed.name} <span className='title-subtext'>({this.props.bed.width}&apos; W x {this.props.bed.depth}&apos; H)</span></h3>
         <p className='description'>
           {BedDescriptionUtil.sunlight(this.props.bed)}.&nbsp;
           {BedDescriptionUtil.orientation(this.props.bed)}.
         </p>
+        </div>
 
-        {this.props.bed.template_id ? 
+        {this.props.bed.template_id ?
           <div className='row'>
             <div className='col-md-8'>
               <TemplateViewer bed={this.props.bed} renderFontSizeLabel={14} legend={true} selecting={true}/>
@@ -71,7 +73,7 @@ class BedListItem extends React.Component {
               }
             </div>
           </div>
-          : <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}} className='btn btn-success btn-lg'>Pick a template</Link> 
+          : <Link to={{pathname: `/dashboard/yards/${this.props.bed.yard_id}/beds/${this.props.bed.id}/template`}} className='btn btn-success btn-lg'>Pick a template</Link>
         }
         {this.state.delete ?
           <Modal title='Delete this garden bed?'

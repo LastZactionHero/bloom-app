@@ -97,6 +97,10 @@ body {
     font-weight: bold;
     margin-bottom: 4px;
   }
+
+  strong {
+    text-decoration: underline;
+  }
 }
 
 .field-error {
@@ -125,6 +129,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.query-highlight {
+  border: 1px solid $color-flat-gray;
+  border-radius: 4px;
+  padding: 4px 8px;
 }
 
 @import 'Session';
