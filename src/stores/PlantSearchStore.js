@@ -96,7 +96,7 @@ class PlantSeachStore {
       flower_colors: [],
       foliage_colors: [],
       light_needs: [],
-      watering_needs: [],
+      watering_needs: [], // Deprecated?
       key_features: [],
       special_features: [],
       zones: [],
@@ -104,11 +104,28 @@ class PlantSeachStore {
       garden_styles: [],
       flower_attributes: [],
       plant_types: [],
-      preference_permalinks: []
+      preference_permalinks: [],
+      soil_moisture: ''
     }, queryData.query);
 
     // TODO: Bed data, watering, lighting, etc
 
+    // Soil Moisture
+    this.query.soil_moisture = queryData.bed.soil;
+
+    // Watered, so we can include plants that require more water
+    if(queryData.bed.watered) {
+      switch(this.query.soil_moisture){
+        case 'dry':
+          this.query.soil_moisture += '|normal|wet';
+          break;
+        case 'normal':
+          this.query.soil_moisture += '|wet';
+          break;
+      }
+    }
+
+    // Zones
     const yard = queryData.yard;
     if(yard) {
       this.query.zones.push(yard.zone)

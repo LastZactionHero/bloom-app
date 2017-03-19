@@ -22,6 +22,9 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                 <i className="fa fa-tint" aria-hidden="true"></i>&nbsp;
                 How moist is the soil in this bed?
               </div>
+              <div className='step-hint'>
+                We guessed soil moisture from your yard. Please double check it is correct for this bed.
+              </div>
             </div>
           </div>
 
@@ -40,10 +43,10 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                 <div className="radio">
                   <label>
                     <input type="radio"
-                           value="moderate"
-                           checked={this.state.bed.soil == 'moderate'}
+                           value="normal"
+                           checked={this.state.bed.soil == 'normal'}
                            onChange={this.handleSoilChange} />
-                    Moderate
+                    Normal
                   </label>
                 </div>
                 <div className="radio">
@@ -66,6 +69,10 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                          onChange={this.handleWateredChange} /> This bed has watering equipment
                 </label>
                 <p className='help-block'>Sprinkler, drip irrigation system, etc.</p>
+                <div className='step-hint'>
+                  If checked, we&apos;ll include plants that require more soil moisture.
+                  Make sure to review the plant&apos;s care instructions.
+                </div>
               </div>
             </div>
           </div>

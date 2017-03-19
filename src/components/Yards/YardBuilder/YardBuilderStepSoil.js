@@ -36,10 +36,10 @@ class YardBuilderStepSoil extends YardBuilderStep {
                 <div className="radio">
                   <label>
                     <input type="radio"
-                           value="moderate"
-                           checked={this.state.yard.soil == 'moderate'}
+                           value="normal"
+                           checked={this.state.yard.soil == 'normal'}
                            onChange={this.handleSoilChange} />
-                    Moderate
+                    Normal
                   </label>
                 </div>
                 <div className="radio">

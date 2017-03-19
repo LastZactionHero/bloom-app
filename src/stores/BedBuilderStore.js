@@ -6,7 +6,7 @@ class BedBuilderStore {
     this.bindListeners({
       reset: BedBuilderActions.RESET,
 
-      handleYardIDChange: BedBuilderActions.YARD_ID_CHANGE,
+      handleYardChange: BedBuilderActions.YARD_CHANGE,
       handleNextStep: BedBuilderActions.NEXT_STEP,
       handleSelectStep: BedBuilderActions.SELECT_STEP,
 
@@ -76,9 +76,12 @@ class BedBuilderStore {
     }
   }
 
-  handleYardIDChange(yardID) {
-    this.bed.yard_id = yardID;
-    console.log("yad id change!")
+  handleYardChange(yard) {
+    this.bed.yard_id = yard.id;
+    this.bed.yard = yard;
+
+    // Assume the soil is the same as the yard
+    this.bed.soil = yard.soil;
   }
 
   handleNameChange(name) {
@@ -188,15 +191,16 @@ class BedBuilderStore {
       && this.bed.width && this.bed.width >= 3 && this.bed.width <= 99
       && this.bed.depth && this.bed.depth >= 3 && this.bed.depth <= 99;
 
-    this.steps.moisture.complete = this.bed.soil.length > 0;
-
     this.steps.position.complete =
       this.bed.attached_to_house != null &&
       this.bed.orientation.length > 0;
 
     this.steps.sunlight.complete =
       this.bed.sunlight_morning != null &&
-      this.bed.sunlight_afternoon != null
+      this.bed.sunlight_afternoon != null &&
+      this.steps.position.complete
+
+    this.steps.moisture.complete = this.bed.soil.length > 0 && this.steps.sunlight.complete;
 
     this.allComplete = (
       this.steps.dimensions.complete

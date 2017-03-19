@@ -14,9 +14,8 @@ class BedBuilderActions {
     return stepName;
   }
 
-  yardIdChange(yardID) {
-    console.log('yardIDChange ' + yardID)
-    return yardID
+  yardChange(yard) {
+    return yard
   }
 
   nameChange(name) {

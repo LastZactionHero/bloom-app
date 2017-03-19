@@ -19,7 +19,7 @@ class BedBuilder extends React.Component {
     BedBuilderActions.reset();
     BedBuilderStore.listen(this.onChange);
     setTimeout( () => {
-      BedBuilderActions.yardIdChange(this.props.yard.id);
+      BedBuilderActions.yardChange(this.props.yard);
     })
   }
   componentWillUnmount = () => {
