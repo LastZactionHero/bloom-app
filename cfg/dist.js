@@ -11,7 +11,7 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 var AssetsPlugin = require('assets-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
-  entry: path.join(__dirname, '../src/index'),
+  entry: ['babel-polyfill', path.join(__dirname, '../src/index')],
   cache: false,
   devtool: 'sourcemap',
   plugins: [
