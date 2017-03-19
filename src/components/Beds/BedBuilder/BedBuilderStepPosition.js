@@ -30,7 +30,7 @@ class BedBuilderStepPosition extends BedBuilderStep {
                 <div className='row'>
                   <div className='col-sm-6'>
                     <div className='form-group'>
-                      <label>Is the connected to your house?</label>
+                      <label>Is the bed connected to your house?</label>
                       <div className="radio">
                         <label>
                           <input type="radio"
