@@ -2,7 +2,6 @@ import String from './string';
 
 export default {
   plantDescription(plant) {
-    console.log(plant)
     let description = '';
 
     if(plant.leave_type) {
