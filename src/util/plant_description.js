@@ -2,6 +2,7 @@ import String from './string';
 
 export default {
   plantDescription(plant) {
+    console.log(plant)
     let description = '';
 
     if(plant.leave_type) {
@@ -12,10 +13,10 @@ export default {
       description += ' flowering';
     }
 
-    if(plant.plant_type){
+    if(plant.plant_type && plant.plant_type.name){
       description += ` ${plant.plant_type.name}`
     } else {
-      description += ' Plant'
+      description += ' plant'
     }
 
     if(plant.size.avg_width){
