@@ -105,10 +105,20 @@ class PlantSeachStore {
       flower_attributes: [],
       plant_types: [],
       preference_permalinks: [],
-      soil_moisture: ''
+      soil_moisture: '',
+      lighting: ''
     }, queryData.query);
 
-    // TODO: Bed data, watering, lighting, etc
+    // Lighting
+    if(!queryData.bed.sunlight_morning && !queryData.bed.sunlight_afternoon) {
+      this.query.lighting = 'full_shade';
+    } else if(!queryData.bed.sunlight_morning && queryData.bed.sunlight_afternoon) {
+      this.query.lighting = 'afternoon';
+    } else if(queryData.bed.sunlight_morning && !queryData.bed.sunlight_afternoon) {
+      this.query.lighting = 'morning';
+    } else {
+      this.query.lighting = 'full_sun';
+    }
 
     // Soil Moisture
     this.query.soil_moisture = queryData.bed.soil;
