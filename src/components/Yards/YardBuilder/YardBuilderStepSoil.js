@@ -32,6 +32,7 @@ class YardBuilderStepSoil extends YardBuilderStep {
                            onChange={this.handleSoilChange} />
                     Wet
                   </label>
+                  <div className='hint'>Soil stays wet long after watering. Poor drainage or in a low-lying area.</div>
                 </div>
                 <div className="radio">
                   <label>
@@ -41,6 +42,7 @@ class YardBuilderStepSoil extends YardBuilderStep {
                            onChange={this.handleSoilChange} />
                     Normal
                   </label>
+                  <div className='hint'>Soil usually has some moisture, but is not constantly soggy or wet. Good drainage.</div>
                 </div>
                 <div className="radio">
                   <label>
@@ -50,10 +52,11 @@ class YardBuilderStepSoil extends YardBuilderStep {
                            onChange={this.handleSoilChange} />
                     Dry
                   </label>
+                  <div className='hint'>Very little moisture most of the time.</div>
                 </div>
               </div>
               <hr/>
-              <p>(You&apos;ll specify soil moisture and watering bed-by-bed a bit later.)</p>
+              <div className='step-hint'>You&apos;ll specify soil moisture and watering bed-by-bed a bit later.</div>
 
               {this.state.steps.soil.complete ?
                 <div className='text-right'>

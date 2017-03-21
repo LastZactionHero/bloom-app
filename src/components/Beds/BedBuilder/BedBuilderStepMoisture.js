@@ -39,6 +39,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                            onChange={this.handleSoilChange} />
                     Wet
                   </label>
+                  <div className='hint'>Soil stays wet long after watering. Poor drainage or in a low-lying area.</div>
                 </div>
                 <div className="radio">
                   <label>
@@ -48,6 +49,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                            onChange={this.handleSoilChange} />
                     Normal
                   </label>
+                  <div className='hint'>Soil usually has some moisture, but is not constantly soggy or wet. Good drainage.</div>
                 </div>
                 <div className="radio">
                   <label>
@@ -57,6 +59,7 @@ class BedBuilderStepMoisture extends BedBuilderStep {
                            onChange={this.handleSoilChange} />
                     Dry
                   </label>
+                  <div className='hint'>Very little moisture most of the time.</div>
                 </div>
               </div>
 
