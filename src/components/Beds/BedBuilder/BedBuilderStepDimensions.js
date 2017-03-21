@@ -71,7 +71,7 @@ class BedBuilderStepDimensions extends BedBuilderStep {
               <div className='step-hint'>
                 Away from the house? Try some different sizes, like <strong>20 ft wide, 5 ft deep</strong>.
                 <br/>
-                Forgot your tape measure? Here&apos;s a tip: <strong>a standard rake or shovel about 5 ft long.</strong>
+                Forgot your tape measure? Here&apos;s a tip: <strong>a standard rake or shovel is about 5 ft long.</strong>
               </div>
 
               {this.state.steps.dimensions.complete ?
