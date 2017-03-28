@@ -5,6 +5,7 @@ import Main from './components/Main';
 import Dashboard from './components/Dashboard';
 import UserSignIn from './components/Users/SignIn';
 import UserSignUp from './components/Users/SignUp';
+import UserSignUpWithPromo from './components/Users/SignUpWithPromo';
 import YardsMain from './components/Yards/YardsMain';
 import YardBuilder from './components/Yards/YardBuilder/YardBuilder';
 import YardMain from './components/Yards/YardMain';
@@ -51,6 +52,7 @@ ReactDOM.render(
       </Route>
       <Route path="sign_in" component={UserSignIn}/>
       <Route path="sign_up" component={UserSignUp}/>
+      <Route path="register" component={UserSignUpWithPromo}/>
       <Route path="*" component={Dashboard}/>
     </Route>
   </Router>, document.getElementById('app'));

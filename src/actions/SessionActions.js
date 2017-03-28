@@ -87,7 +87,7 @@ class SessionActions {
   }
 
 
-  startSignUp(submitting, email, password, password_confirmation) {
+  startSignUp(submitting, email, password, password_confirmation, promo_code) {
     if(submitting) { return true }
 
     let valid = true;
@@ -113,7 +113,7 @@ class SessionActions {
       return false;
     }
 
-    UserSource.sign_up(email, password)
+    UserSource.sign_up(email, password, promo_code)
       .then( (user) => {
         this.signedIn(user);
       }).catch( (xhr) => {

@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 export default {
-  sign_up: function(email, password) {
+  sign_up: function(email, password, promo_code) {
     return new Promise( (resolve, reject) => {
       $.ajax({
         method: 'POST',
@@ -12,7 +12,8 @@ export default {
         },
         data: JSON.stringify({
           email: email,
-          password: password
+          password: password,
+          promo_code: promo_code
         })
       }).done( (response) => {
         resolve(response);

@@ -4,8 +4,8 @@ import SessionStore from '../../stores/SessionStore';
 import SessionActions from '../../actions/SessionActions';
 
 class SessionForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = SessionStore.getState();
     this.redirectIfSignedIn();
   }
