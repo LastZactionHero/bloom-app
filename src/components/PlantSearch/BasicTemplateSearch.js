@@ -56,7 +56,6 @@ class BasicTemplateSearch extends React.Component {
 
   render() {
     const shoppingList = YardsStore.shoppingList(this.props.yard)
-    console.log(this.props.templatePlant.search_query)
     return(
       <div className='plant-search'>
         <div className='basic-template-search'>

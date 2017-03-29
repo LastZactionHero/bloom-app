@@ -20,11 +20,8 @@ class YardMain extends React.Component {
 
   render() {
     let yard = YardsStore.findYardById(this.props.params.yard_id);
-    console.log('Yard:')
-    console.log(yard)
     let children = this.props.children;
     if(children && yard) {
-      console.log('applying prop')
       children = React.cloneElement(this.props.children, { yard: yard });
     }
 

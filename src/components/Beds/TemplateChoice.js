@@ -48,9 +48,10 @@ class TemplateChoice extends React.Component {
   }
 
   render() {
+    console.log("Template:")
+    console.log(this.props.template)
     return(
       <div className='template-choice'>
-        <h4>{this.props.template.name}</h4>
         {this.state.loading ?
           <Loading message=' ' />
           :
@@ -58,6 +59,13 @@ class TemplateChoice extends React.Component {
             'Preview unavailable' :
             <TemplateViewer bed={this.state.mockBed} renderFontSizeLabel={8} />
         }
+        <ul>
+          {this.props.template.template_plants.map( (templatePlant) => {
+            return <li>
+              <strong>{templatePlant.label} - {templatePlant.plant_type}:</strong> {templatePlant.tooltip}
+            </li>
+          })}
+        </ul>
         <button className={`btn btn-primary ${this.state.loading.selectTemplate ? 'disabled' : null}`}
                 onClick={this.handleSelectTemplate}>Select Template</button>
 

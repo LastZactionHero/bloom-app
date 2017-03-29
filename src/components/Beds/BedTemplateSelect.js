@@ -46,8 +46,10 @@ class BedTemplateSelect extends React.Component {
                     <h4>Here are some styles that would look good for garden bed of this size ({this.props.bed.width}ft x {this.props.bed.depth}ft). Pick one that you prefer:</h4>
 
                     <div className='step-hint'>
-                      A template is a guide for the organization of your plants (e.g. straight lines of shrubs, clustering of groundcover).<br/>
-                      After picking a template, we&apos;ll guide you through selecting some plants.
+                      A template is a guide for the organization of your plants.
+                      Some are simple and neat, others are complex and natural.
+                      Pick one below that you think suits this garden bed.
+                      Don't worry if you make a mistake- you can always change this later.
                     </div>
 
                     {this.props.bed.template_id ?
