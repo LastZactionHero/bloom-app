@@ -149,13 +149,12 @@ class PlantSeachStore {
 
     // Set a maximum width based on the dimensions of the bed to prevent picking a plant too large for the bed to
     // contain it
-    const bedWidthProportion = 0.75; // No plant can be wider than > 75% of the bed's smallest dimension;
-    const maxWidth = Math.min(queryData.bed.width, queryData.bed.depth) * 12 * bedWidthProportion;
-    this.query.width.max = maxWidth;
+    const maxWidth = Math.min(queryData.bed.width, queryData.bed.depth) * 12;
+    this.query.width.max = Math.min(maxWidth, this.query.width.max);
 
-    const tooSmallReductionProportion = 0.75; // If the new max is smaller than the new min, reduce the min
+    const tooSmallReductionProportion = 0.8; // If the new max is smaller than the new min, reduce the min
     if(this.query.width.min >= this.query.width.max * tooSmallReductionProportion) {
-      this.query.width.min = this.query.width_max * tooSmallReductionProportion
+      this.query.width.min = this.query.width.max * tooSmallReductionProportion;
     }
 
     this.pageIdx = 0; // reset page

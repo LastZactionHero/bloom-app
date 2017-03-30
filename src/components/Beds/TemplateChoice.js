@@ -48,8 +48,6 @@ class TemplateChoice extends React.Component {
   }
 
   render() {
-    console.log("Template:")
-    console.log(this.props.template)
     return(
       <div className='template-choice'>
         {this.state.loading ?
@@ -61,7 +59,7 @@ class TemplateChoice extends React.Component {
         }
         <ul>
           {this.props.template.template_plants.map( (templatePlant) => {
-            return <li>
+            return <li key={`choice_label_${templatePlant.label}`}>
               <strong>{templatePlant.label} - {templatePlant.plant_type}:</strong> {templatePlant.tooltip}
             </li>
           })}

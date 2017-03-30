@@ -61,10 +61,8 @@ class BedTemplateSelect extends React.Component {
 
                     <div className='row'>
                     {this.state.suggestedTemplates.map( (template) => {
-                      return <div className='col-md-4'>
-                      <TemplateChoice key={`suggested_template_choice_${template.id}`}
-                                             template={template}
-                                             bed={this.props.bed} />
+                      return <div className='col-md-4' key={`suggested_template_choice_${template.id}`}>
+                        <TemplateChoice template={template} bed={this.props.bed} />
                       </div>
                     })}
                     </div>
