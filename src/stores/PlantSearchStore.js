@@ -142,7 +142,14 @@ class PlantSeachStore {
     }
 
     // Indicate any past plant picks, if present
-    const pastPlantPermalinks = ArrayUtil.flatten(yard.beds.map( (bed) => { return Object.values(bed.template_plant_mapping).map((p) => {return p.permalink})}))
+    let pastPlantPermalinks = [];
+    yard.beds.map( (bed) => {
+      return Object.values(bed.template_plant_mapping).map((p) => {
+        if(p && p.permalink) {
+          pastPlantPermalinks.push(p.permalink)
+        }
+      });
+    });
     if(pastPlantPermalinks.length > 0) {
       this.query.preference_permalinks = pastPlantPermalinks
     }
