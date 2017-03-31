@@ -208,6 +208,13 @@ class BedBuilderStore {
       && this.steps.sunlight.complete
       && this.steps.moisture.complete
     );
+
+    // TODO: Actually support deep beds
+    if(this.allComplete && this.bed.width < this.bed.depth) {
+      const tempWidth = this.bed.width;
+      this.bed.width = this.bed.depth;
+      this.bed.depth = tempWidth;
+    }
   }
 
   handleStartCreateBed() {
