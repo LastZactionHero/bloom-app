@@ -1,8 +1,8 @@
   import React from 'react';
 import { Link } from 'react-router'
 import YardsStore from '../../stores/YardsStore';
-
 import YardListItem from './YardListItem';
+import FacebookTrackingPixel from 'components/Common/FacebookTrackingPixel';
 
 class YardList extends React.Component {
   constructor() {
@@ -42,6 +42,7 @@ class YardList extends React.Component {
                   <div className='text-center'>
                     <Link className='btn btn-success btn-first-yard' to={{pathname: '/dashboard/yards/new'}}>Start Designing!</Link>
                   </div>
+                  <FacebookTrackingPixel eventName='AddToCart' />
                 </div>
               </div>
             </div>

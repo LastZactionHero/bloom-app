@@ -6,6 +6,7 @@ import UpgradeActions from 'actions/UpgradeActions'
 import Modal from 'components/Common/Modal'
 import CreditCardForm from './CreditCardForm';
 import Loading from 'components/Common/Loading';
+import FacebookTrackingPixel from 'components/Common/FacebookTrackingPixel';
 
 class UpgradeModal extends React.Component {
   constructor(props) {
@@ -75,8 +76,9 @@ class UpgradeModal extends React.Component {
       <Modal title='Upgrade to Unlimited Access' buttons={[{name: 'No thanks', onClick: this.props.cancel}]}>
         <div className='upgrade-modal'>
           {this.state.user.account.status == 'full_access' ?
-            <div className='alert alert-success alert-inverted'>
-              Thank you for your purchase!
+            <div>
+              <div className='alert alert-success alert-inverted'>Thank you for your purchase!</div>
+              <FacebookTrackingPixel eventName='CompleteRegistration' />
             </div> :
             <div>
               <h4>Your Bloom trial lets you create one yard and one garden bed.</h4>
