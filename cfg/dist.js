@@ -25,7 +25,7 @@ let config = Object.assign({}, baseConfig, {
     new webpack.DefinePlugin({
       API_SEARCH_HOST: JSON.stringify('http://api-search.plantwithbloom.com'),
       API_USER_HOST: JSON.stringify('http://api-user.plantwithbloom.com'),
-      STRIPE_PUBLISHABLE_KEY: 'pk_live_PTSEBcUzpw8JEfsLgFwqYfeZ'
+      STRIPE_PUBLISHABLE_KEY: JSON.stringify('pk_live_PTSEBcUzpw8JEfsLgFwqYfeZ')
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),

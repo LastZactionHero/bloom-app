@@ -3,7 +3,6 @@ import UpgradeActions from 'actions/UpgradeActions'
 import SessionStore from 'stores/SessionStore';
 import StripeCheckout from 'react-stripe-checkout';
 
-
 class CreditCardForm extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +28,7 @@ class CreditCardForm extends React.Component {
   render() {
     return(
       <StripeCheckout token={this.onToken}
-                      stripeKey='pk_test_Q4Vk0WhrdssfjdtHLfG0nzpa'
+                      stripeKey={STRIPE_PUBLISHABLE_KEY}
                       email={this.state.user.email}
                       name='Bloom Landscape Assistant'
                       description='1 Year Unlimited Access'

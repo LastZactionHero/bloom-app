@@ -27,9 +27,8 @@ let config = Object.assign({}, baseConfig, {
     }),
     new webpack.DefinePlugin({
      API_SEARCH_HOST: JSON.stringify('http://dev-api-search.plantwithbloom.com:3000'),
-    //  API_SEARCH_HOST: JSON.stringify('http://api-search.plantwithbloom.com'),
      API_USER_HOST: JSON.stringify('http://dev-api-user.plantwithbloom.com:3001'),
-     STRIPE_PUBLISHABLE_KEY: 'pk_test_Q4Vk0WhrdssfjdtHLfG0nzpa'
+     STRIPE_PUBLISHABLE_KEY: JSON.stringify('pk_test_Q4Vk0WhrdssfjdtHLfG0nzpa')
     }),
     new AssetsPlugin({ filename: 'assets_dev.json' }), // Build assets manifest
 
