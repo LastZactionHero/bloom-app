@@ -30,7 +30,7 @@ export default {
     for(let i = 0; i < 8  ; i++) {
       ctx.arc(xPos - shrubRadius * Math.sin(2 * Math.PI * i / shrubCurlCount),
               yPos + shrubRadius * Math.cos(2 * Math.PI * i / shrubCurlCount),
-              shrubCurlRadius,
+              Math.max(shrubCurlRadius, 2),
               2 * Math.PI * ((i - 1) / shrubCurlCount),
               2 * Math.PI * (i + shrubCurlCount / 2) / shrubCurlCount);
       ctx.fill();
