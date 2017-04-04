@@ -1,5 +1,6 @@
 import React from 'react';
 import PlantShapes from '../../../util/plant_shapes';
+import $ from 'jquery';
 
 class TemplateRenderCanvas extends React.Component {
   constructor(props) {
@@ -129,6 +130,16 @@ class TemplateRenderCanvas extends React.Component {
         this.renderPlacements(ctx, imageScale, labelPlacements, colorLightGreen, {radiusAdjust: 0, printLabel: true});
       }
     });
+
+    // Automatic Download
+    var filename = `yard_${this.props.bed.yard_id}_${this.props.bed.name.replace(/[^A-z]/g, '_').replace(/_+/g, '_')}.png`
+
+    var rawImageData = this.refs.canvas.toDataURL("image/png;base64");
+    rawImageData = rawImageData.replace("image/png", "image/octet-stream");
+    var link = this.refs.canvasDownload;
+    link.setAttribute('download', filename);
+    link.setAttribute('href', rawImageData);
+    link.click();
   }
 
   renderPlacements = (ctx, imageScale, placements, color, options) => {
@@ -164,8 +175,11 @@ class TemplateRenderCanvas extends React.Component {
   render() {
     setTimeout(() => {this.renderBed();});
     return(
-      <div ref='canvasContainer'>
-        <canvas ref='canvas'/>
+      <div>
+        <a ref='canvasDownload'>Download</a>
+        <div ref='canvasContainer'>
+          <canvas ref='canvas'/>
+        </div>
       </div>
     )
   }
