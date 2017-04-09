@@ -63,11 +63,11 @@ class SearchForm extends React.Component {
           <FlowerColorsSelector />
           {/*<GardenStylesSelector />*/}
           {/*<GrowthRateSelector />*/}
-          <KeyFeaturesSelector />
+          { /*<KeyFeaturesSelector /> */}
           <LeaveTypeSelector />
           <WateringNeedsSelector />
           <LightNeedsSelector />
-          {/*<SpecialFeaturesSelector />*/}
+          <SpecialFeaturesSelector />
         </div>
       </div>
     )
