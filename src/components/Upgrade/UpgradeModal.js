@@ -81,7 +81,7 @@ class UpgradeModal extends React.Component {
               <FacebookTrackingPixel eventName='CompleteRegistration' />
             </div> :
             <div>
-              <h4>Your Bloom trial lets you create one yard and one garden bed.</h4>
+              <h4>Your Bloom trial lets you create one yard, one garden bed, and five searches.</h4>
                 <h4>Upgrade and receive:</h4>
               <ul className='features'>
                 <li>Unlimited yards and garden beds</li>

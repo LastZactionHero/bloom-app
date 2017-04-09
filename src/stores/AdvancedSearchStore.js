@@ -39,6 +39,7 @@ class AdvancedSeachStore {
     };
     this.queryTimeout = null;
     this.selectedPlant = null;
+    this.searchCount = 0;
   }
 
   handleUpdateOptions(options) {
@@ -81,6 +82,7 @@ class AdvancedSeachStore {
       clearTimeout(this.queryTimeout);
     }
 
+    this.searchCount++;
     this.queryTimeout = null;
     this.queryTimeout = setTimeout(() => {
       this.queryTimeout = null;

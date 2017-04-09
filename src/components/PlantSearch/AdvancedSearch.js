@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router'
 import AdvancedSearchStore from 'stores/AdvancedSearchStore';
 import SearchForm from './SearchForm';
 import VisualSearchResult from './VisualSearchResult';
@@ -6,11 +7,19 @@ import Modal from 'components/Common/Modal';
 import PlantPreview from './PlantPreview';
 import Pagination from 'components/Common/Pagination';
 import AdvancedSearchActions from 'actions/AdvancedSearchActions';
+import UpgradeModal from 'components/Upgrade/UpgradeModal';
+import SessionStore from 'stores/SessionStore';
 
 class AdvancedSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = AdvancedSearchStore.getState();
+    //this.upgradeCheck();
+  }
+
+  upgradeCheck = () => {
+    const sessionState = SessionStore.getState();
+    this.setState({requiresUpgrade: sessionState.user.account.status == 'trial' && this.state.searchCount > 5});
   }
 
   componentDidMount = () => {
@@ -25,7 +34,8 @@ class AdvancedSearch extends React.Component {
   }
 
   onChange = (state) => {
-    this.setState(state)
+    this.setState(state);
+    this.upgradeCheck();
   }
 
   showPlantPreview = (plant) => {
@@ -80,6 +90,7 @@ class AdvancedSearch extends React.Component {
           </Modal>
           : null
         }
+        {this.state.requiresUpgrade ? <UpgradeModal cancel={() => {browserHistory.replace('/dashboard/yards');}}/> : null}
       </div>
     );
   }
