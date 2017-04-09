@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 class Modal extends React.Component {
   componentDidMount = () => {
-    $(this.refs.modal).modal({show: true, backdrop: 'static'});
+    $(this.refs.modal).modal({show: true, backdrop: 'static', keyboard: false});
   }
 
   handleButtonClick = (button) => {

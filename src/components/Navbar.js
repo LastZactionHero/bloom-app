@@ -51,7 +51,15 @@ class Navbar extends React.Component {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><Link to={{pathname: '/dashboard/yards'}}>My Yards</Link></li> :
+              <li><Link to={{pathname: '/dashboard/yards'}}>
+                  <i className="fa fa-leaf" />&nbsp;
+                  My Yards
+                </Link>
+              </li>
+              <li><Link to={{pathname: '/dashboard/search'}}>
+                <i className="fa fa-search" />&nbsp;
+                Plant Search</Link>
+              </li>
             </ul>
 
             <ul className="nav navbar-nav navbar-right">
