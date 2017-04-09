@@ -12,7 +12,7 @@ class UpgradeModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = SessionStore.getState();
-    this.state.price = 14.99;
+    this.state.price = 7.99;
     this.state.promo_code = {
       code: '',
       entering: false,
