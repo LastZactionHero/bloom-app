@@ -22,7 +22,7 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = SearchStore.getState();
-    SearchActions.fetchOptions();
+    setTimeout( () => { SearchActions.fetchOptions() } );
   }
 
   handleCommonNameChange(event) {

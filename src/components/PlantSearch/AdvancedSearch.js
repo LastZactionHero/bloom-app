@@ -59,25 +59,28 @@ class AdvancedSearch extends React.Component {
             <SearchForm />
           </div>
           <div className='col-sm-9'>
-            <div className='row'>
-              {this.state.results.plants.map( (plant) => {
-                return <VisualSearchResult key={`search_result_${plant.id}`}
-                                           plant={plant}
-                                           onSelect={this.showPlantPreview} />
-              })}
-            </div>
-
             {this.state.results ?
-              <Pagination current={this.state.results.meta.page_idx}
-                          total={this.state.results.meta.total_pages}
-                          onChangePage={this.onChangePage} />
-              : null
-            }
+              <div>
+                <div className='row'>
+                  {this.state.results.plants.map( (plant) => {
+                    return <VisualSearchResult key={`search_result_${plant.id}`}
+                                               plant={plant}
+                                               onSelect={this.showPlantPreview} />
+                  })}
+                </div>
 
-            {this.state.results.plants.length == 0 ?
-              <div className='alert alert-warning'>No Results</div>
-              : null
-            }
+                {this.state.results ?
+                  <Pagination current={this.state.results.meta.page_idx}
+                              total={this.state.results.meta.total_pages}
+                              onChangePage={this.onChangePage} />
+                  : null
+                }
+
+                {this.state.results.plants.length == 0 ?
+                  <div className='alert alert-warning'>No Results</div>
+                  : null
+                }
+              </div> : null }
           </div>
         </div>
 

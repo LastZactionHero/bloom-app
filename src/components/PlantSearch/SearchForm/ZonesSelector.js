@@ -53,13 +53,13 @@ class ZonesSelector extends React.Component {
           <label>Zipcode</label>
           <input type='text' className='form-control' value={this.state.zipcode} onChange={this.onZipcodeChange} />
           {this.state.query.zones.length > 0 ?
-            <strong>Zone: {this.state.query.zones[0]}</strong>
+            <div className='label label-success'><strong>Zone: {this.state.query.zones[0]}</strong></div>
             : <span className='help-block'>Find only plants in your area</span>
           }
           {
             this.state.zoneError ?
-              <div className='alert alert-danger alert-danger-inverted'>
-                Hmm, this doesn&apos; look like a valid zipcode.
+              <div className='field-error'>
+                Hmm, this doesn&apos;t look like a valid zipcode.
               </div> : null
           }
         </div>
