@@ -40,7 +40,7 @@ class Upgrade extends React.Component {
                 <li><p>Unlimited searches in our database of over 5000 plants</p></li>
               </ul>
 
-              <div className='price'>Just $7.99</div>
+              <div className='price'>Just $1.99</div>
               <div className='price-detail'>One-time purchase for the year- not a subscription.</div>
               <div className='text-center'>
                 <CreditCardForm />
