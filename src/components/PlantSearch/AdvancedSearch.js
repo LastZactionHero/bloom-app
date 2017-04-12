@@ -14,12 +14,11 @@ class AdvancedSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = AdvancedSearchStore.getState();
-    //this.upgradeCheck();
   }
 
   upgradeCheck = () => {
     const sessionState = SessionStore.getState();
-    this.setState({requiresUpgrade: sessionState.user.account.status == 'trial' && this.state.searchCount > 5});
+    // this.setState({requiresUpgrade: sessionState.user.account.status == 'trial' && this.state.searchCount > 5});
   }
 
   componentDidMount = () => {
@@ -93,7 +92,7 @@ class AdvancedSearch extends React.Component {
           </Modal>
           : null
         }
-        {this.state.requiresUpgrade ? <UpgradeModal cancel={() => {browserHistory.replace('/dashboard/yards');}}/> : null}
+        {/*this.state.requiresUpgrade ? <UpgradeModal cancel={() => {browserHistory.replace('/dashboard/yards');}}/> : null*/}
       </div>
     );
   }

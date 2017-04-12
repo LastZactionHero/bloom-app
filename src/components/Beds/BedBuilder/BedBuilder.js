@@ -13,14 +13,13 @@ class BedBuilder extends React.Component {
   constructor(props) {
     super(props);
     this.state =  BedBuilderStore.getState();
-    this.state.requiresUpgrade = SessionStore.getState().user.account.status == 'trial' && this.props.yard.beds.length > 0
   }
   componentDidMount = () => {
-    BedBuilderActions.reset();
-    BedBuilderStore.listen(this.onChange);
     setTimeout( () => {
       BedBuilderActions.yardChange(this.props.yard);
     })
+    BedBuilderStore.listen(this.onChange);
+    BedBuilderActions.reset();
   }
   componentWillUnmount = () => {
     BedBuilderStore.unlisten(this.onChange);
@@ -29,7 +28,9 @@ class BedBuilder extends React.Component {
     this.setState(state);
   }
   createBed = () => {
-    if(!this.state.submitting) {
+    if(SessionStore.getState().user.account.status == 'trial') {
+      this.setState({showUpgradeModal: true});
+    } else if(!this.state.submitting) {
       BedBuilderActions.startCreateBed(this.state.bed);
     }
   }
@@ -54,7 +55,7 @@ class BedBuilder extends React.Component {
             </div>
             : null }
         </div>
-        {this.state.requiresUpgrade ? <UpgradeModal cancel={() => {browserHistory.replace(`/dashboard/yards/${this.props.yard.id}`);}}/> : null}
+        {this.state.showUpgradeModal ? <UpgradeModal cancel={() => {browserHistory.replace(`/dashboard/search`);}}/> : null}
       </div>
     )
   }

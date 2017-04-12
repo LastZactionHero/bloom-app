@@ -27,15 +27,18 @@ class CreditCardForm extends React.Component {
 
   render() {
     return(
-      <StripeCheckout token={this.onToken}
-                      stripeKey={STRIPE_PUBLISHABLE_KEY}
-                      email={this.state.user.email}
-                      name='Bloom Landscape Assistant'
-                      description='1 Year Unlimited Access'
-                      amount={this.props.price * 100}
-                       >
-        <button className='btn btn-success btn-lg'>Upgrade</button>
-      </StripeCheckout>
+      <div>
+        <StripeCheckout token={this.onToken}
+                        stripeKey={STRIPE_PUBLISHABLE_KEY}
+                        email={this.state.user.email}
+                        name='Bloom Landscape Assistant'
+                        description='1 Year Unlimited Access'
+                        amount={this.props.price * 100}
+                         >
+          <button className='btn btn-success btn-lg'>Upgrade</button>
+        </StripeCheckout>
+        <a className='btn btn-default btn-lg' style={{marginLeft: '8px'}} target='_blank' href='http://www.plantwithbloom.com/samples/denver_colorado.html'>See Samples</a>
+      </div>
     )
   }
 }

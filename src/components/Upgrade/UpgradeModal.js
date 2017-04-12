@@ -71,9 +71,13 @@ class UpgradeModal extends React.Component {
     UpgradeActions.upgradeStart({}, this.state.promo_code.code);
   }
 
+  startSearch = () => {
+    browserHistory.replace('/sign_up');
+  }
+
   render() {
     return(
-      <Modal title='Upgrade to Unlimited Access' buttons={[{name: 'No thanks', onClick: this.props.cancel}]}>
+      <Modal title='Upgrade to Full Access' buttons={[{name: 'No thanks', onClick: this.props.cancel}]}>
         <div className='upgrade-modal'>
           {this.state.user.account.status == 'full_access' ?
             <div>
@@ -81,8 +85,7 @@ class UpgradeModal extends React.Component {
               <FacebookTrackingPixel eventName='CompleteRegistration' />
             </div> :
             <div>
-              <h4>Your Bloom trial lets you create one yard, one garden bed, and five searches.</h4>
-                <h4>Upgrade and receive:</h4>
+              <h4>Upgrade and receive:</h4>
               <ul className='features'>
                 <li>Unlimited yards and garden beds</li>
                 <li>Unlimited access for one year - design all season!</li>
