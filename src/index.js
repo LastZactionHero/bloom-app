@@ -53,6 +53,7 @@ ReactDOM.render(
         <Route path="search" component={AdvancedSearch}/>
         <Route path="upgrade" component={Upgrade} />
       </Route>
+      <Route path="search" component={AdvancedSearch}/>
       <Route path="sign_in" component={UserSignIn}/>
       <Route path="sign_up" component={UserSignUp}/>
       <Route path="register" component={UserSignUpWithPromo}/>

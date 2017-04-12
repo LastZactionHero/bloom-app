@@ -6,6 +6,10 @@ class Modal extends React.Component {
     $(this.refs.modal).modal({show: true, backdrop: 'static', keyboard: false});
   }
 
+  componentWillUnmount = () => {
+    $('.modal-backdrop').remove();
+  }
+
   handleButtonClick = (button) => {
     if(button.onClick) { button.onClick() }
     $(this.refs.modal).modal('hide');
