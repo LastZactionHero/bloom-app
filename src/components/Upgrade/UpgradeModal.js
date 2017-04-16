@@ -77,7 +77,7 @@ class UpgradeModal extends React.Component {
 
   render() {
     return(
-      <Modal title='Upgrade to Full Access' buttons={[{name: 'No thanks', onClick: this.props.cancel}]}>
+      <Modal title='Design Your First Garden Bed' buttons={[{name: 'No thanks', onClick: this.props.cancel}]}>
         <div className='upgrade-modal'>
           {this.state.user.account.status == 'full_access' ?
             <div>
@@ -85,7 +85,7 @@ class UpgradeModal extends React.Component {
               <FacebookTrackingPixel eventName='CompleteRegistration' />
             </div> :
             <div>
-              <h4>Upgrade and receive:</h4>
+              <h4>Includes:</h4>
               <ul className='features'>
                 <li>Unlimited yards and garden beds</li>
                 <li>Unlimited access for one year - design all season!</li>
